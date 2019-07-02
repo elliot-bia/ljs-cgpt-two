@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>深圳联交所</title>
+    <link rel="icon" href="../images/logo.png">
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/ele.css">
+    <link rel="stylesheet" href="../css/eleicon.css">
+    <link rel="stylesheet" href="../css/purchase.css">
+    <link rel="stylesheet" href="../css/swiper.min.css">
+    <script src="../js/vue.min.js"></script>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/bootstrap.js"></script>
+    <script src="../js/ele.js"></script>
+    <script src="../js/headerpublic.js"></script>
+    <style>
+        .inputs {
+            width: 70%;
+            margin: 0 auto;
+            margin-top: 20px
+        }
+        
+        .contents {
+            padding: 10px;
+            border-bottom: 1px solid #ccc
+        }
+        .contents1{
+            border-bottom: 1px solid #ccc;
+            line-height: 50px;
+            padding: 0 10px
+        }
+        .purcli {
+            display: flex;
+            flex-wrap: wrap
+        }
+        
+        .purcli>li {
+            width: 16%;
+            padding-bottom: 10px;
+            cursor: pointer;
+        }
+        
+        .purcli>li:hover {
+            color: #FFA827 !important;
+        }
+        .Choice{
+            display: flex;
+            padding: 15px 0
+        }
+        .Choice > li {
+            padding: 2px 22px 2px 10px;
+            margin: 2px;
+            font-size: 12px;
+            border:1px solid #7782A4;
+            position: relative;
+        }
+        .Choice > li > i {
+           position: absolute;
+           right: 0;
+           top: 0;
+           color: #fff;
+           padding: 5px 2px;
+           background: #3E4E80;
+           cursor: pointer;
+        }
+        .Choice > span {
+            padding: 2px 10px;
+            margin: 2px;
+        }
+        /* 可以设置不同的进入和离开动画 */
+        /* 设置持续时间和动画函数 */
+        .slide-fade-enter-active {
+            transition: all .8s ease;
+        }
+        .slide-fade-leave-active {
+            transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+        }
+        .slide-fade-enter, .slide-fade-leave-to
+            /* .slide-fade-leave-active for below version 2.1.8 */ {
+            transform: translateY(100px);
+            opacity: 0;
+        }
+        article{
+            margin-bottom: 300px
+        }
+        .gaoji{
+            display: flex
+        }
+        .gaoji > div {
+            width: 120px;
+            cursor: pointer;
+            position: relative;
+        }
+        .xiala {
+            display: flex;
+            width: 671px;
+            position: absolute;
+            left: 0;
+            background: #fff;
+            z-index: 99;
+            cursor: pointer;
+        }
+        .xiala > li {
+            padding:0 20px;
+        }
+        .xiala > li:hover{
+            color: #FFA827 !important
+        }
+        .xiala1 {
+            display: flex;
+            width: 316px;
+            position: absolute;
+            left: 0;
+            background: #fff;
+            z-index: 99;
+            cursor: pointer;
+        }
+        .xiala1 > li {
+            padding:0 20px;
+        }
+        .xiala1 > li:hover{
+            color: #FFA827 !important
+        }
+        .xiala2 {
+            display: flex;
+            width: 412px;
+            position: absolute;
+            left: 0;
+            background: #fff;
+            z-index: 99;
+            cursor: pointer;
+        }
+        .xiala2 > li {
+            padding:0 20px;
+        }
+        .xiala2 > li:hover{
+            color: #FFA827 !important
+        }
+        .xiala,.xiala1,.xiala2 > li {
+            border-bottom: 1px solid #ccc
+        }
+        .xiala> li + li,.xiala1> li + li,.xiala2 > li + li{
+            border-top: 1px solid #ccc
+        }
+        .xiala,.xiala1,.xiala2 {
+            border-left: 1px solid #ccc
+        }
+        .xiala,.xiala1,.xiala2{
+            border-right: 1px solid #ccc
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app" v-cloak>
+        <headers></headers>
+        <main>
+                <div class="main">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <p style="padding: 20px;background:#fff;border-bottom: 1px solid #ccc;">首页 > 公告信息</p>
+                        </div>
+                    </div>
+                    <div class="inputs">
+                            <el-input placeholder="请输入关键字" v-model="input5" class="input-with-select">
+                                <i slot="prefix" class="el-input__icon el-icon-search"></i>
+                                <el-button slot="append" icon="el-icon-search" style="background: #3E4E80;border-radius:0;color: #fff">搜索</el-button>
+                            </el-input>
+                        </div>
+                </div>
+            </main>
+        <!-- <main>
+            <div class="main">
+                <p style="padding-top:20px">首页 > 公告信息</p>
+                <div class="inputs">
+                    <el-input placeholder="请输入关键字" v-model="input5" class="input-with-select">
+                        <i slot="prefix" class="el-input__icon el-icon-search"></i>
+                        <el-button slot="append" icon="el-icon-search" style="background: #3E4E80;border-radius:0;color: #fff">搜索</el-button>
+                    </el-input>
+                </div>
+            </div>
+        </main> -->
+        <article>
+            <div class="main" style="background: #fff;margin-top:20px">
+                <div class="contents">
+                    <p>
+                        <span style="font-size:14px;font-weight:600;color:#4A5988">类型</span>
+                        <span style="float: right;color: #435383;font-size:12px;padding: 0 10px;cursor: pointer" @click='displas()'>{{shows}}<i :class="icons"></i></span>
+                    </p>
+                </div>
+               <div>
+                    <div class="contents" v-if='businessnum === null'>
+                        <div class="row" >
+                            <div class="col-xs-12 col-sm-1 col-md-1" style="color: #767676">
+                                业务类型：
+                            </div>
+                            <div class="col-xs-12 col-sm-11 col-md-11">
+                                <div>
+                                    <ul class="purcli">
+                                        <li v-for="(item,index) in business" :key='index' @click='businelick(item.name,index,$event)' :style="{'color': index === businessnum ? '#FFA827' : '#535353'}">{{item.name}}</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contents" v-if='Announcementnum === null'>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-1 col-md-1" style="color: #767676">
+                                公告类型：
+                            </div>
+                            <div class="col-xs-12 col-sm-11 col-md-11">
+                                <div>
+                                    <ul class="purcli">
+                                        <li v-for="(item,index) in Announcement" :key='index' @click='Announcementclick(item.name,index)' :style="{'color': index === Announcementnum ? '#FFA827' : '#535353'}">{{item.name}}</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+               </div>
+               <div v-show='isshow'>
+                    <div class="contents" v-if='Affiliationnum === null'>
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-1 col-md-1" style="color: #767676">
+                                    隶属关系：
+                                </div>
+                                <div class="col-xs-12 col-sm-11 col-md-11">
+                                    <div>
+                                        <ul class="purcli">
+                                            <li v-for="(item,index) in Affiliation" :key='index' @click='Affiliationclick(item.name,index)' :style="{'color': index === Affiliationnum ? '#FFA827' : '#535353'}">{{item.name}}</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="contents" v-if='Targetindustrynum === null'>
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-1 col-md-1" style="color: #767676">
+                                    标的行业：
+                                </div>
+                                <div class="col-xs-12 col-sm-11 col-md-11">
+                                    <div>
+                                        <ul class="purcli">
+                                            <li v-for="(item,index) in Targetindustry" :key='index' @click='Targetindustryclick(item.name,index)' :style="{'color': index === Targetindustrynum ? '#FFA827' : '#535353'}">{{item.name}}</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="contents" v-if='Projectsourcenum === null'>
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-1 col-md-1" style="color: #767676">
+                                    项目来源：
+                                </div>
+                                <div class="col-xs-12 col-sm-11 col-md-11">
+                                    <div>
+                                        <ul class="purcli">
+                                            <li v-for="(item,index) in Projectsource" :key='index' @click='Projectsourceclick(item.name,index)' :style="{'color': index === Projectsourcenum ? '#FFA827' : '#535353'}">{{item.name}}</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                       <div class="contents1">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-1 col-md-1" style="color: #767676">
+                                    高级选项：
+                                </div>
+                                <div class="col-xs-12 col-sm-11 col-md-11 gaoji">
+                                    <div>
+                                        <span @click='moneyclick()'>标的金额 <i class="el-icon-arrow-down"></i></span>
+                                        <ul class="xiala" v-if='moneyshow'>
+                                            <li v-for="(item,index) in Amount" :key='index' @click='Amountclick(item.name,index)' :style="{'color': index === Amountnum ? '#FFA827' : '#535353'}">{{item.name}}</li>
+                                        </ul>
+                                    </div> 
+                                    <div>
+                                        
+                                        <div>
+                                            <span @click='projectclick()'>项目区域 <i class="el-icon-arrow-down"></i></span>
+                                            <ul class="xiala1" v-if='projectshow'>
+                                                <li v-for="(item,index) in Projectarea" :key='index' @click='Projectareaclick(item.name,index)' :style="{'color': index === Projectareanum ? '#FFA827' : '#535353'}">{{item.name}}</li>
+                                            </ul>
+                                        </div> 
+                                    </div> 
+                                    <div>
+                                        
+                                        <span @click='Releaseclick()'>发布时间 <i class="el-icon-arrow-down"></i></span>
+                                            <ul class="xiala2" v-if='Releaseshow'>
+                                                <li v-for="(item,index) in Releasetime" :key='index' @click='Releasetimeclick(item.name,index)' :style="{'color': index === Releasetimenum ? '#FFA827' : '#535353'}">{{item.name}}</li>
+                                            </ul>
+                                    </div> 
+                                </div>
+                            </div>
+                        </div>
+            </div>
+            <div class="main">
+                <ul class="Choice"><span>当前已选择：</span>
+                    <li v-if='bustring !== ""'>业务类型:{{bustring}}<i class="el-icon-close" @click='Choice(1)'></i></li>
+                    <li v-if='Announcementstring !== ""'>公告类型:{{Announcementstring}}<i class="el-icon-close" @click='Choice(2)'></i></li>
+                    <li v-if='Affiliationstring !== ""'>隶属关系:{{Affiliationstring}}<i class="el-icon-close" @click='Choice(3)'></i></li>
+                    <li v-if='Targetindustrystring !== ""'>标的行业:{{Targetindustrystring}}<i class="el-icon-close" @click='Choice(4)'></i></li>
+                    <li v-if='Projectsourcestring !== ""'>项目来源：{{Projectsourcestring}}<i class="el-icon-close" @click='Choice(5)'></i></li>
+                    <li v-if='Projectareastring !== ""'>项目区域：{{Projectareastring}}<i class="el-icon-close" @click='Choice(6)'></i></li>
+                    <li v-if='Releasetimestring !== ""'>发布时间：{{Releasetimestring}}<i class="el-icon-close" @click='Choice(7)'></i></li>
+                    <li v-if='Amountstrgin !== ""'>标的金额：{{Amountstrgin}}<i class="el-icon-close" @click='Choice(8)'></i></li>
+                    <li @click="empty()" style="border: 0;cursor: pointer" 
+                            v-if='bustring !== "" || Announcementstring !== "" || Affiliationstring !== "" || Targetindustrystring !== "" || Projectsourcestring !== "" || Projectareastring !== "" || Releasetimestring !== "" || Amountstrgin !== ""'>
+                            <i class="el-icon-delete" style="background: #F5F5F5;color: #56648F"></i>清空</li>
+                </ul>
+            </div>
+            <div class="main" style="background: #fff">
+                <el-table :data="tableData" style="width: 100%" :header-cell-style='{background:"#E7F3FD"}'>
+                    <el-table-column prop="date" label="日期"  > </el-table-column>
+                    <el-table-column prop="title" label="标题" show-overflow-tooltip>  </el-table-column>
+                    <el-table-column prop="Prices" label="价格"> </el-table-column>
+                    <el-table-column prop="states" label="状态"> 
+                            <template slot-scope="scope" >
+                                    <span :style="{'color': scope.row.states === '进行中' ? '#FFAC31': '#A7A7A7'}">{{ scope.row.states }}</span>
+                            </template>
+                    </el-table-column>
+                </el-table>
+                <div class="text-right" style="padding-top: 20px">
+                        <el-pagination
+                            background
+                            @current-change="changes"
+                            layout="prev, pager, next"
+                            :page-size="pageSizes"
+                            :total="totals">
+                    </el-pagination>
+                </div>
+            </div>
+        </article>
+        <footer  style="padding-top: 100px;position: fixed;bottom: 0;width: 100%;z-index: 10">
+            <iframe src="./footer.html" style="width: 100%;height:200px;display: flex" frameborder="0"></iframe>
+        </footer>
+</body>
+
+</html>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            input5: '',
+            business: [
+                { name: '全部' }, { name: '股权转让' }, { name: '实物资产转让' }, { name: '房地产转让' }, { name: '金融资产转让' }, { name: '企业增资' }, { name: '资产租赁' }, 
+                { name: '登记托管' }, { name: '诉讼资产' }, { name: '合作开发' }, { name: '大宗采购' }, {  name: '文化产品' }, { name: '投资融'
+                }, { name: '技术产权类项目' }, { name: '电子商务' }, { name: '创新类' }, { name: '其他业务' }, 
+            ],
+            Announcement: [
+                {
+                name: '全部'
+            }, {
+                name: '预挂牌公告'
+            }, {
+                name: '挂牌公告'
+            }, {
+                name: '竞价公告'
+            }, {
+                name: '延期公告'
+            }, {
+                name: '中止公告'
+            }, {
+                name: '终结公告'
+            }, {
+                name: '恢复公告'
+            }, {
+                name: '成交公告/公示'
+            }, {
+                name: '一般信息披露'
+            }, {
+                name: '重点推荐'
+            }] ,
+            Affiliation: [
+                {
+                name: '全部'
+            }, {
+                name: '隶属'
+            }, {
+                name: '央属'
+            }, {
+                name: '生属'
+            }, {
+                name: '市属'
+            }, {
+                name: '区属'
+            }, {
+                name: '联合挂牌'
+            }, {
+                name: '其他工有'
+            }, {
+                name: '民营类项目'
+            }, 
+            ],
+            Targetindustry: [
+                {
+                name: '全部'
+            }, {
+                name: '房地产'
+            }, {
+                name: '金融业'
+            }, {
+                name: '交通运输'
+            }, {
+                name: '信息传输'
+            }, {
+                name: '住宿个餐饮业'
+            }, {
+                name: '建筑业'
+            }, {
+                name: '农、林、牧、渔'
+            }, {
+                name: '采矿业'
+            }, {
+                name: '制造业'
+            }, {
+                name: '批发和零售业'
+            }, {
+                name: '电力、燃气'
+            }, {
+                name: '教育'
+            }, {
+                name: '租赁和商务服务'
+            }, {
+                name: '科学研究、技术'
+            }, {
+                name: '水利、教育'
+            }, {
+                name: '居民服务和其他服务'
+            }, {
+                name: '卫生、社会保障'
+            }, {
+                name: '国际组织'
+            }, {
+                name: '公共管理和社会摇组织'
+            }, {
+                name: '文化、教育和娱乐业'
+            }
+            ],
+            Projectsource: [
+                {
+                name: '全部'
+            }, {
+                name: '国资交易'
+            }, {
+                name: '企业增资服务'
+            }, {
+                name: '租赁'
+            }, {
+                name: '资产运营'
+            }, {
+                name: '诉讼资产交易'
+            }, {
+                name: '技术转移'
+            }, {
+                name: '登记托管'
+            }, {
+                name: '投融资'
+            }, {
+                name: '拍卖'
+            }, {
+                name: '电子商务'
+            }, {
+                name: '合作'
+            }, {
+                name: '其它来源'
+            }, {
+                name: '三资交易'
+            }
+            ],
+            Projectarea: [
+                {name: '全部'},{name: '深圳'},{name: '广东省'},{name: '其它地区'},
+            ],
+            Releasetime: [
+                {name: '不限'},{name: '三天内'},{name: '一周内'},{name: '一个月内'},{name: '半年内'},
+            ],
+            Amount: [
+                {name: '全部'},{name: '100万内'},{name: '100~600万'},{name: '500万~2000万'},{name: '2000万~5000万'},{name: '5000万以上'},
+            ],
+            //  筛选数据
+            businessnum: null,
+            bustring: '', //业务类型
+            Announcementnum: null,
+            Announcementstring: '', //  公告类型
+            Affiliationnum: null,
+            Affiliationstring: '', //  隶属关系
+            Targetindustrynum: null,
+            Targetindustrystring: '', // 标的行业
+            Projectsourcenum: null,
+            Projectsourcestring: '', //  项目来源
+            Projectareanum: null,
+            Projectareastring: '', // 项目区域
+            Releasetimenum: null,
+            Releasetimestring: '', //  发布时间
+            Amountnum: null,
+            Amountstrgin: '',
+            tableData:[
+                {
+                    date: '2016-05-02',
+                    title: '中证云股份有限公司2500万股股权转让公告',
+                    Prices: '621.7263万元',
+                    states: '进行中'
+                },
+                {
+                    date: '2016-05-02',
+                    title: '中证云股份有限公司2500万股股权转让公告',
+                    Prices: '621.7263万元',
+                    states: '已结束'
+                }
+            ],
+            totals: null,
+            pageSizes:2,
+            currentPage1s:1,
+            isshow: false,
+            shows : '更多筛选条件',
+            judges: true,
+            icons: 'el-icon-arrow-down',
+            moneyshow: false,
+            moneyjudge: true,
+            projectshow: false,
+            projectjudge:true,
+            Releaseshow: false,
+            Releasejudges: true
+        },
+        created() {
+            this.totals = this.tableData.length
+        },
+        methods: {
+            //  业务类型点击事件
+            businelick(val, index,event) {
+                console.log(val, index,event)
+                this.businessnum = index
+                this.bustring = val
+                var obj = {}
+            },
+            //  公告类型点击事件
+            Announcementclick(val, index) {
+                console.log(val, index)
+                this.Announcementnum = index
+                this.Announcementstring = val
+            },
+            //  隶属关系点击事件
+            Affiliationclick(val, index) {
+                console.log(val, index)
+                this.Affiliationnum = index
+                this.Affiliationstring = val
+            },
+            //  标的行业点击事件
+            Targetindustryclick(val, index) {
+                console.log(val, index)
+                this.Targetindustrynum = index
+                this.Targetindustrystring = val
+            },
+            //  项目来源点击事件
+            Projectsourceclick(val, index) {
+                console.log(val, index)
+                this.Projectsourcenum = index
+                this.Projectsourcestring = val
+            },
+            //  项目区域点击事件
+            Projectareaclick(val, index) {
+                console.log(val, index)
+                this.Projectareanum = index
+                this.Projectareastring = val
+                this.projectshow = false
+                this.projectjudge = true
+            },
+            //  发布时间点击事件
+            Releasetimeclick(val, index) {
+                console.log(val, index)
+                this.Releasetimenum = index
+                this.Releasetimestring = val
+                this.Releaseshow = false
+                this.Releasejudges = true
+            },
+            Amountclick(val,index){
+                this.Amountnum = index
+                this.Amountstrgin = val
+                this.moneyshow = false
+                this.moneyjudge = true
+            },
+            Choice(index) {
+                if(index === 1) {
+                    this.businessnum = null
+                    this.bustring = ''
+                } else if (index === 2) {
+                    this.Announcementnum = null
+                    this.Announcementstring = ''
+                } else if (index === 3) {
+                    this.Affiliationnum = null
+                    this.Affiliationstring = ''
+                } else if (index === 4) {
+                    this.Targetindustrynum = null
+                    this.Targetindustrystring = ''
+                }else if (index === 5) {
+                    this.Projectsourcenum = null
+                    this.Projectsourcestring = ''
+                } else if (index === 6) {
+                    this.Projectareanum = null
+                    this.Projectareastring = ''
+                } else if (index === 7 ){
+                    this.Releasetimenum = null
+                    this.Releasetimestring = ''
+                } else if (index === 8) {
+                    this.Amountnum = null
+                    this.Amountstrgin = ''
+                }
+            },
+            empty(){
+                this.businessnum = null
+                this.bustring = ''
+                this.Announcementnum = null
+                this.Announcementstring = ''
+                this.Affiliationnum = null
+                this.Affiliationstring = ''
+                this.Targetindustrynum = null
+                this.Targetindustrystring = ''
+                this.Projectsourcenum = null
+                this.Projectsourcestring = ''
+                this.Projectareanum = null
+                this.Projectareastring = ''
+                this.Releasetimenum = null
+                this.Releasetimestring = ''
+                this.Amountnum = null
+                this.Amountstrgin = ''
+            },
+            changes(currentPage) {
+                this.currentPage1s = currentPage
+            },
+            displas() {
+                this.judge = !this.judge
+                if(this.judge) {
+                    this.isshow =true
+                    this.shows = '收起'
+                    this.icons = 'el-icon-arrow-up'
+                } else {
+                    this.isshow =false
+                    this.shows = '更多筛选条件'
+                    this.icons = 'el-icon-arrow-down'
+                }
+            },
+            moneyclick() {
+               this.moneyjudge = !this.moneyjudge
+               this.projectshow = false
+               this.Releaseshow = false
+               this.projectjudge = true
+               this.Releasejudges = true
+               if(this.moneyjudge) {
+                   this.moneyshow =false 
+               } else {
+                   this.moneyshow = true
+               }
+            },
+            projectclick() {
+                this.moneyshow =false 
+                this.Releaseshow = false
+                this.moneyjudge = true
+                this.Releasejudges = true
+                this.projectjudge = !this.projectjudge
+                if(this.projectjudge) {
+                    this.projectshow = false
+                } else {
+                    this.projectshow = true
+                }
+            },
+            Releaseclick(){
+                this.moneyshow =false 
+                this.projectshow = false
+                this.moneyjudge = true
+                this.projectjudge = true
+                this.Releasejudges = !this.Releasejudges
+                if(this.Releasejudges) {
+                    this.Releaseshow = false
+                } else {
+                    this.Releaseshow = true
+                }
+            }
+
+        },
+    })
+</script>

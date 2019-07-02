@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/ele.css">
+    <link rel="stylesheet" href="../css/eleicon.css">
+    <link rel="stylesheet" href="../css/purchase.css">
+    <link rel="stylesheet" href="../css/swiper.min.css">
+    <script src="../js/vue.min.js"></script>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/bootstrap.js"></script>
+    <script src="../js/ele.js"></script>
+    <script src="../js/swiper.min.js"></script>
+    <style>
+        .header {
+            height: 88px;
+            background: #fff;
+        }
+        
+        .header>div>div>img {
+            height: 80%;
+            padding-top: 16px;
+            float: left;
+            width: 100%
+        }
+        
+        .nav {
+            float: left;
+            padding-left: 40px;
+            height: 100%;
+            width: 80%
+        }
+        
+        .nav>ul {
+            display: flex;
+            height: 100%;
+        }
+        
+        .nav>ul>li {
+            padding-top: 20px;
+            text-align: center;
+            padding: 20px 10px 0 10px;
+            overflow: hidden;
+        }
+        
+        .nav>ul>li>div>.names {
+            font-size: 18px;
+        }
+        
+        .nav>ul>li>div {
+            padding-right: 10px;
+            border-right: 1px solid #D7D7D7
+        }
+        
+        .nav>ul>li:last-child>div {
+            border-right: none
+        }
+        
+        .nav>ul>li:hover {
+            background: #3E4E80;
+            border-radius: 5px;
+            color: #fff;
+            cursor: pointer;
+            box-shadow: 3px 0 2px #909090;
+        }
+        
+        .headerlist {
+            position: absolute;
+            bottom: -40px;
+            width: 100%;
+        }
+        
+        .headerlist>ul {
+            display: flex;
+            background: #D4DAE1
+        }
+        
+        .headerlist>ul>li {
+            flex: 1;
+            text-align: center;
+            line-height: 20px;
+            line-height: 40px;
+            cursor: pointer;
+        }
+        
+        .headerlist>ul>li:hover {
+            background: #575A5D;
+            color: #fff
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="header">
+            <div class="main">
+                <div style="width: 20%">
+                    <img src="../images/toplogo.png" alt="">
+                </div>
+                <div class="nav">
+                    <ul>
+                        <li v-for="(item,index) in nav" :key="index" @mouseenter="enter(item,index,$event)" @mouseleave="outyic($event)">
+                            <div>
+                                <p class="names">{{item.name}} </p>
+                                <p style="font-size: 12px">{{item.engname}}</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="headerlist" v-show='ishow' @mouseleave="leave()">
+                    <ul>
+                        <li>办理指南</li>
+                        <li>政策法规</li>
+                        <li>相关下载</li>
+                    </ul>
+                </div>
+                <div class="headerlist" v-show='ishows' @mouseleave="leave()">
+                    <ul>
+                        <li>托管专题</li>
+                        <li>租赁专题</li>
+                        <li>增资专题</li>
+                        <li>深柜市场</li>
+                        <li>不良资产</li>
+                        <li>三资专题</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            nav: [{
+                name: '首页',
+                engname: 'home'
+            }, {
+                name: '公告信息',
+                engname: 'Bulletin information'
+            }, {
+                name: '业务指南',
+                engname: 'Business Guide'
+            }, {
+                name: '业务导航',
+                engname: 'Business Navigation'
+            }, {
+                name: '咨询答疑',
+                engname: 'Answer Questions'
+            }, {
+                name: '党建风采',
+                engname: 'Party Building'
+            }, {
+                name: '登入/注册',
+                engname: 'Answer Questions'
+            }],
+            ishow: false,
+            ishows: false,
+        },
+        watch: {
+        },
+        created() {
+        },
+        mounted() {
+        },
+        methods: {
+            enter(item, index, $event) {
+                if (item.name === '业务指南') {
+                    this.ishow = true
+                } else {
+                    this.ishow = false
+                }
+                if (item.name === '业务导航') {
+                    this.ishows = true
+                } else {
+                    this.ishows = false
+                }
+                var chil = $event.path[0]
+                $(chil).children().css({
+                    border: 'none'
+                })
+            },
+            outyic($event) {
+                var chil = $event.path[0]
+                $(chil).children().css({
+                    borderRight: '1px solid #D7D7D7'
+                })
+            },
+            leave() {
+                this.ishow = false
+                this.ishows = false
+            },
+        },
+    })
+</script>

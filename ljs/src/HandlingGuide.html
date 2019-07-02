@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>深圳联交所</title>
+    <link rel="icon" href="../images/logo.png">
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/ele.css">
+    <link rel="stylesheet" href="../css/eleicon.css">
+    <link rel="stylesheet" href="../css/purchase.css">
+    <script src="../js/vue.min.js"></script>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/bootstrap.js"></script>
+    <script src="../js/ele.js"></script>
+    <script src="../js/headerpublic.js"></script>
+    <style>
+        .listtitle{
+            height: 64px;
+            background: #fff
+        }
+        .listtitle > ul {
+            display: flex;
+            justify-content: center;
+            
+        }
+        .listtitle > ul > li {
+            padding: 20px 50px;
+            cursor: pointer;
+        }
+        .listtitle > ul > li > i{
+            display: block;
+            padding-bottom: 20px
+        }
+        .listtitle > ul > li:hover  i{
+            border-bottom: 2px solid #3E4E80;
+            color: #445484;
+            text-decoration: none
+        }
+        .imgboxs {
+            margin-top: 20px
+        }
+        .imgboxs > div {
+            margin-bottom: 20px
+        }
+        .imgboxs > div > div{
+            background: #ffffff;
+            padding-top: 20px;
+            text-align: center
+        }
+        .imgboxs > div > div > .lefts{
+            text-align: left;
+            padding-left: 10%;
+            padding-top: 10px
+        }
+        .imgboxs > div > div > .rights{
+            text-align: right;
+            padding-right: 10%;
+            text-decoration: underline;
+            color: #4C5B88;
+            cursor: pointer
+        }
+    </style>
+</head>
+<body>
+    <div id="app" v-cloak>
+        <headers></headers>
+        <main>
+            <div class="main">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 contentlr">
+                        <p style="padding: 20px;background:#fff;border-bottom: 1px solid #ccc;">首页 > 办理指南</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <article>
+            <div class="main">
+                <div class="listtitle">
+                    <ul>
+                        <li v-for='(item,index) in clicklist' :style='{color: num === index ? "#3E4E80" : ""}' :key='index' @click='clicklists(item,index)'>
+                        <i :style='{borderBottom: num === index ? "2px solid #3E4E80" : "" }'>{{item.name}}</i></li>
+                    </ul>
+                </div>
+                <div class="row imgboxs">
+                    <div class="col-xs-4 col-sm-4 col-md-4" v-for='(item,index) in imglist' :key='index' >
+                        <div>
+                                <img :src="item.img" alt="">
+                                <p class="lefts">{{item.title}}</p>
+                                <p class="rights">{{item.btn}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+        <footer  style="width: 100%;z-index: 10">
+            <iframe src="./footer.html" style="width: 100%;height:200px;display: flex" frameborder="0"></iframe>
+        </footer>
+    </div>
+</body>
+</html>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data:{
+            num: null,
+            clicklist:[
+                {name: '办理指南'},{name: '政策法规'},{name: '相关下载'},
+            ],
+            imglist: [
+                {
+                    img: '../images/imgbox1.png',
+                    title: '公有集体产权业务',
+                    btn: 'MORE'
+                },
+                {
+                    img: '../images/imgbox2.png',
+                    title: '增资业务',
+                    btn: 'MORE'
+                },
+                {
+                    img: '../images/imgbox3.png',
+                    title: '金融资产',
+                    btn: 'MORE'
+                },
+                {
+                    img: '../images/imgbox4.png',
+                    title: '房产租赁',
+                    btn: 'MORE'
+                },
+                {
+                    img: '../images/imgbox5.png',
+                    title: '集体三资交易',
+                    btn: 'MORE'
+                },
+                {
+                    img: '../images/imgbox6.png',
+                    title: '投资融',
+                    btn: 'MORE'
+                },
+                {
+                    img: '../images/imgbox7.png',
+                    title: '拍卖',
+                    btn: 'MORE'
+                },
+                {
+                    img: '../images/imgbox8.png',
+                    title: '登记托管',
+                    btn: 'MORE'
+                },
+                {
+                    img: '../images/imgbox9.png',
+                    title: '深柜市场',
+                    btn: 'MORE'
+                },
+            ],            
+            imglist1: [
+                {
+                    img: '../images/imgbox1.png',
+                    title: '公有集体产权业务',
+                    btn: 'MORE'
+                },
+                {
+                    img: '../images/imgbox2.png',
+                    title: '增资业务',
+                    btn: 'MORE'
+                },
+                {
+                    img: '../images/imgbox3.png',
+                    title: '金融资产',
+                    btn: 'MORE'
+                },
+                {
+                    img: '../images/imgbox4.png',
+                    title: '房产租赁',
+                    btn: 'MORE'
+                },
+                {
+                    img: '../images/imgbox5.png',
+                    title: '集体三资交易',
+                    btn: 'MORE'
+                },
+                {
+                    img: '../images/imgbox6.png',
+                    title: '投资融',
+                    btn: 'MORE'
+                },
+                {
+                    img: '../images/imgbox7.png',
+                    title: '拍卖',
+                    btn: 'MORE'
+                },
+                {
+                    img: '../images/imgbox8.png',
+                    title: '登记托管',
+                    btn: 'MORE'
+                },
+                {
+                    img: '../images/imgbox9.png',
+                    title: '深柜市场',
+                    btn: 'MORE'
+                },
+            ],
+            imglist2:[
+                {
+                    img: '../images/imgbox01.png',
+                    title: '公有产权国家政策法规',
+                    btn: 'MORE'
+                },
+                {
+                    img: '../images/imgbox02.png',
+                    title: '公有产权深圳地方政策法规',
+                    btn: 'MORE'
+                },
+                {
+                    img: '../images/imgbox03.png',
+                    title: '公共资源政策法规',
+                    btn: 'MORE'
+                },
+                {
+                    img: '../images/imgbox04.png',
+                    title: '金融资产政策法规',
+                    btn: 'MORE'
+                },
+                {
+                    img: '../images/imgbox7.png',
+                    title: '拍卖相关政策法规',
+                    btn: 'MORE'
+                },
+                {
+                    img: '../images/imgbox05.png',
+                    title: '诉讼资产政策法规',
+                    btn: 'MORE'
+                },
+                {
+                    img: '../images/imgbox06.png',
+                    title: '其它政策法规',
+                    btn: 'MORE'
+                },
+                {
+                    img: '../images/imgbox07.png',
+                    title: '增资相关政策法规',
+                    btn: 'MORE'
+                },
+            ],
+            imglist3:[
+                {
+                    img: '../images/imgbox1.png',
+                    title: '公有产权类',
+                    btn: 'MORE'
+                },
+                {
+                    img: '../images/imgbox5.png',
+                    title: '托管类',
+                    btn: 'MORE'
+                },
+                {
+                    img: '../images/imgbox7.png',
+                    title: '拍卖类',
+                    btn: 'MORE'
+                },
+                {
+                    img: '../images/imgbox05.png',
+                    title: '诉讼资产类',
+                    btn: 'MORE'
+                },
+                {
+                    img: '../images/imgbox9.png',
+                    title: '深柜市场',
+                    btn: 'MORE'
+                },
+                {
+                    img: '../images/imgbox1.png',
+                    title: '股改业务',
+                    btn: 'MORE'
+                },
+                {
+                    img: '../images/imgbox2.png',
+                    title: '专家库',
+                    btn: 'MORE'
+                },
+        
+            ],
+        },
+        created() {
+            
+        },
+        methods: {
+            clicklists(val,index){
+                if(index === 0) {
+                    this.imglist = this.imglist1
+                } else if(index === 1) {
+                    this.imglist = this.imglist2
+
+                } else if(index === 2) {
+                    this.imglist = this.imglist3
+                }
+                this.num = index
+            }
+        },
+    })
+</script>

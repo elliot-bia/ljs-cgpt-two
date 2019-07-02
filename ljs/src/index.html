@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>深圳联交所</title>
+    <link rel="icon" href="../images/logo.png">
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/ele.css">
+    <link rel="stylesheet" href="../css/eleicon.css">
+    <link rel="stylesheet" href="../css/purchase.css">
+    <link rel="stylesheet" href="../css/swiper.min.css">
+    <script src="../js/swiper.min.js"></script>
+    <script src="../js/vue.min.js"></script>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/bootstrap.js"></script>
+    <script src="../js/ele.js"></script>
+    
+    <script src="../js/headerpublic.js"></script>
+    <style>
+        @media screen and (min-width:1024px) {
+            .inputs {
+                width: 70%;
+                margin: 0 auto;
+                padding-top: 20px
+            }
+            .box {
+                display: flex;
+                min-height: 90px;
+                background: #fff;
+                margin: 20px 0;
+                position: relative;
+            }
+            .boxright {
+                position: relative;
+            }
+            .boxright>div>p>span:hover {
+                color: #FFB242;
+                cursor: pointer;
+            }
+            .boxright>div>p>span:last-child>i {
+                display: none
+            }
+            .boishow {
+                width: 200%;
+                height: 100%;
+                border: 1px solid #ccc;
+                position: absolute;
+                right: -206%;
+                background: #fff;
+                z-index: 99
+            }
+            .boxcontens {
+                display: flex;
+                margin: 10px;
+                flex-flow: wrap;
+            }
+            .boxcontens>li {
+                width: 20%;
+                padding: 7px 0;
+                text-align: center;
+                cursor: pointer;
+            }
+            .boxcontens>li:hover {
+                color: #FFB242
+            }
+            .slide-fade-enter-active {
+                transition: all .3s ease;
+            }
+            .slide-fade-leave-active {
+                transition: all .3s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+            }
+            .slide-fade-enter,
+            .slide-fade-leave-to {
+                transform: translateX(20px);
+                opacity: 0;
+            }
+            .project {
+                width: 14%;
+                color: #868686;
+                cursor: pointer;
+                font-size: 15px;
+                margin-bottom: 8px
+            }
+            .project>span {
+                padding: 2px
+            }
+            .project:hover>span {
+                color: #fff;
+                background: #FFB242
+            }
+            .Statistics {
+                width: 100%;
+            }
+            .Statistics>div>div {
+                height: 100%;
+                display: flex
+            }
+            #marleft {
+                margin-left: 20px;
+                background: #fff;
+            }
+            .fourbox {
+                display: flex;
+                flex-wrap: wrap;
+                height: 88%;
+            }
+            .fourbox>div {
+                width: 43%;
+                margin: 20px;
+                position: relative;
+                height: 40%;
+            }
+            .fourbox>div>img {
+                width: 100%;
+                position: absolute
+            }
+            .inconfbox {
+                position: absolute;
+                z-index: 10;
+                left: 20%;
+                top: 34%;
+                width: 80%;
+                height: 100%;
+            }
+            .journalism {
+                margin-top: 20px
+            }
+            .positions {
+                position: absolute;
+                background: #000;
+                opacity: 0.3;
+                padding: 10px 15px;
+                color: #fff;
+                left: 6%;
+                bottom: 3%;
+                width: 89%;
+                height: 44px;
+            }
+            .position {
+                position: absolute;
+                padding: 10px 15px;
+                color: #fff;
+                left: 6%;
+                bottom: 3%
+            }
+            .stateli {
+                display: flex
+            }
+            .stateli>li {
+                padding: 12px;
+                cursor: pointer;
+                color: #8F8F8F
+            }
+            .stateli>li:hover {
+                background: #E7F3FD;
+                color: #4C4E50
+            }
+            #table>.el-table__header-wrapper {
+                display: none
+            }
+            .about {
+                padding-top: 20px
+            }
+            .imglogo {
+                width: 66%;
+                padding: 8px;
+                color: #777777
+            }
+            .imglogo>span {
+                padding-top: 6px;
+                display: block;
+                line-height: 23px
+            }
+            .btnbackground {
+                display: flex;
+                padding-top: 10px
+            }
+            .btnbackground>div {
+                width: 25%;
+                background: #3E4E80;
+                margin: 0 10px;
+                padding: 10px 20px;
+                text-align: center;
+                color: #fff;
+                cursor: pointer;
+                font-size: 12px
+            }
+        }
+        
+        @media screen and (max-width:699px) {
+            .header {
+                display: none
+            }
+            #app {
+                width: 100%;
+                height: 100%;
+                overflow: hidden;
+                overflow-y: auto;
+            }
+            .main {
+                width: 100%
+            }
+            .fourbox {
+                display: flex;
+                flex-wrap: wrap;
+                height: 88%;
+            }
+            .fourbox>div {
+                width: 100%;
+                margin: 0 50px;
+                position: relative;
+            }
+            .fourbox>div>img {
+                width: 100%;
+            }
+            .inconfbox {
+                position: absolute;
+                z-index: 10;
+                left: 20%;
+                top: 34%;
+                width: 80%;
+                height: 100%;
+            }
+        }
+        
+        .publicbackground {
+            background: #fff
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app" v-cloak>
+        <headers></headers>
+        <div class="banner">
+            <div class="swiper-container" id="a">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide"> <img style="width:100%" src="../images/banner@2x.png" alt=""></div>
+                    <div class="swiper-slide"> <img style="width:100%" src="../images/banner@2x.png" alt=""></div>
+                    <div class="swiper-slide"> <img style="width:100%" src="../images/banner@2x.png" alt=""></div>
+                </div>
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+            </div>
+        </div>
+        <div class="main" style="padding-top: 23px">
+            <div class="swipers">
+                <div class="swiper-container" id='swiper-container'>
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide" v-for='(imgs,index) in swiperimg' :key="index" style="text-align: center">
+                            <img :src="imgs.imgs" alt="">
+                            <p style="padding-top: 10px">{{imgs.name}}</p>
+                        </div>
+                    </div>
+                    <!-- 如果需要分页器 -->
+                    <!-- <div class="swiper-pagination"></div> -->
+                    <!-- 如果需要导航按钮 -->
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+                    <!-- 如果需要滚动条 -->
+                    <!-- <div class="swiper-scrollbar"></div> -->
+                </div>
+            </div>
+        </div>
+        <div class="main">
+            <div class="inputs">
+                <el-input placeholder="请输入关键字" v-model="input5" class="input-with-select">
+                    <el-button slot="append" icon="el-icon-search">搜索</el-button>
+                </el-input>
+            </div>
+        </div>
+        <div class="main">
+            <div class="content" style="padding-top:20px">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-3 col-md-3" style="padding-left: 0">
+                        <div class="box" v-for='(items,index) in newar' :key="index">
+                            <div class="boximg" style="line-height:164px;margin-left:10px">
+                                <img :src="items.img" alt="">
+                            </div>
+                            <div class="boxright">
+                                <div style="padding:30px 10px">
+                                    <p style="padding-left: 6px;padding-bottom: 10px;font-size: 16px">{{items.title}}</p>
+                                    <p style="color: #939393;padding: 0 20px 0 0">
+                                        <span v-for='(items,index) in items.namearrs' :key="index">{{items.name}}<i> | </i></span>
+                                    </p>
+                                </div>
+                                <img v-if="index !==imgindex" src="../images/zk.png" alt="" style="position: absolute;right:0;top:50%;margin-top:-20px" @mouseenter="imclickishow(index)">
+                            </div>
+                            <transition name="slide-fade">
+                                <div class="boishow" v-if="index ===imgindex" @mouseleave="mouseleaves()">
+                                    <ul class="boxcontens">
+                                        <li v-for="(item,index) in items.boxcontens" @click='arrliclick(item.name)'>{{item.name}}</li>
+                                    </ul>
+                                </div>
+                            </transition>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-9 col-md-9" style="background: #fff;margin-top: 20px">
+                        <div style="margin: 20px 0">
+                            <div>
+                                <p style="font-size: 18px;color: #3E4E80;padding-bottom: 10px;border-bottom: 1px solid #ccc;">项目公告 &nbsp;
+                                    <span style="font-size: 12px;color:#A1A1A1">PROJECY ANNOUNCEMENT 
+                                        <span style="float: right;line-height: 36px;cursor: pointer;">更多  &nbsp; 》 </span>
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
+                        <div>
+                            <ul style="display: flex;flex-wrap: wrap;margin-bottom: 18px">
+                                <li class="project" v-for='(item,index) in projectarr' :key='index'><span>{{item.name}}</span></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <el-table :data="tableData" style="width: 100%" :header-cell-style="{background:'#E7F3FD',color: '#35487F'}">
+                                <el-table-column prop="date" label="日期" width='100' header-align='center'> </el-table-column>
+                                <el-table-column prop="name" label="姓名" show-overflow-tooltip header-align='center'> </el-table-column>
+                                <el-table-column prop="address" label="地址" width='100' header-align='center'> </el-table-column>
+                                <el-table-column prop="zhuangtai" label="状态" width='100' header-align='center'> </el-table-column>
+                                <el-table-column prop="guanzhu" label="关注度" width='100' header-align='center'> </el-table-column>
+                            </el-table>
+                            <div class="modal-footer" style="padding: 6px">
+                                <el-pagination background @current-change="change" layout="prev, pager, next" :page-size="pageSize" :total="total">
+                                </el-pagination>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="Statistics">
+            <div class="main">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-5 col-md-5" style="background:#fff">
+                        <p style="text-align: center;color: #3E4E80;font-size: 20px;font-weight: 800;line-height: 70px">挂牌数量统计</p>
+                        <div>
+                            <img src="../images/zxt.png" alt="" style="width:100%">
+                        </div>
+                        <p style="line-height: 40px">
+                            <span> <i style="width: 10px;height:10px; display: inline-block;background: #3E4E80"></i>&nbsp;  往年挂牌数量统计</span>
+                            <span style="padding-left: 30px"><i style="width: 10px;height:10px; display: inline-block;background: #FFA724"></i>&nbsp;  2019年挂牌数量统计</span>
+                        </p>
+                    </div>
+                    <div class="col-xs-12 col-sm-7 col-md-7" id="marleft">
+                        <div class="fourbox">
+                            <div v-for='(item,index) in fourboxarr' :key='index'>
+                                <img :src="item.maxing" alt="">
+                                <div class="inconfbox" style="position: absolute; z-index: 10">
+                                    <img :src="item.imgs" alt="" style="float: left;margin-right: 20px">
+                                    <div style="padding-top: 10px">
+                                        <p style="color: #A8A8A8;font-size: 18px">{{item.name}}</p>
+                                        <p><span style="color: #FFA724;font-size: 18px;font-weight: 600">{{item.nums}}</span> &nbsp; <span style="color:#A8A8A8">{{item.title}}</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="journalism">
+            <div class="main">
+                <div class="row" style="border-bottom: 1px solid #ccc">
+                    <div class="col-xs-4 col-sm-4 col-md-4 publicbackground">
+                        <div>
+                            <div style="padding: 10px">
+                                <span style="font-size: 18px;color: #3E4E80;font-weight: 600">新闻资讯</span> &nbsp; <span style="color: #A5A5A5"> DYNAMIC</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-8 col-sm-8 col-md-8 publicbackground">
+                        <div>
+                            <ul class="stateli">
+                                <li v-for="(item,index) in clickliarr">{{item.name}}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-4 col-md-4 publicbackground">
+                        <div class="swipers" style="position: relative">
+                            <div class="swiper-containers" style="overflow: hidden">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide" style="text-align: center">
+                                        <img src="../images/swiingmax.png" alt="" style="margin-top:-50px">
+                                        <div class="positions"></div>
+                                        <div class="position"> 深圳联合租赁平台上线暨重点项目推介会隆重举行</div>
+                                    </div>
+                                </div>
+                                <!-- <div class="swiper-button-prev"></div>
+                                    <div class="swiper-button-next"></div> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-8 col-md-8 publicbackground" style="padding-top:24px">
+                        <el-table :data="tableDatas" style="width: 100%" id='table'>
+                            <el-table-column prop='dina' width='20'> </el-table-column>
+                            <el-table-column prop="title" label=""> </el-table-column>
+                            <el-table-column prop="timedata" label="" fixed="right" width='100'> </el-table-column>
+                        </el-table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="about">
+            <div class="main">
+                <div class="row publicbackground" style="border-bottom: 1px solid #ccc">
+                    <div style="padding:10px 25px">
+                        <p>
+                            <span style="font-size: 18px;color: #3E4E80;font-weight: 600">关于我们</span> &nbsp;
+                            <span style="color: #A5A5A5">ABOUT US</span>
+                            <span style="float: right;line-height: 36px;cursor: pointer;color: #A5A5A5">更多  &nbsp; 》 </span>
+                        </p>
+
+                    </div>
+                </div>
+                <div class="row publicbackground">
+                    <div class="col-xs-12 col-sm-4 col-md-4 ">
+                        <img src="../images/videos.png" alt="">
+                    </div>
+                    <div class="col-xs-12 col-sm-8 col-md-8  ">
+                        <div style="margin:10px 20px;color: #8C8C8C;text-indent: 2rem">
+                            深圳联合产权交易所股份有限公司（以下简称“联交所”）前身是成立于1993年3月的深圳市产权交易中心和成立于2000年10月的深 深圳联合产权交易所股份有限公司（以下简称“联交所”）前身是成立于1993年3月的深圳市产权交易中心和成立于2000年10月的深 深圳联合产权交易所股份有限公司（以下简称“联交所”）前身是成立于1993年3月的深圳市产权交易中心和成立于2000年10月的深 深圳联合产权交易所股份有限公司（以下简称“联交所”）前身是成立于1993年3月的深圳市产权交易中心和成立于2000年10月的深
+                            深圳联合产权交易所股份有限公司（以下简称“联交所”）前身是成立于1993年3月的深圳市产权交易中心和成立于2000年10月的深 深圳联合产权交易所股份有限公司（以下简称“联交所”）前身是成立于1993年3月的深圳市产权交易中心和成立于2000年10月的深 深圳联合产权交易所股份有限公司（以下简称“联交所”）前身是成立于1993年3月的深圳市产权交易中心和成立于2000年10月的深 深圳联合产权交易所股份有限公司（以下简称“联交所”）前身是成立于1993年3月的深圳市产权交易中心和成立于2000年10月的深
+                            深圳联合产权交易所股份有限公司（以下简称“联交所”）前身是成立于1993年3月的深圳市产权交易中心和成立于2000年10月的深 深圳联合产权交易所股份有限公司（以下简称“联交所”）前身是成立于1993年3月的深圳市产权交易中心和成立于2000年10月的深 深圳联合产权交易所股份有限公司（以下简称“联交所”）前身是成立于1993年3月的深圳市产权交易中心和成立于2000年10月的深 深圳联合产权交易所股份有限公司（以下简称“联交所”）前身是成立于1993年3月的深圳市产权交易中心和成立于2000年10月的深
+                            深圳联合产权交易所股份有限公司（以下简称“联交所”）前身是成立于1993年3月的深圳市产权交易中心和成立于2000年10月的深
+                        </div>
+                    </div>
+                </div>
+                <div class="row publicbackground">
+                    <div class="col-xs-12 col-sm-8 col-md-8">
+                        <div style="padding: 20px">
+                            <p style="font-size: 18px">受理地点:</p>
+                            <div class="imglogo">
+                                <img src="../images/logomax.png" alt="" style="float: left;padding-right: 20px">
+                                <span>
+                                    深圳联合产权交易所各区受理网点均可受理全市各区注册的公司 请您选择就近的受理点（点击以下按钮查看详细地址和地图链接）
+                                </span>
+                            </div>
+                            <div class="btnbackground">
+                                <div>南山区深圳湾科技生态园</div>
+                                <div>南山区中国科技开发院大厦</div>
+                                <div>龙岗天昊华庭</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-md-4">
+                        <img src="../images/mapimg.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer style="padding-top: 100px">
+            <iframe style="width: 100%;height:200px;display: flex" src="./footer.html" frameborder="0"></iframe>
+        </footer>
+
+    </div>
+</body>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            nav: [{
+                name: '首页',
+                engname: 'home'
+            }, {
+                name: '公告信息',
+                engname: 'Bulletin information'
+            }, {
+                name: '业务指南',
+                engname: 'Business Guide'
+            }, {
+                name: '业务导航',
+                engname: 'Business Navigation'
+            }, {
+                name: '咨询答疑',
+                engname: 'Answer Questions'
+            }, {
+                name: '党建风采',
+                engname: 'Party Building'
+            }, {
+                name: '登入/注册',
+                engname: 'Answer Questions'
+            }],
+            ishow: false,
+            ishows: false,
+            swiperimg: [{
+                imgs: '../images/xqc.png',
+                name: '小汽车添加指标'
+            }, {
+                imgs: '../images/qy.png',
+                name: '企业增资服务'
+            }, {
+                imgs: '../images/szjy.png',
+                name: '三资交易'
+            }, {
+                imgs: '../images/ygcg.png',
+                name: '阳光采购平台'
+            }, {
+                imgs: '../images/gyzc.png',
+                name: '国有资产租赁'
+            }, {
+                imgs: '../images/zlpt.png',
+                name: '租赁平台'
+            }, ],
+            input5: '',
+            select: '',
+            newar: [{
+                img: '../images/leixin.png',
+                title: '按类型分类',
+                namearrs: [{
+                        name: '股权转让'
+                    }, {
+                        name: '实物资产转让'
+                    }, {
+                        name: '房地产转让'
+                    }, {
+                        name: '金融资产转让'
+                    },
+
+                ],
+                boxcontens: [{
+                    name: '全部'
+                }, {
+                    name: '无权转让'
+                }, {
+                    name: '实物资产转让'
+                }, {
+                    name: '房地产转让'
+                }, {
+                    name: '金融资产转让'
+                }, {
+                    name: '企业增资'
+                }, {
+                    name: '资产租赁'
+                }, {
+                    name: '登记托管'
+                }, {
+                    name: '诉讼资产'
+                }, {
+                    name: '合作开发'
+                }, {
+                    name: '大宗采购'
+                }, {
+                    name: '文化产品'
+                }, {
+                    name: '投资融'
+                }, {
+                    name: '电子商务'
+                }, {
+                    name: '技术产权类项目'
+                }, {
+                    name: '创新类'
+                }, {
+                    name: '其他业务'
+                }, ]
+            }, {
+                img: '../images/jine.png',
+                title: '按金额分类',
+                namearrs: [{
+                    name: '100万内'
+                }, {
+                    name: '100万 - 500万'
+                }, {
+                    name: '500万 - 2000万'
+                }, {
+                    name: '2000万 - 5000万'
+                }, {
+                    name: '5000万以上'
+                }, ],
+                boxcontens: [{
+                    name: '全部'
+                }, {
+                    name: '无权转让'
+                }, {
+                    name: '实物资产转让'
+                }, {
+                    name: '房地产转让'
+                }, {
+                    name: '金融资产转让'
+                }, {
+                    name: '企业增资'
+                }, {
+                    name: '资产租赁'
+                }, {
+                    name: '登记托管'
+                }, {
+                    name: '诉讼资产'
+                }, {
+                    name: '合作开发'
+                }, {
+                    name: '大宗采购'
+                }, {
+                    name: '文化产品'
+                }, {
+                    name: '投资融'
+                }, {
+                    name: '电子商务'
+                }, {
+                    name: '技术产权类项目'
+                }, {
+                    name: '创新类'
+                }, {
+                    name: '其他业务'
+                }, ]
+            }, {
+                img: '../images/hangye.png',
+                title: '按行业分类',
+                namearrs: [{
+                    name: '房地产业'
+                }, {
+                    name: '金融业'
+                }, {
+                    name: '建筑业'
+                }, {
+                    name: '信息传输、计算机服务和软件业'
+                }, {
+                    name: '住宿和餐饮'
+                }, ],
+                boxcontens: [{
+                    name: '全部'
+                }, {
+                    name: '无权转让'
+                }, {
+                    name: '实物资产转让'
+                }, {
+                    name: '房地产转让'
+                }, {
+                    name: '金融资产转让'
+                }, {
+                    name: '企业增资'
+                }, {
+                    name: '资产租赁'
+                }, {
+                    name: '登记托管'
+                }, {
+                    name: '诉讼资产'
+                }, {
+                    name: '合作开发'
+                }, {
+                    name: '大宗采购'
+                }, {
+                    name: '文化产品'
+                }, {
+                    name: '投资融'
+                }, {
+                    name: '电子商务'
+                }, {
+                    name: '技术产权类项目'
+                }, {
+                    name: '创新类'
+                }, {
+                    name: '其他业务'
+                }, ]
+            }, ],
+            imgindex: null,
+            imgshow: null,
+            projectarr: [{
+                name: '资产租赁'
+            }, {
+                name: '房地产转让'
+            }, {
+                name: '实物资产转让'
+            }, {
+                name: '股权转让'
+            }, {
+                name: '金融资产转让'
+            }, {
+                name: '企业增资'
+            }, {
+                name: '登记托管'
+            }, {
+                name: '预挂牌公告'
+            }, {
+                name: '挂牌公告'
+            }, {
+                name: '竞争公告'
+            }, {
+                name: '延期公告'
+            }, {
+                name: '中止公告'
+            }, {
+                name: '终结公告'
+            }, {
+                name: '恢复公告'
+            }, ],
+            tableData: [{
+                date: '2018-11-11',
+                name: '惠州大亚湾澳头镇大塭垻新区共八层整栋建筑物拍卖',
+                address: '20000万元',
+                zhuangtai: '进行中',
+                guanzhu: '22'
+            }, {
+                date: '2018-11-11',
+                name: '惠州大亚湾澳头镇大塭垻新区共八层整栋建筑物拍卖',
+                address: '20000万元',
+                zhuangtai: '进行中',
+                guanzhu: '22'
+            }, {
+                date: '2018-11-11',
+                name: '惠州大亚湾澳头镇大塭垻新区共八层整栋建筑物拍卖',
+                address: '20000万元',
+                zhuangtai: '进行中',
+                guanzhu: '22'
+            }, {
+                date: '2018-11-11',
+                name: '惠州大亚湾澳头镇大塭垻新区共八层整栋建筑物拍卖',
+                address: '20000万元',
+                zhuangtai: '进行中',
+                guanzhu: '22'
+            }, {
+                date: '2018-11-11',
+                name: '惠州大亚湾澳头镇大塭垻新区共八层整栋建筑物拍卖',
+                address: '20000万元',
+                zhuangtai: '进行中',
+                guanzhu: '22'
+            }, {
+                date: '2018-11-11',
+                name: '惠州大亚湾澳头镇大塭垻新区共八层整栋建筑物拍卖',
+                address: '20000万元',
+                zhuangtai: '进行中',
+                guanzhu: '22'
+            }],
+            total: null,
+            //  每页展示多少数据
+            pageSize: 6,
+            //  当前页
+            currentPage1: 1,
+            fourboxarr: [{
+                maxing: '../images/zzcg.png',
+                imgs: '../images/xiaoc.png',
+                name: '正在采购',
+                nums: '32',
+                title: '个项目'
+            }, {
+                maxing: '../images/ysjemax.png',
+                imgs: '../images/ysje.png',
+                name: '采购预算金额',
+                nums: '32',
+                title: '亿元'
+            }, {
+                maxing: '../images/ljwcmax.png',
+                imgs: '../images/ljwc.png',
+                name: '累计完成',
+                nums: '32',
+                title: '个项目'
+            }, {
+                maxing: '../images/lejwcjemax.png',
+                imgs: '../images/ljwcje.png',
+                name: '累计完成金额',
+                nums: '32',
+                title: '亿元'
+            }],
+            clickliarr: [{
+                name: '公司状态'
+            }, {
+                name: '业界新闻'
+            }, {
+                name: '成功案例'
+            }, {
+                name: '行业资讯'
+            }],
+            tableDatas: [{
+                title: '深圳联合租赁平台上线暨重点项目推介会隆重举行',
+                timedata: '2019-12-11',
+                dina: '.'
+            }, {
+                title: '深圳联合租赁平台上线暨重点项目推介会隆重举行',
+                timedata: '2019-12-11',
+                dina: '.'
+            }, {
+                title: '深圳联合租赁平台上线暨重点项目推介会隆重举行',
+                timedata: '2019-12-11',
+                dina: '.'
+            }, {
+                title: '深圳联合租赁平台上线暨重点项目推介会隆重举行',
+                timedata: '2019-12-11',
+                dina: '.'
+            }, {
+                title: '深圳联合租赁平台上线暨重点项目推介会隆重举行',
+                timedata: '2019-12-11',
+                dina: '.'
+            }],
+            deleteishow: true
+
+        },
+        watch: {
+            imgindex(newval, oldval) {
+                if (newval === oldval) {
+
+                }
+            },
+
+        },
+        created() {
+            this.total = this.tableData.length
+        },
+        mounted() {
+
+        },
+        methods: {
+            enter(item, index, $event) {
+                if (item.name === '业务指南') {
+                    this.ishow = true
+                } else {
+                    this.ishow = false
+                }
+                if (item.name === '业务导航') {
+                    this.ishows = true
+                } else {
+                    this.ishows = false
+                }
+                var chil = $event.path[0]
+                $(chil).children().css({
+                    border: 'none'
+                })
+            },
+            outyic($event) {
+                var chil = $event.path[0]
+                $(chil).children().css({
+                    borderRight: '1px solid #D7D7D7'
+                })
+            },
+            leave() {
+                this.ishow = false
+                this.ishows = false
+            },
+            imclickishow(index) {
+                this.deleteishow = !this.deleteishow
+                if (this.deleteishow) {
+                    this.imgindex = null
+                    this.imgshow = null
+                } else {
+                    this.imgindex = index
+                    this.imgshow = index
+                }
+
+            },
+            mouseleaves() {
+                this.deleteishow = true
+                this.imgindex = null
+                this.imgshow = null
+            },
+            arrliclick(name) {
+                console.log(name)
+            },
+            //  分页操作
+            change: function(currentPage) {
+                console.log(currentPage)
+                this.currentPage1 = currentPage
+            },
+
+        },
+    })
+    var mySwiper = new Swiper('#swiper-container', {
+        loop: true, // 循环模式选项
+        slidesPerView: 6,
+        spaceBetween: -50,
+        // 如果需要分页器
+        pagination: {
+            el: '.swiper-pagination',
+        },
+        // 如果需要前进后退按钮
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+        // 如果需要滚动条
+        scrollbar: {
+            el: '.swiper-scrollbar',
+        },
+    })
+
+    var mySwiper = new Swiper('.swiper-containers', {
+        loop: true, // 循环模式选项
+        slidesPerView: 1,
+        spaceBetween: 50,
+        // 如果需要分页器
+        pagination: {
+            el: '.swiper-pagination',
+        },
+        // 如果需要前进后退按钮
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+        // 如果需要滚动条
+        scrollbar: {
+            el: '.swiper-scrollbar',
+        },
+    })
+    var mySwipersq = new Swiper('#a', {
+        loop: true, // 循环模式选项
+        autoplay:true,
+        simulateTouch : false,
+        // 如果需要分页器
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true
+        },
+
+        // 如果需要前进后退按钮
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+
+        // 如果需要滚动条
+        scrollbar: {
+            el: '.swiper-scrollbar',
+        },
+    })
+</script>
+
+</html>

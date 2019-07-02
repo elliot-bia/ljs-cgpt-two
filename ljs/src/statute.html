@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>深圳联交所</title>
+    <link rel="icon" href="../images/logo.png">
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/ele.css">
+    <link rel="stylesheet" href="../css/eleicon.css">
+    <link rel="stylesheet" href="../css/purchase.css">
+    <script src="../js/vue.min.js"></script>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/bootstrap.js"></script>
+    <script src="../js/ele.js"></script>
+    <script src="../js/headerpublic.js"></script>
+
+</head>
+<style>
+    .inputs {
+        width: 50%;
+        margin: 0 auto;
+        padding: 20px
+    }
+
+    #table>.el-table__header-wrapper {
+        display: none
+    }
+
+    .el-table td {
+        border: none
+    }
+
+    .el-table::before {
+        height: 0;
+    }
+</style>
+
+<body>
+    <div id="app">
+        <headers></headers>
+        <main>
+            <div class="main">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <p style="padding: 20px;background:#fff;border-bottom: 1px solid #ccc;">首页 > 业务指南 > 政策法规 > 公有产权类
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <article>
+            <div class="main">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <div style="background: #fff;margin-top: 20px;border-bottom: 1px solid #ccc">
+                            <div class="inputs">
+                                <el-input placeholder="请输入关键字" v-model="input5" class="input-with-select">
+                                    <i slot="prefix" class="el-input__icon el-icon-search"></i>
+                                    <el-button slot="append" icon="el-icon-search"
+                                        style="background: #3E4E80;border-radius:0;color: #fff">搜索</el-button>
+                                </el-input>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <div style="background: #fff ;padding:0 10%">
+                            <el-table :data="tableData.slice((currentPage1-1) * pageSize,currentPage1*pageSize)" style="width: 100%" id='table' empty-text=' '>
+                                <el-table-column prop="dian" label="" width="20"> </el-table-column>
+                                <el-table-column prop="title" label="" show-overflow-tooltip></el-table-column>
+                                <el-table-column prop="times" width="200" label="" show-overflow-tooltip>
+                                </el-table-column>
+                            </el-table>
+                            <div class="text-right" style="padding:100px 6px">
+                                <el-pagination background @current-change="change" layout="prev, pager, next"
+                                    :page-size="pageSize" :total="total">
+                                </el-pagination>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </div>
+</body>
+
+</html>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            input5: '',
+            tableData: [
+                {
+                    title: '产权转让委托协议（股权类）',
+                    times: '[2019-11-15]',
+                    dian: '●'
+                },
+                {
+                    title: '产权转让委托协议（股权类）',
+                    times: '[2019-11-15]',
+                    dian: '●'
+                },{
+                    title: '产权转让委托协议（股权类）',
+                    times: '[2019-11-15]',
+                    dian: '●'
+                },{
+                    title: '产权转让委托协议（股权类）',
+                    times: '[2019-11-15]',
+                    dian: '●'
+                },{
+                    title: '产权转让委托协议（股权类）',
+                    times: '[2019-11-15]',
+                    dian: '●'
+                },{
+                    title: '产权转让委托协议（股权类）',
+                    times: '[2019-11-15]',
+                    dian: '●'
+                },{
+                    title: '产权转让委托协议（股权类）',
+                    times: '[2019-11-15]',
+                    dian: '●'
+                },{
+                    title: '产权转让委托协议（股权类）',
+                    times: '[2019-11-15]',
+                    dian: '●'
+                },{
+                    title: '产权转让委托协议（股权类）',
+                    times: '[2019-11-15]',
+                    dian: '●'
+                },{
+                    title: '产权转让委托协议（股权类）',
+                    times: '[2019-11-15]',
+                    dian: '●'
+                },
+            ],
+            total: 100,
+            pageSize: 7,
+            currentPage1: 1,
+        },
+        created() {
+            this.total = this.tableData.length
+        },
+        methods: {
+            change(val) {
+               this.currentPage1 = val
+            }
+        },
+    })
+</script>

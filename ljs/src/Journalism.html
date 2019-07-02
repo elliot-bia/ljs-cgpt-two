@@ -1,0 +1,208 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>深圳联交所</title>
+    <link rel="icon" href="../images/logo.png">
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/ele.css">
+    <link rel="stylesheet" href="../css/eleicon.css">
+    <link rel="stylesheet" href="../css/purchase.css">
+    <script src="../js/vue.min.js"></script>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/bootstrap.js"></script>
+    <script src="../js/ele.js"></script>
+    <script src="../js/headerpublic.js"></script>
+    <style>
+        .tablist{
+            display: flex;
+            justify-content: center;
+            border-bottom: 1px solid #cccc;
+            height: 62px;
+            background: #fff;
+            margin-bottom: 20px
+        }
+        .tablist > li {
+            padding: 20px;
+            cursor: pointer;
+        }
+        .tablist > li:hover{
+            color: #646F95;
+            border-bottom: 2px solid #3E4E80;
+            display: block
+        }
+        .banbox{
+            padding: 20px 0;
+            border-bottom: 1px solid #ccc;
+            background: #fff;
+        }
+        .row{
+            margin: 0;
+        }
+        .disflex{
+            display: flex
+        }
+        .times{
+            padding: 10% 0 0 12%;
+        }
+        .times > p {
+            font-size: 30px;
+            color: #3E4E80;
+            font-weight: 600;
+            text-align: center
+        }
+        .times> span{
+            color: #787878
+        }
+        .box_right > .titles {
+            font-size: 18px;
+            color: #333333;
+            padding: 15px 0
+        }
+        .box_right > .contents {
+            color: #A7A7A7;    
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2; 
+            overflow: hidden;
+            text-indent: 2rem;
+            padding-bottom: 10px
+        }
+    </style>
+</head>
+<body>
+    <div id="app" v-cloak>
+        <headers></headers>
+        <main>
+                <div class="main">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12" style="padding:0">
+                            <p style="padding: 20px;background:#fff;border-bottom: 1px solid #ccc;">首页 > 业界新闻</p>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        <article>
+            <div class="main">
+                <ul class="tablist">
+                    <li v-for="(item,index) in toplist" @click='listclick(item.name)'>
+                        {{item.name}}
+                    </li>
+                </ul>
+                <div class="row banbox" v-for='(item,index) in arrlist' :key='index'>
+                        <div class="col-xs-12 col-sm-4 col-md-4 disflex"  >
+                                <img :src="item.imgs" alt="">
+                               <div class="times">
+                                    <p>{{item.datas}}</p>
+                                    <span>{{item.times}}</span>
+                               </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-8 col-md-8">
+                            <div class="box_right">
+                                <p class="titles">{{item.titles}}</p>
+                                <p class="contents">{{item.contents}}</p>
+                                <el-button @click="btnclick(index)">MORE ></el-button>
+                            </div>
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <el-pagination
+                            background
+                            @current-change="change"
+                            layout="prev, pager, next"
+                            :page-size="pageSize"
+                            :total="total">
+                    </el-pagination>
+                </div>
+            </div>
+        </article>
+        <footer  style="width: 100%;z-index: 10">
+            <iframe src="./footer.html" style="width: 100%;height:200px;display: flex" frameborder="0"></iframe>
+        </footer>
+    </div>
+</body>
+</html>
+<script>
+ var app = new Vue({
+     el:'#app',
+     data: {
+        toplist:[
+            {name: '公司动态'},{name: '业界新闻'},{name: '成功案例'},{name: '行业资讯'},
+        ],
+        arrlist: [
+            {
+                imgs: '../images/banner_s.jpg',
+                datas: '22',
+                times: '2019-22',
+                titles: '深圳市易图资讯股份有限公司第二轮增资签约仪式在深圳联交所圆满举行',
+                contents: '近日，深圳市易图资讯股份有限公司增资10.4%股权项目签约仪式在深圳联交所多功能厅隆重举行，深圳市投资控股有限公司、深圳市易图资讯股份有限公司、深圳市中执宝沁贸易有限公司相关领在深圳联交所多功能厅隆重举'
+            },
+            {
+                imgs: '../images/banner_s.jpg',
+                datas: '22',
+                times: '2019-22',
+                titles: '深圳市易图资讯股份有限公司第二轮增资签约仪式在深圳联交所圆满举行',
+                contents: '近日，深圳市易图资讯股份有限公司增资10.4%股权项目签约仪式在深圳联交所多功能厅隆重举行，深圳市投资控股有限公司、深圳市易图资讯股份有限公司、深圳市中执宝沁贸易有限公司相关领在深圳联交所多功能厅隆重举'
+            },{
+                imgs: '../images/banner_s.jpg',
+                datas: '22',
+                times: '2019-22',
+                titles: '深圳市易图资讯股份有限公司第二轮增资签约仪式在深圳联交所圆满举行',
+                contents: '近日，深圳市易图资讯股份有限公司增资10.4%股权项目签约仪式在深圳联交所多功能厅隆重举行，深圳市投资控股有限公司、深圳市易图资讯股份有限公司、深圳市中执宝沁贸易有限公司相关领在深圳联交所多功能厅隆重举'
+            },{
+                imgs: '../images/banner_s.jpg',
+                datas: '22',
+                times: '2019-22',
+                titles: '深圳市易图资讯股份有限公司第二轮增资签约仪式在深圳联交所圆满举行',
+                contents: '近日，深圳市易图资讯股份有限公司增资10.4%股权项目签约仪式在深圳联交所多功能厅隆重举行，深圳市投资控股有限公司、深圳市易图资讯股份有限公司、深圳市中执宝沁贸易有限公司相关领在深圳联交所多功能厅隆重举'
+            },{
+                imgs: '../images/banner_s.jpg',
+                datas: '22',
+                times: '2019-22',
+                titles: '深圳市易图资讯股份有限公司第二轮增资签约仪式在深圳联交所圆满举行',
+                contents: '近日，深圳市易图资讯股份有限公司增资10.4%股权项目签约仪式在深圳联交所多功能厅隆重举行，深圳市投资控股有限公司、深圳市易图资讯股份有限公司、深圳市中执宝沁贸易有限公司相关领在深圳联交所多功能厅隆重举'
+            },{
+                imgs: '../images/banner_s.jpg',
+                datas: '22',
+                times: '2019-22',
+                titles: '深圳市易图资讯股份有限公司第二轮增资签约仪式在深圳联交所圆满举行',
+                contents: '近日，深圳市易图资讯股份有限公司增资10.4%股权项目签约仪式在深圳联交所多功能厅隆重举行，深圳市投资控股有限公司、深圳市易图资讯股份有限公司、深圳市中执宝沁贸易有限公司相关领在深圳联交所多功能厅隆重举'
+            },{
+                imgs: '../images/banner_s.jpg',
+                datas: '22',
+                times: '2019-22',
+                titles: '深圳市易图资讯股份有限公司第二轮增资签约仪式在深圳联交所圆满举行',
+                contents: '近日，深圳市易图资讯股份有限公司增资10.4%股权项目签约仪式在深圳联交所多功能厅隆重举行，深圳市投资控股有限公司、深圳市易图资讯股份有限公司、深圳市中执宝沁贸易有限公司相关领在深圳联交所多功能厅隆重举'
+            },{
+                imgs: '../images/banner_s.jpg',
+                datas: '22',
+                times: '2019-22',
+                titles: '深圳市易图资讯股份有限公司第二轮增资签约仪式在深圳联交所圆满举行',
+                contents: '近日，深圳市易图资讯股份有限公司增资10.4%股权项目签约仪式在深圳联交所多功能厅隆重举行，深圳市投资控股有限公司、深圳市易图资讯股份有限公司、深圳市中执宝沁贸易有限公司相关领在深圳联交所多功能厅隆重举'
+            },
+        ],
+        total:null,
+        //  每页展示多少数据
+        pageSize:9,
+        //  当前页
+        currentPage1:1,
+     },
+     created() {
+         this.total = this.arrlist.length
+     },
+     methods: {
+        change(currentPage){
+            console.log(currentPage)
+        },
+        btnclick(val){
+            console.log(val)
+        },
+        listclick(name){
+            console.log(name)
+        }
+     },
+ })
+</script>

@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>深圳联交所</title>
+    <link rel="icon" href="../images/logo.png">
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/ele.css">
+    <link rel="stylesheet" href="../css/eleicon.css">
+    <link rel="stylesheet" href="../css/purchase.css">
+    <script src="../js/vue.min.js"></script>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/bootstrap.js"></script>
+    <script src="../js/ele.js"></script>
+    <script src="../js/headerpublic.js"></script>
+    <style>
+        .el-submenu .el-menu {
+            border-top: 1px solid #ccc;
+            border-bottom: 1px solid #ccc
+        }
+
+        .el-menu-item-group__title {
+            padding: 0
+        }
+
+        header {
+            display: flex
+        }
+
+        article {
+            padding-top: 20px
+        }
+
+
+        .banbox {
+            padding: 20px 0;
+            border-bottom: 1px solid #ccc;
+            background: #fff
+        }
+
+        .row {
+            margin: 0;
+        }
+
+        .disflex {
+            display: flex
+        }
+
+        .times {
+            padding: 10% 0 0 12%;
+        }
+
+        .times>p {
+            font-size: 30px;
+            color: #3E4E80;
+            font-weight: 600;
+            text-align: center
+        }
+
+        .times>span {
+            color: #787878
+        }
+
+        .box_right>.titles {
+            font-size: 18px;
+            color: #333333;
+            padding: 15px 0;
+            text-overflow:ellipsis;
+            white-space:nowrap;
+            overflow:hidden;
+        }
+
+        .box_right>.contents {
+            color: #A7A7A7;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            overflow: hidden;
+            text-indent: 2rem;
+            margin-bottom: 10px
+        }
+
+        .gerenziliao>div>.el-form-item {
+            margin: 0
+        }
+
+        .xiugaiziliao > div > div >.el-input {
+            width: 50%
+        }
+
+        #table>.el-table__header-wrapper {
+            display: none
+        }
+
+        #table {
+            padding: 0 20px
+        }
+
+        .tishiwenzi {
+            color: #FFB959
+        }
+        .lefts,.contentlr{
+            padding-left: 0
+        }
+        .rights,.contentlr{
+            padding-right: 0
+        }
+        .pbox{
+            padding: 10px 0
+        }
+
+        .pbox > .row{
+            padding: 10px 0
+        }
+        .width1 {
+           text-align: right
+        }
+        .padding2{
+            padding-left: 0
+        }
+        .xiugaiPassword{
+            width: 50%;
+            margin: 0 auto;
+            padding: 20px
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app" v-cloak>
+        <headers></headers>
+        <main>
+            <div class="main">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 contentlr">
+                        <p style="padding: 20px;background:#fff">首页 > 会员中心</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <article>
+            <div class="main">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-3 col-md-3 lefts">
+                        <el-menu default-active="2" class="el-menu-vertical-demo" @open="handleOpen"
+                            @select='handchildren' @close="handleClose" :default-openeds=['1','2','3']>
+                            <el-submenu index="1">
+                                <template slot="title">
+                                    <img src="../images/geren.jpg" alt="">
+                                    <span>个人资料</span>
+                                </template>
+                                <el-menu-item-group>
+                                    <el-menu-item index="1-1">个人资料</el-menu-item>
+                                    <el-menu-item index="1-2">修改资料</el-menu-item>
+                                    <el-menu-item index="1-3">修改密码</el-menu-item>
+                                </el-menu-item-group>
+                            </el-submenu>
+                            <el-submenu index="2">
+                                <template slot="title">
+                                    <img src="../images/zixun.jpg" alt="">
+                                    <span>我的咨询</span>
+                                </template>
+                                <el-menu-item-group>
+                                    <el-menu-item index="2-1">托管专题</el-menu-item>
+                                    <el-menu-item index="2-2">租赁专题</el-menu-item>
+                                    <el-menu-item index="2-3">增资专题</el-menu-item>
+                                    <el-menu-item index="2-4">三资专题</el-menu-item>
+                                    <el-menu-item index="2-5">其它专题</el-menu-item>
+                                </el-menu-item-group>
+                            </el-submenu>
+                            <el-submenu index="3">
+                                <template slot="title">
+                                    <img src="../images/shoucang.jpg" alt="">
+                                    <span>我的收藏</span>
+                                </template>
+                                <el-menu-item-group>
+                                    <el-menu-item index="3-1">公告信息</el-menu-item>
+                                    <el-menu-item index="3-2">新闻信息</el-menu-item>
+                                </el-menu-item-group>
+                            </el-submenu>
+                            <el-menu-item index="4">
+                                <img src="../images/tuichu.jpg" alt="">
+                                <span slot="title">退出系统</span>
+                            </el-menu-item>
+                        </el-menu>
+                    </div>
+                    <!-- 新闻信息 -->
+                    <div class="col-xs-12 col-sm-9 col-md-9 rights" v-if='titlename === "3-2"'>
+                        <div style="background: #fff">
+                            <p
+                                style="font-size: 18px;color: #3E4E80;padding: 10px;border-bottom: 1px solid #ccc;font-weight: 600">
+                                新闻信息
+                                &nbsp;
+                                <span style="font-size: 12px;color:#A1A1A1"> DYNAMIC</span>
+                            </p>
+                            <div class="row banbox" v-for='(item,index) in arrlist' :key='index'>
+
+                                <div class="col-xs-12 col-sm-5 col-md-5 disflex"  >
+                                    <img :src="item.imgs" alt="">
+                                    <div class="times">
+                                        <p>{{item.datas}}</p>
+                                        <span>{{item.times}}</span>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-7 col-md-7">
+                                    <div class="box_right">
+                                        <p class="titles">{{item.titles}}</p>
+                                        <p class="contents">{{item.contents}}</p>
+                                        <el-button @click="btnclick(index)">MORE ></el-button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <el-pagination background @current-change="change" layout="prev, pager, next"
+                                    :page-size="pageSize" :total="total">
+                                </el-pagination>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 个人资料 -->
+                    <div class="col-xs-12 col-sm-9 col-md-9" v-if='titlename === "1-1"'>
+                        <div style="background: #fff">
+                            <p
+                                style="font-size: 18px;color: #3E4E80;padding: 10px;border-bottom: 1px solid #ccc;font-weight: 600">
+                                个人资料
+                                &nbsp;
+                                <span style="font-size: 12px;color:#A1A1A1"> MEMBERSHIP INFORMATION</span>
+                            </p>
+                            <div class="row">
+                                <el-form :model="formInline" class="demo-form-inline gerenziliao" label-width="100px">
+                                    <div class="col-xs-12 col-sm-6 col-md-6">
+                                        <el-form-item label="会员名称:">
+                                            {{formInline.name}}
+                                        </el-form-item>
+                                        <el-form-item label="联系人:">
+                                            {{formInline.name}}
+                                        </el-form-item>
+                                        <el-form-item label="注册时间:">
+                                            {{formInline.register}}
+                                        </el-form-item>
+                                        <el-form-item label="我的咨询:">
+                                            {{formInline.Consultation}}
+                                        </el-form-item>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-md-6">
+                                        <el-form-item label="邮箱地址:">
+                                            {{formInline.mailbox}}
+                                        </el-form-item>
+                                        <el-form-item label="手机号码:">
+                                            {{formInline.Mobilenum}}
+                                        </el-form-item>
+                                        <el-form-item label="账号类型:">
+                                            {{formInline.accounts}}
+                                        </el-form-item>
+                                        <el-form-item label="我的收藏:">
+                                            {{formInline.myCollection}}
+                                        </el-form-item>
+                                    </div>
+                                </el-form>
+                            </div>
+                        </div>
+                        <div style="background: #fff;margin-top: 20px">
+                            <p
+                                style="font-size: 18px;color: #3E4E80;padding: 10px;border-bottom: 1px solid #ccc;font-weight: 600">
+                                交易所账号信息
+                                &nbsp;
+                                <span style="font-size: 12px;color:#A1A1A1"> MEMBERSHIP INFORMATION</span>
+                            </p>
+                            <div class="row">
+                                <el-form :model="formInline" class="demo-form-inline" label-width="100px">
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <el-form-item label="股东代码:">
+                                            {{formInline.Codes}}
+                                        </el-form-item>
+                                    </div>
+                                </el-form>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- 修改资料  -->
+                    <div class="col-xs-12 col-sm-9 col-md-9" v-if='titlename === "1-2"'>
+                        <div style="background: #fff">
+                            <p
+                                style="font-size: 18px;color: #3E4E80;padding: 10px;border-bottom: 1px solid #ccc;font-weight: 600">
+                                修改资料
+                                &nbsp;
+                                <span style="font-size: 12px;color:#A1A1A1">MODIFYING DATA</span>
+                            </p>
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <el-form :label-position="labelPosition" ref="modifyformLabelAlign" :rules="rules"
+                                        label-width="150px" :model="modifyformLabelAlign" class="xiugaiziliao">
+                                        <el-form-item label="邮箱地址">
+                                            {{modifyformLabelAlign.mailbox}}
+                                        </el-form-item>
+                                        <el-form-item label="会员名称" prop='name'>
+                                            <el-input v-model="modifyformLabelAlign.name"></el-input>
+                                        </el-form-item>
+                                        <el-form-item label="联系地址">
+                                            <el-input v-model="modifyformLabelAlign.address"></el-input>
+                                        </el-form-item>
+                                        <el-form-item label="邮政编码">
+                                            <el-input v-model="modifyformLabelAlign.PostalCode"></el-input>
+                                        </el-form-item>
+                                        <el-form-item label="联系人员">
+                                            <el-input v-model="modifyformLabelAlign.Personnels"></el-input>
+                                        </el-form-item>
+                                        <el-form-item label="手机号码" prop='Phonenumbe'>
+                                            <el-input v-model.number="modifyformLabelAlign.Phonenumbe"></el-input>
+                                            <span class="tishiwenzi">
+                                                (如您需要使用预约功能，请填写您的手机号码）
+                                            </span>
+                                        </el-form-item>
+                                        <el-form-item label="传真号码">
+                                            <el-input v-model="modifyformLabelAlign.Faxnumber"></el-input>
+                                        </el-form-item>
+                                        <el-form-item label="股东、权益代码" prop='EquityCode'>
+                                            <el-input v-model="modifyformLabelAlign.EquityCode"></el-input>
+                                            <span class="tishiwenzi">
+                                                (什么是股东代码？)
+                                            </span>
+                                        </el-form-item>
+                                        <el-form-item label="股东、权益密码">
+                                            <el-input v-model="modifyformLabelAlign.EquityPassword"></el-input>
+                                        </el-form-item>
+                                        <el-form-item>
+                                            <el-button
+                                                style="background: #FFA724;border:none;padding:14px 50px;border-radius: 0"
+                                                type="primary" @click="submitForm('modifyformLabelAlign')">提交
+                                            </el-button>
+                                            <el-button
+                                                style="background: #3E4E80;border:none;padding:14px 50px;border-radius: 0"
+                                                type="primary" @click="resetForm('modifyformLabelAlign')">重置</el-button>
+                                        </el-form-item>
+                                    </el-form>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- 公告信息 -->
+                    <div class="col-xs-12 col-sm-9 col-md-9" v-if='titlename === "3-1"'>
+                        <div style="background: #fff">
+                            <p
+                                style="font-size: 18px;color: #3E4E80;padding: 10px;border-bottom: 1px solid #ccc;font-weight: 600">
+                                公告信息
+                                &nbsp;
+                                <span style="font-size: 12px;color:#A1A1A1">PROJECT ANNOUNCEMENT</span>
+                            </p>
+                            <el-table :data="tableData" style="width: 100%" id='table' empty-text=' '>
+                                <el-table-column prop="date" label="" show-overflow-tooltip></el-table-column>
+                                <el-table-column prop="name" label="" width="100">
+                                    <template slot-scope="scope">
+                                        <i class="el-icon-delete" @click="deleteRow(scope.$index, tableData)"
+                                            style="cursor: pointer;font-size: 16px"></i>
+                                    </template>
+                                </el-table-column>
+                            </el-table>
+                            <div class="text-right" style="padding:100px 6px">
+                                <el-pagination background @current-change="change" layout="prev, pager, next"
+                                    :page-size="pageSize" :total="total">
+                                </el-pagination>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 我的咨询 Myconsultation -->
+                    <div class="col-xs-12 col-sm-9 col-md-9" v-if='titlename === "2-1"'>
+                        <div style="background: #fff">
+                            <p
+                                style="font-size: 18px;color: #3E4E80;padding: 10px;border-bottom: 1px solid #ccc;font-weight: 600">
+                                托管专题
+                                &nbsp;
+                                <span style="font-size: 12px;color:#A1A1A1">TRUSTEESHIP</span> 
+                            </p>
+                            <div class="pbox">
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-1 col-md-1 width1">
+                                        <img src="../images/qiuzhucopy@2x.png" alt="">
+                                    </div>
+                                    <div class="col-xs-12 col-sm-11 col-md-11 padding2">
+                                            非上市股份有限公司是不是一律要托管？且必须要在联交所登记托管？有没有规定一定要在哪家产权交易所托管？
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-1 col-md-1 width1">
+                                        
+                                    </div>
+                                    <div class="col-xs-12 col-sm-11 col-md-11 padding2" >
+                                        <div style="background: #f5f5f5;padding: 10px">
+                                            您好！根据市政府办公会议纪要2000年154号文、深府函[2002]31号文以及深圳市工商局【2004】58号、【2004】127号文件的规定，深圳联合产权交易所（原深圳国际高新技术产权交易所）是深圳市政府指定的非上市企业股权登记托管机构。在深圳市依法注册的非上市企业应依照相关规定在本所办理股权登记托管手续。
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row" v-for='(item,index) in Myconsultation' :key='index' >
+                                    <div class="col-xs-12 col-sm-1 col-md-1 width1">
+                                        <img src="../images/qiuzhucopy@2x.png" alt="">
+                                    </div>
+                                    <div class="col-xs-12 col-sm-11 col-md-11 padding2">
+                                        {{item.name}}
+                                    </div>
+                                </div>
+                                <div class="text-right" style="padding:100px 6px 0 ">
+                                    <el-pagination background @current-change="change" layout="prev, pager, next"
+                                        :page-size="pageSize" :total="total">
+                                    </el-pagination>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 修改密码 ChangePassword-->
+                    <div class="col-xs-12 col-sm-9 col-md-9" v-if='titlename === "1-3"'>
+                        <div style="background: #fff">
+                            <p
+                                style="font-size: 18px;color: #3E4E80;padding: 10px;border-bottom: 1px solid #ccc;font-weight: 600">
+                                修改密码 
+                                &nbsp;
+                                <span style="font-size: 12px;color:#A1A1A1">CHANGE PASSWORD</span>
+                            </p>
+                            <div class="xiugaiPassword">
+                                    <el-form :model="ChangePassword" :rules="Change" ref="ChangePassword" label-width="100px" class="demo-ruleForm">
+                                        <el-form-item label="邮箱地址" >
+                                               {{ChangePassword.mailaddress}}
+                                        </el-form-item>
+                                        <el-form-item label="旧密码" prop="Oldpassword">
+                                            <el-input type="password" v-model.number="ChangePassword.Oldpassword" auto-complete="off"></el-input>
+                                        </el-form-item>
+                                        <el-form-item label="新密码" prop="newpassword">
+                                            <el-input type="password" v-model.number="ChangePassword.newpassword"></el-input>
+                                        </el-form-item>
+                                        <el-form-item label="新密码确认" prop="newpasswordtrue">
+                                                <el-input type="password" v-model.number="ChangePassword.newpasswordtrue"></el-input>
+                                            </el-form-item>
+                                        <el-form-item>
+                                                <el-button
+                                                style="background: #FFA724;border:none;padding:14px 50px;border-radius: 0"
+                                                type="primary" @click="submitForms('ChangePassword')">提交
+                                            </el-button>
+                                            <el-button
+                                                style="background: #3E4E80;border:none;padding:14px 50px;border-radius: 0"
+                                                type="primary" @click="resetForms('ChangePassword')">重置</el-button>
+                                        </el-form-item>
+                                    </el-form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+        <footer  style="width: 100%;z-index: 10;margin-top: 100px">
+            <iframe src="./footer.html" style="width: 100%;height:200px;display: flex" frameborder="0"></iframe>
+        </footer>
+    </div>
+</body>
+</html>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            arrlist: [
+                {
+                    imgs: '../images/banner_s.jpg',
+                    datas: '22',
+                    times: '2019-22',
+                    titles: '深圳市易图资讯股份有限公司第二轮增资签约仪式在深圳联交所圆满举行',
+                    contents: '近日，深圳市易图资讯股份有限公司增资10.4%股权项目签约仪式在深圳联交所多功能厅隆重举行，深圳市投资控股有限公司、深圳市易图资讯股份有限公司、深圳市中执宝沁贸易有限公司相关领在深圳联交所多功能厅隆重举'
+                },
+                {
+                    imgs: '../images/banner_s.jpg',
+                    datas: '22',
+                    times: '2019-22',
+                    titles: '深圳市易图资讯股份有限公司第二轮增资签约仪式在深圳联交所圆满举行',
+                    contents: '近日，深圳市易图资讯股份有限公司增资10.4%股权项目签约仪式在深圳联交所多功能厅隆重举行，深圳市投资控股有限公司、深圳市易图资讯股份有限公司、深圳市中执宝沁贸易有限公司相关领在深圳联交所多功能厅隆重举'
+                }, {
+                    imgs: '../images/banner_s.jpg',
+                    datas: '22',
+                    times: '2019-22',
+                    titles: '深圳市易图资讯股份有限公司第二轮增资签约仪式在深圳联交所圆满举行',
+                    contents: '近日，深圳市易图资讯股份有限公司增资10.4%股权项目签约仪式在深圳联交所多功能厅隆重举行，深圳市投资控股有限公司、深圳市易图资讯股份有限公司、深圳市中执宝沁贸易有限公司相关领在深圳联交所多功能厅隆重举'
+                }, {
+                    imgs: '../images/banner_s.jpg',
+                    datas: '22',
+                    times: '2019-22',
+                    titles: '深圳市易图资讯股份有限公司第二轮增资签约仪式在深圳联交所圆满举行',
+                    contents: '近日，深圳市易图资讯股份有限公司增资10.4%股权项目签约仪式在深圳联交所多功能厅隆重举行，深圳市投资控股有限公司、深圳市易图资讯股份有限公司、深圳市中执宝沁贸易有限公司相关领在深圳联交所多功能厅隆重举'
+                },
+            ],
+            total: 100,
+            pageSize: 7,
+            currentPage1: 1,
+            titlename: '3-2',
+            formInline: {
+                name: '张三',
+                register: '2019-22-21  15:12:53',
+                Consultation: '0条',
+                mailbox: '124658742@qq.com',
+                Mobilenum: '12548546466',
+                accounts: '网址会员',
+                myCollection: '1条',
+                Codes: '非得分为部分文本微博公文包'
+            },
+            labelPosition: 'right',
+            modifyformLabelAlign: {
+                mailbox: '',
+                name: '',
+                address: '',
+                PostalCode: '',
+                Personnels: '',
+                Phonenumbe: '',
+                Faxnumber: '',
+                EquityCode: '',
+                EquityPassword: ''
+            },
+            rules: {
+                name: [{ required: true, message: '请输入会员名称', trigger: 'blur' },],
+                Phonenumbe: [{ required: true, message: '请输入手机号码' }, { type: 'number', message: '必须为数字值' }],
+                EquityCode: [{ required: true, message: '请输入股东、权益代码', trigger: 'blur' }]
+            },
+            tableData: [
+                {
+                    date: '中证云股份有限公司2500万股股权转让公告',
+                    name: '王小虎',
+                }, {
+                    date: '中证云股份有限公司2500万股股权转让公告',
+                    name: '王小虎',
+                }, {
+                    date: '中证云股份有限公司2500万股股权转让公告',
+                    name: '王小虎',
+                }, {
+                    date: '中证云股份有限公司2500万股股权转让公告',
+                    name: '王小虎',
+                }, {
+                    date: '中证云股份有限公司2500万股股权转让公告',
+                    name: '王小虎',
+                }, {
+                    date: '中证云股份有限公司2500万股股权转让公告',
+                    name: '王小虎',
+                }, {
+                    date: '中证云股份有限公司2500万股股权转让公告',
+                    name: '王小虎',
+                }, {
+                    date: '中证云股份有限公司2500万股股权转让公告',
+                    name: '王小虎',
+                },
+            ],
+            Myconsultation: [
+                {name: '如何查询已托管企业信息'},
+                {name: '办理公司股权转让的流程及相关资料'},
+                {name: '我想把公司的股权进行挂牌交易，登记时需要的费用是多少？'},
+                {name: '我想查询托管公司托管情况，以及托管公司在联交所交易和转让如何办理相关手续'},
+                {name: '托管企业是否一定要深圳企业，其他省市的企业很托管吗？'},
+                {name: '办理公司股权转让的流程及相关资料'},
+                {name: '前海海钜信达资产管理有限公司已经托管，我是否能进行买卖？还是要挂牌后才能进行买卖？托管是不是不等同于挂牌？谢谢'},
+                {name:'深圳泰喜航科技股份有限公司在贵所完成了上市托管挂牌手续，股权代码08528，以上的法律效力是什么？其增资扩股是对本公司呢？还是对其他公司呢？泰喜航对浙江正瑞轻合金精密成型有限公司的投资属实吗？合法吗？泰喜航现在可以采取募集设立的方式募集资金了吗？可以边募集边投资吗？股权登记是边筹集边登记呢还是筹集完成后才在深联所登记呢？深联所出具的权益代码卡和权益交割清单是如何出具的？是504万出具一个权益代码卡吗？是只显示一个名义股东的名字吗？504万包含的多个股东能出具证明吗？......这样的募集方式合法吗？'},
+                {name:'托管企业是否一定要深圳企业，其他省市的企业很托管吗？'},
+            ],
+            ChangePassword:
+                {
+                    mailaddress: '11111qq.com',
+                    Oldpassword: '',
+                    newpassword: '',
+                    newpasswordtrue: ''
+                },
+           
+            Change:{
+                Oldpassword: [{ required: true, message: '请输入旧密码', trigger: 'blur' },{ type: 'number', message: '必须为数字值' }],
+                newpassword: [{ required: true, message: '请输入新密码', trigger: 'blur' },{ type: 'number', message: '必须为数字值' }],
+                newpasswordtrue: [{ required: true, message: '请输入新密码', trigger: 'blur' },{ type: 'number', message: '必须为数字值' }],
+            }
+        },
+        created() {
+            //this.total = this.arrlist.length
+        },
+        methods: {
+            handleOpen(key, keyPath) {
+            },
+            handleClose(key, keyPath) {
+            },
+            handchildren(val, index) {
+                if(val === '4'){
+                    alert('系统正在开发')
+                } else {
+                    this.titlename = val
+                }
+            },
+            change(currentPage) {
+                console.log(currentPage)
+            },
+            btnclick(val) {
+                console.log(val)
+            },
+            submitForm(formName) {
+                this.$refs[formName].validate((valid) => {
+                    if (valid) {
+                        alert('submit!');
+                    } else {
+                        console.log('error submit!!');
+                        return false;
+                    }
+                });
+            },
+            resetForm(formName) {
+                this.modifyformLabelAlign = {}
+                this.$refs[formName].resetFields();
+            },
+            submitForms(formName) {
+                this.$refs[formName].validate((valid) => {
+                    if (valid) {
+                       if(this.ChangePassword.newpassword === this.ChangePassword.newpasswordtrue) {
+                           
+                       } else {
+                           alert('两次密码不相同')
+                       }
+                    } else {
+                        console.log('error submit!!');
+                        return false;
+                    }
+                });
+            },
+            resetForms(formName) {
+                this.$refs[formName].resetFields();
+            },
+            deleteRow(index, rows) {
+                rows.splice(index, 1);
+            },
+            //  分页操作
+            change: function (currentPage) {
+                console.log(currentPage)
+                this.currentPage1 = currentPage
+            },
+        },
+    })
+</script>

@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>深圳联交所</title>
+    <link rel="icon" href="../images/logo.png">
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/ele.css">
+    <link rel="stylesheet" href="../css/eleicon.css">
+    <link rel="stylesheet" href="../css/purchase.css">
+    <link rel="stylesheet" href="../css/LeasingTheme.css">
+    <script src="../js/vue.min.js"></script>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/bootstrap.js"></script>
+    <script src="../js/ele.js"></script>
+    <script src="../js/headerpublic.js"></script>
+
+</head>
+
+<body>
+    <div id='app' v-cloak>
+        <headers></headers>
+        <main>
+            <div class="main">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 contentlr">
+                        <p style="padding: 20px;background:#fff;border-bottom: 1px solid #ccc;">首页 > 业务导航</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <article>
+            <div class="main">
+                <div class="listtitle">
+                    <ul>
+                        <li v-for='(item,index) in clicklist' :style='{color: num === index ? "#3E4E80" : ""}'
+                            :key='index' @click='clicklists(item,index)'>
+                            <i :style='{borderBottom: num === index ? "2px solid #3E4E80" : "" }'>{{item.name}}</i></li>
+                    </ul>
+                </div>
+                <!-- 租赁专题 -->
+                <div class="lasconten" v-if='num === 0'>
+                    <div class="titletop">
+                        <p class="titcolor">业务介绍</p>
+                        <p class="eng">BUSINESS INTRODUCTION</p>
+                    </div>
+                    <div class="lastop">
+                        <p>
+                            深圳联合产权交易所股份有限公司（以下简称“联交所”）前身是成立于1993年3月的深圳市产权交易中心和成立于2000年10月的深圳国际高新技术产权交易所。深圳市产权交易中心是全国最早成立的产权交易机构之一，中心创建的产权交易“阳光管理体系”，曾得到原中共中央政治局常委、中纪委书记尉健行的充分肯定。深圳国际高新技术产权交易所是根据时任中央政治局委员、广东省书记李长春同志批示，为打造永不落幕的高交会，由深圳市政府批准成立的全国第一家市场化运作的股份制技术产权交易机构。
+                        </p>
+                        <p style="padding-top: 20px">
+                            2009年11月，市政府四届148次常务会议通过《关于整合产权交易机构加快产权交易市场发展的实施方案》，决定整合我市产权交易市场，组建深圳联合产权交易所，定位为深圳统一的综合性产权交易平台。整合以来，在市政府各部门及市国资委的大力支持和指导下，经过多年的发展，联交所不仅成为各类国有、集体企业产权流转、资产处置、增资扩股的三公交易平台，还成为为中小企业，特别是中小科技企业提供跨市场的综合金融服务和多层次资本市场解决方案的专业化服务平台。
+                        </p>
+                    </div>
+                    <div class="titletop">
+                        <p class="titcolor">租赁相关公告</p>
+                        <p class="eng">RELEVANT ANNOUNCEMENT</p>
+                    </div>
+                    <div class="lasbtn">
+                        <el-button type="primary" style="background: #3E4E80;border:1px solid #3E4E80;">招租公告</el-button>
+                        <el-button style="border: 2px solid #3E4E80;background: #fff;color: #747474">成交公示</el-button>
+                    </div>
+                    <div class="padcell">
+                        <el-table :data="tableData.slice((currentPage1-1) * pageSize,currentPage1*pageSize)" border
+                            style="width: 100%" :header-cell-style="{background:'#E7F3FD',color: '#35487F'}">
+                            <el-table-column prop="name" label="项目名称" header-align='center'></el-table-column>
+                            <el-table-column prop="date" label="发布日期" width="180"> </el-table-column>
+                        </el-table>
+                        <div class="text-right" style="padding:20px 6px">
+                            <el-pagination background @current-change="change" layout="prev, pager, next"
+                                :page-size="pageSize" :total="total">
+                            </el-pagination>
+                        </div>
+                    </div>
+                    <div class="titletop">
+                        <p class="titcolor">业务办理流程</p>
+                        <p class="eng">BUSINESS PROCESS</p>
+                        <img style="margin-top: 20px;margin-left:50px" src="../images/yewuliuc.png" alt="">
+                    </div>
+                    <div class="titletop">
+                        <p class="titcolor">业务材料下载</p>
+                        <p class="eng">BUSINESS MATERIALS DOWNLOAD</p>
+                    </div>
+                    <div class="lasbtn">
+                        <el-button type="primary" style="background: #3E4E80;border:1px solid #3E4E80;">查看更多</el-button>
+                    </div>
+                    <div class="titletop">
+                        <p class="titcolor">业务收费标准</p>
+                        <p class="eng">BUSINESS CHARGE STANDARD</p>
+                    </div>
+                    <div class="lastop">
+                        <div v-for='(item,index) in businarr' :key='index' style="display: flex">
+                            <div>{{index + 1}}、</div>
+                            <div>{{item.name}}</div>
+                        </div>
+                    </div>
+                    <div class="titletop">
+                        <p class="titcolor">常见问题答疑</p>
+                        <p class="eng">FREQUENT QUESTION ANSWERING</p>
+                    </div>
+                    <div class="pbox">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-1 col-md-1 width1">
+                                <img src="../images/qiuzhucopy@2x.png" alt="">
+                            </div>
+                            <div class="col-xs-12 col-sm-11 col-md-11 padding2">
+                                非上市股份有限公司是不是一律要托管？且必须要在联交所登记托管？有没有规定一定要在哪家产权交易所托管？ 拷贝
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-1 col-md-1 width1">
+                            </div>
+                            <div class="col-xs-12 col-sm-11 col-md-11 padding2">
+                                <div style="background: #f5f5f5;padding: 10px">
+                                    您好！根据市政府办公会议纪要2000年154号文、深府函[2002]31号文以及深圳市工商局【2004】58号、【2004】127号文件的规定，深圳联合产权交易所（原深圳国际高新技术产权交易所）是深圳市政府指定的非上市企业股权登记托管机构。在深圳市依法注册的非上市企业应依照相关规定在本所办理股权登记托管手续。
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" v-for='(item,index) in Myconsultation' :key='index'>
+                            <div class="col-xs-12 col-sm-1 col-md-1 width1">
+                                <img src="../images/qiuzhucopy@2x.png" alt="">
+                            </div>
+                            <div class="col-xs-12 col-sm-11 col-md-11 padding2">
+                                {{item.name}}
+                            </div>
+                        </div>
+                        <div class="lasbtn">
+                            <el-button type="primary" style="background: #3E4E80;border:1px solid #3E4E80;">查看更多
+                            </el-button>
+                        </div>
+                    </div>
+                    <div class="titletop">
+                        <p class="titcolor">业务办理地址</p>
+                        <p class="eng">BUSINESS ADDRESS</p>
+                    </div>
+                    <div class="lastop">
+                        <p>
+                            业务办理地址：深圳南山区沙河西路1809号深圳湾科技生态园一区2栋A座11楼
+                        </p>
+                    </div>
+                    <div class="lasbtn">
+                        <el-button type="primary" style="background: #3E4E80;border:1px solid #3E4E80;margin-top: 20px">
+                            查看地图</el-button>
+                    </div>
+                </div>
+                <!-- 增资专题 -->
+                <div class="lasconten" v-if='num === 1'>
+                    <div class="titletop">
+                        <p class="titcolor">企业增资服务中心介绍</p>
+                        <p class="eng">BUSINESS INTRODUCTION</p>
+                    </div>
+                    <div class="lastop">
+                        <p>
+                            作为地处全国改革创新试验区的产权交易机构，深圳联交所从2012年即开始先行先试，充分发挥产权平台信息聚集、价值发现、制度规范等优势，为国有企业引进战略投资者做大做强提供方案设计、信息发布、投资人征集、遴选等一系列服务。通过不断完善和持续创新，通过引入投行做法，在行业内率先建立了“产权平台+投行服务”的国有企业增资创新业务模式。即严格按照国有企业产权管理的法律法规、规章制度，遵循资本市场的通行做法，通过产权交易平台为企业引资提供专业化、市场化的服务。在国务院国资委和深圳市国资委的指导下，深圳联交所完善和制订了《深圳联交所企业增资业务规则》、《企业增资业务投资人遴选办法》、《专家库管理办法》等配套交易制度，为国有企业增资进场交易奠定了制度基础。2015年9月，为进一步提升产权市场融合各类资本和资源的市场配置功能，深圳联交所在原有业务规则基础上，与上海联交所共同制定了《企业增资业务规则（试行）》，成为全国首个产权交易机构正式发布的企业增资规则。
+                            深圳联合产权交易所股份有限公司（以下简称“联交所”）前身是成立于1993年3月的深圳市产权交易中心和成立于2000年10月的深圳国际高新技术产权交易所。深圳市产权交易中心是全国最早成立的产权交易机构之一，中心创建的产权交易“阳光管理体系”，曾得到原中共中央政治局常委、中纪委书记尉健行的充分肯定。深圳国际高新技术产权交易所是根据时任中央政治局委员、广东省书记李长春同志批示，为打造永不落幕的高交会，由深圳市政府批准成立的全国第一家市场化运作的股份制技术产权交易机构。
+                        </p>
+                        <p style="padding-top: 20px">
+                            企业增资服务中心经过几年的不断探索与完善，目前已经有近20名具备多年投行、产权、法律、财务等方面工作经验的专业人才，专业的增资服务实力得到企业的一致认可。中心根据投融资各方需求自行或组织相关中介机构提供不限于投融资咨询、配套方案设计、财务顾问、法律顾问、尽职调查、商务谈判、新三板或IPO顾问、股权激励顾问等一揽子配套服务。经过几年的实践，中心完成和正在进行的项目累计超过60宗，引进社会资本超过200亿元。
+                        </p>
+                    </div>
+                    <div class="titletop">
+                        <p class="titcolor">公告信息</p>
+                        <p class="eng">ANNOUNCEMENT INFORMATION</p>
+                    </div>
+                    <div class="lasbtn">
+                        <el-button type="primary" style="background: #3E4E80;border:1px solid #3E4E80;">深圳联交所增资项目
+                        </el-button>
+                        <el-button style="border: 2px solid #3E4E80;background: #fff;color: #747474">异地合作交易机构项目
+                        </el-button>
+                    </div>
+                    <div class="padcell">
+                        <el-table :data="tableDatas.slice((currentPage1s-1) * pageSizes,currentPage1s*pageSizes)" border
+                            style="width: 100%" :header-cell-style="{background:'#E7F3FD',color: '#35487F'}">
+                            <el-table-column prop="name" label="项目名称" header-align='center'></el-table-column>
+                            <el-table-column prop="date" label="发布日期" width="180"> </el-table-column>
+                        </el-table>
+                        <div class="text-right" style="padding:20px 6px">
+                            <el-pagination background @current-change="changes" layout="prev, pager, next"
+                                :page-size="pageSizes" :total="totals">
+                            </el-pagination>
+                        </div>
+                    </div>
+                    <div class="titletop">
+                        <p class="titcolor">政策法规</p>
+                        <p class="eng">POLICIES AND REGULATIONS</p>
+                    </div>
+                    <div class="lastop">
+                        <div v-for='(item,index) in policarr' :key='index' style="display: flex;margin-bottom: 10px">
+                            <div>{{index + 1}}、</div>
+                            <div>{{item.name}}</div>
+                        </div>
+                    </div>
+                    <div class="lasbtn">
+                        <el-button type="primary" style="background: #3E4E80;border:1px solid #3E4E80;">查看更多
+                        </el-button>
+                    </div>
+                    <div class="titletop">
+                        <p class="titcolor">服务规范</p>
+                        <p class="eng">SERVICE SPECIFICATION</p>
+                    </div>
+                    <div class="padcell">
+                        <p class="contits"><i class="spots"> </i>深圳市三资交易联系方式：</p>
+                        <div>
+                            <div v-for='(item,index) in servicearr' :key='index' style="display: flex;margin: 20px 0">
+                                <div>{{index + 1}}、</div>
+                                <div>{{item.name}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="titletop">
+                        <p class="titcolor">经典案例</p>
+                        <p class="eng">CLASSIC CASE</p>
+                    </div>
+                    <div class="padcell">
+                        <el-table :data="classictableDatas" border style="width: 100%"
+                            :header-cell-style="{background:'#E7F3FD',color: '#35487F'}">
+                            <el-table-column prop="name" label="项目名称" header-align='center'></el-table-column>
+                            <el-table-column prop="date" label="发布日期" width="180"> </el-table-column>
+                        </el-table>
+                    </div>
+                    <div class="lasbtn">
+                        <el-button type="primary" style="background: #3E4E80;border:1px solid #3E4E80;margin-top: 20px">
+                            查看更多
+                        </el-button>
+                    </div>
+                    <div class="titletop">
+                        <p class="titcolor">新闻动态</p>
+                        <p class="eng">NEWS INFORMATION</p>
+                    </div>
+                    <div class="padcell">
+                        <el-table :data="newtableDatas" border style="width: 100%"
+                            :header-cell-style="{background:'#E7F3FD',color: '#35487F'}">
+                            <el-table-column prop="name" label="项目名称" header-align='center'></el-table-column>
+                            <el-table-column prop="date" label="发布日期" width="180"> </el-table-column>
+                        </el-table>
+                    </div>
+                    <div class="lasbtn">
+                        <el-button type="primary" style="background: #3E4E80;border:1px solid #3E4E80;margin-top: 20px">
+                            查看更多
+                        </el-button>
+                    </div>
+                    <div class="titletop">
+                        <p class="titcolor">常见问题答疑</p>
+                        <p class="eng">FREQUENT QUESTION ANSWERING</p>
+                    </div>
+                    <div class="pbox">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-1 col-md-1 width1">
+                                <img src="../images/qiuzhucopy@2x.png" alt="">
+                            </div>
+                            <div class="col-xs-12 col-sm-11 col-md-11 padding2">
+                                非上市股份有限公司是不是一律要托管？且必须要在联交所登记托管？有没有规定一定要在哪家产权交易所托管？ 拷贝
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-1 col-md-1 width1">
+                            </div>
+                            <div class="col-xs-12 col-sm-11 col-md-11 padding2">
+                                <div style="background: #f5f5f5;padding: 10px">
+                                    您好！根据市政府办公会议纪要2000年154号文、深府函[2002]31号文以及深圳市工商局【2004】58号、【2004】127号文件的规定，深圳联合产权交易所（原深圳国际高新技术产权交易所）是深圳市政府指定的非上市企业股权登记托管机构。在深圳市依法注册的非上市企业应依照相关规定在本所办理股权登记托管手续。
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" v-for='(item,index) in Myconsultation' :key='index'>
+                            <div class="col-xs-12 col-sm-1 col-md-1 width1">
+                                <img src="../images/qiuzhucopy@2x.png" alt="">
+                            </div>
+                            <div class="col-xs-12 col-sm-11 col-md-11 padding2">
+                                {{item.name}}
+                            </div>
+                        </div>
+                        <div class="lasbtn">
+                            <el-button type="primary" style="background: #3E4E80;border:1px solid #3E4E80;">查看更多
+                            </el-button>
+                        </div>
+                    </div>
+                </div>
+                <!-- 三资专题 -->
+                <div class="lasconten" v-if='num === 2'>
+                    <div class="titletop">
+                        <p class="titcolor">股份合作公司集体资产交易业务介绍</p>
+                        <p class="eng">BUSINESS INTRODUCTION</p>
+                    </div>
+                    <div class="lastop">
+                        <p>
+                            根据《中共深圳市委、深圳市人民政府关于推进股份合作公司试点改革的指导意见》（深发〔2013〕7 号）、《中共深圳市委办公厅、深圳市人民政府办公厅转发市纪委等部门
+                            <关于加强股份合作公司资金资产资源管理的意见（试 行）> 的通知》（深办发〔2013〕9号）和《中共深圳市委办公厅、深圳市人民政府办公厅<关于建立健全股份合作公司综合监管系统>
+                                    的通知》（深办发〔2016〕55号）精神，深圳联交所在市纪委、市国资委支持和指导下，积极开展社区股份公司“三资”交易工作，主动与各区集体资产监管部门及社区股份公司对接，充分发挥运作规范、制度健全、系统成熟、经验丰富，公信力强的优势，为全市社区集体资产统一交易实施和监管提供综合服务，将社区物业、土地使用权、股权等交易项目纳入集体资产交易平台，实施阳光廉洁交易，有效解决股份合作公司资金、资产、资源交易不透明的问题，促进集体资产保值增值。
+                        </p>
+                        <p style="padding-top: 20px">
+                            三资交易主要业务如下：
+                        </p>
+                        <p style="padding-top: 20px">
+                            社区股份公司集体用地合作开发、城市更新项目、物业租赁、股权转让，实物资产转让（含房产物业），大宗物资及服务采购，股权登记托管，受托分红，资金监管，增资扩股等综合性服务；同时服务社区村民、居民和股民开展物业租赁、实物资产转让（含房产物业）等。
+                        </p>
+                    </div>
+                    <div class="row" style="margin-top: 20px">
+                        <div class="titletop">
+                            <p class="titcolor">业务办理地址及联系方式</p>
+                            <p class="eng">BUSINESS ADDRESS AND CONTACT METHOD</p>
+                        </div>
+                        <div class="lastop">
+                            <div class="threecapital" v-for='(item,index) in attthree' :key='index'>
+                                <p class="toptit">{{item.title}}：</p>
+                                <p class="contact lefts">联系地址：{{item.contactaddress}}</p>
+                                <p class="contact lefts">联系电话：{{item.contactnum}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 20px">
+                        <div class="titletop">
+                            <p class="titcolor">各类集体资产交易服务案例链接</p>
+                            <p class="eng">CASE LINKS</p>
+                        </div>
+                        <div class="lastop">
+                            <div class="threecapital" v-for='(item,index) in casearr' :key='index'>
+                                <p class="toptit">{{item.title}}：</p>
+                                <p class="lefts" style="padding: 10px 10px">公告链接：{{item.Notices}} <span
+                                        class="chakan">(点击查看)</span></p>
+                                <p class="lefts" v-if='item.links !==""'>公告链接：{{item.links}} <span
+                                        class="chakan">(点击查看)</span></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 20px">
+                        <div class="titletop">
+                            <p class="titcolor">业务办理流程</p>
+                            <p class="eng">BUSINESS PROCESS</p>
+                            <img style="margin-top: 20px" src="../images/zulinban.png" alt="">
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 20px">
+                        <div class="titletop">
+                            <p class="titcolor">业务材料下载</p>
+                            <p class="eng">BUSINESS MATERIALS DOWNLOAD</p>
+                        </div>
+                        <div class="padcell">
+                            <p class="contits"></i>股份公司需提交的资料（以物业招租为例）</p>
+                            <div>
+                                <div v-for='(item,index) in downlarr' :key='index' style="display: flex;margin: 20px 0">
+                                    <div>{{index + 1}}、</div>
+                                    <div>{{item.name}}</div>
+                                </div>
+                                <div class="fontSzi">公开招租信息发布申请表 <span class="chakan"><img src="../images/xiazaiimg.png"
+                                            alt=""> 点击下载</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 20px">
+                        <div class="titletop">
+                            <p class="titcolor">各区三资交易制度</p>
+                            <p class="eng">TRANSACTION SYSTEM</p>
+                        </div>
+                        <div class="padcell">
+                            <div v-for='(item,index) in sysarr' :key='index' class="lineH">
+                                <div style="font-size: 18px;color:#53618E">{{item.address}}</div>
+                                <p v-if='item.name !==""'>{{item.name}} <span class="chakan"><img
+                                            src="../images/xiazaiimg.png" alt=""> 点击下载</span></p>
+                                <p v-if='item.name1 !==""'>{{item.name1}} <span class="chakan"><img
+                                            src="../images/xiazaiimg.png" alt=""> 点击下载</span></p>
+                                <p v-if='item.name2 !==""'>{{item.name2}} <span class="chakan"><img
+                                            src="../images/xiazaiimg.png" alt=""> 点击下载</span></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 20px">
+                        <div class="titletop">
+                            <p class="titcolor">业务收费标准</p>
+                            <p class="eng">BUSINESS CHARGE STANDARD</p>
+                        </div>
+                        <div class="padcell">
+                            <P class="tabeltitle">1、土地合作开发（含城市更新）</P>
+                            <el-table :data="tudiarr" border style="width: 100%;margin:20px 0"
+                                :span-method="arraySpanMethod">
+                                <el-table-column prop="charges" label="收费对象" width="180" align='center'>
+                                </el-table-column>
+                                <el-table-column label="收费标准（人民币）" align='center'>
+                                    <el-table-column prop="Billing" label="计费基数 (经评估的投资金额)（亿元）" align='center'>
+                                    </el-table-column>
+                                    <el-table-column prop="base" label="计费费率" align='center'> </el-table-column>
+                                    <el-table-column prop="Remarkss" label="备注" align='center'> </el-table-column>
+                                </el-table-column>
+                            </el-table>
+                            <P class="tabeltitle">2、资产租赁</P>
+                            <el-table :data="zichan" style="width: 100%;margin:20px 0" border>
+                                <el-table-column prop="charges" label="收费对象" align='center'></el-table-column>
+                                <el-table-column prop="rmbs" label="收费标准(人民币)" align='center'></el-table-column>
+                            </el-table>
+                            <P class="tabeltitle">3、大宗采购</P>
+                            <el-table :data="dazhong" style="width: 100%;margin:20px 0" border
+                                :span-method="arraySpanMethod3">
+                                <el-table-column prop="charges" label="收费对象" align='center'></el-table-column>
+                                <el-table-column prop="rmbs" label="中标金额（万元）" align='center'></el-table-column>
+                                <el-table-column prop="huowu" label="货物采购" align='center'></el-table-column>
+                                <el-table-column prop="fuwu" label="服务采购" align='center'></el-table-column>
+                                <el-table-column prop="gongcheng" label="工程采购" align='center'></el-table-column>
+
+                            </el-table>
+                            <P class="tabeltitle">4、资产转让</P>
+                            <el-table :data="zichanzr" style="width: 100%;margin:20px 0" border
+                                :span-method="arraySpanMethod4">
+                                <el-table-column prop="charges" label="标的类型" align='center'></el-table-column>
+                                <el-table-column prop="rmbs" label="协议成交" align='center'></el-table-column>
+                                <el-table-column prop="huowu" label="竞价成交" align='center'></el-table-column>
+                                <el-table-column prop="fuwu" label="备注" align='center'></el-table-column>
+                            </el-table>
+                            <P class="tabeltitle">5、股权转让</P>
+                            <p style="padding-top: 20px">产权转让类项目收费标准表-转让方</p>
+                            <el-table :data="guxuan" style="width: 100%;margin:20px 0" border
+                                :span-method="arraySpanMethod5">
+                                <el-table-column prop="charges" label="计费基数" align='center'></el-table-column>
+                                <el-table-column prop="rmbs" label="基础服务费" align='center'></el-table-column>
+                                <el-table-column prop="huowu" label="增值服务费" align='center'></el-table-column>
+                                <el-table-column prop="fuwu" label="备注" align='center'></el-table-column>
+                            </el-table>
+                            <p>产权转让类项目收费标准表-受让方</p>
+                            <el-table :data="shouranfang" style="width: 100%;margin:20px 0" border
+                                :span-method="arraySpanMethod5two">
+                                <el-table-column label="基础服务费" align='center'>
+                                    <el-table-column prop="jishu" label="计费基数" align='center'></el-table-column>
+                                    <el-table-column prop="biaozhun" label="计费标准" align='center'></el-table-column>
+                                </el-table-column>
+                                <el-table-column label="竞价服务费" align='center'>
+                                    <el-table-column prop="jifeij" label="计费基数" align='center'></el-table-column>
+                                    <el-table-column prop="jifeib" label="计费标准" align='center'></el-table-column>
+                                </el-table-column>
+                                <el-table-column prop="beizhu" label="备注" align='center'></el-table-column>
+                            </el-table>
+                        </div>
+                    </div>
+                </div>
+                <!-- 托管专题 -->
+                <div class="lasconten" v-if='num === 3'>
+                    <div class="titletop">
+                        <p class="titcolor">业务介绍</p>
+                        <p class="eng">BUSINESS INTRODUCTION</p>
+                    </div>
+                    <div class="lastop">
+                        <p>
+                            根据公司法、合同法及深圳市政府2002年31号文件等有关规定，深圳联合产权交易所为非上市公司的股权（包括二级股东的股权）、创投基金份额、众筹份额等权益类产品提供登记托管服务，包括股东名册管理、股权过户及质押登记、权益分派等、存管、交易、结算、交割等服务。
+                        </p>
+                        <p style="padding-top: 20px">
+                            我所于2002年创建并系统性完善了非上市股份公司托管业务规则制度，并在国内率先实现了与工商登记管理部门的数据实现有效衔接。并探索创投基金、众筹份额、契约式基金等权益登记托管制度，建立了成熟的登记托管服务体系。
+                        </p>
+                        <p style="padding-top: 20px">
+                            截至2016年9月底，累计登记托管非上市股份公司1000多家，累计培育上市公司76家，借壳上市5家，上市公司并购15家，新三板挂牌62家，实现直接融资2500亿元，间接融资约1600亿元。
+                        </p>
+                    </div>
+                    <div class="titletop">
+                        <p class="titcolor">业务办理导航</p>
+                        <p class="eng">BUSINESS MANAGEMENT NAVIGATION</p>
+                    </div>
+                    <div style="text-align: center">
+                        <img src="../images/yewudaohang.png" alt="">
+                    </div>
+                    <div class="padcell" style="padding-top: 20px">
+                        <P class="tabeltitle">初始登记托管</P>
+                        <p style="padding-top: 10px">非上市股份公司申请股份初始登记托管的材料<span class="chakan"
+                                onclick="method5('dataTable');"><img src="../images/xiazaiimg.png" alt=""> 点击下载</span>
+                        </p>
+                        <el-table :data="tuoguan" style="width: 100%;margin:20px 0" border :span-method="yewuMethod5"
+                            id="dataTable">
+                            <el-table-column prop="charges" label="计费基数" align='center'></el-table-column>
+                            <el-table-column prop="rmbs" label="基础服务费" align='center'></el-table-column>
+                            <el-table-column prop="huowu" label="增值服务费" align='center'></el-table-column>
+                            <el-table-column prop="fuwu" label="备注" align='center'></el-table-column>
+                        </el-table>
+                        <P class="tabeltitle">交易过户</P>
+                        <p style="padding-top: 10px">非上市股份公司股份转让过户业务的材料<span class="chakan"
+                                onclick="method5('guohu');"><img src="../images/xiazaiimg.png" alt=""> 点击下载</span>
+                        </p>
+                        <el-table :data="guohu" style="width: 100%;margin:20px 0" border :span-method="guohuMethod5"
+                            id="guohu">
+                            <el-table-column prop="charges" label="计费基数" align='center'></el-table-column>
+                            <el-table-column prop="rmbs" label="基础服务费" align='center'></el-table-column>
+                            <el-table-column prop="huowu" label="增值服务费" align='center'></el-table-column>
+                            <el-table-column prop="fuwu" label="备注" align='center'></el-table-column>
+                        </el-table>
+                        <P class="tabeltitle">增资</P>
+                        <p style="padding-top: 10px">非上市股份公司增资登记的材料<span class="chakan"
+                                onclick="method5('zengzi');"><img src="../images/xiazaiimg.png" alt=""> 点击下载</span>
+                        </p>
+                        <el-table :data="zengzi" style="width: 100%;margin:20px 0" border :span-method="zengziMethod5"
+                            id="zengzi">
+                            <el-table-column prop="charges" label="计费基数" align='center'></el-table-column>
+                            <el-table-column prop="rmbs" label="基础服务费" align='center'></el-table-column>
+                            <el-table-column prop="huowu" label="增值服务费" align='center'></el-table-column>
+                            <el-table-column prop="fuwu" label="备注" align='center'></el-table-column>
+                        </el-table>
+                    </div>
+                    <div class="titletop">
+                        <p class="titcolor">业务收费标准</p>
+                        <p class="eng">BUSINESS CHARGE STANDARD</p>
+                    </div>
+                    <div class="padcell">
+                        <div v-for='(item,index) in yewuarr' :key='index' style="display: flex;margin: 20px 0">
+                            <div>{{index + 1}}、</div>
+                            <div>{{item.name}}</div>
+                        </div>
+                    </div>
+                    <div class="titletop">
+                        <p class="titcolor">业务材料下载</p>
+                        <p class="eng">BUSINESS MATERIALS DOWNLOAD</p>
+                    </div>
+                    <div class="padcell">
+                        <p>托管企业基本信息登记表<span class="chakan"><img src="../images/xiazaiimg.png" alt=""> 点击下载</span></p>
+                        <p v-for='(item,index) in dengjibiao' :key='index' style="margin: 20px 0">
+                            托管初始登记：{{item.name}} <span class="chakan"><img src="../images/xiazaiimg.png" alt="">
+                                点击下载</span>
+                        </p>
+                    </div>
+                    <div class="titletop">
+                        <p class="titcolor">常见问题答疑</p>
+                        <p class="eng">FREQUENT QUESTION ANSWERING</p>
+                    </div>
+                    <div class="pbox">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-1 col-md-1 width1">
+                                <img src="../images/qiuzhucopy@2x.png" alt="">
+                            </div>
+                            <div class="col-xs-12 col-sm-11 col-md-11 padding2">
+                                非上市股份有限公司是不是一律要托管？且必须要在联交所登记托管？有没有规定一定要在哪家产权交易所托管？ 拷贝
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-1 col-md-1 width1">
+                            </div>
+                            <div class="col-xs-12 col-sm-11 col-md-11 padding2">
+                                <div style="background: #f5f5f5;padding: 10px">
+                                    您好！根据市政府办公会议纪要2000年154号文、深府函[2002]31号文以及深圳市工商局【2004】58号、【2004】127号文件的规定，深圳联合产权交易所（原深圳国际高新技术产权交易所）是深圳市政府指定的非上市企业股权登记托管机构。在深圳市依法注册的非上市企业应依照相关规定在本所办理股权登记托管手续。
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" v-for='(item,index) in Myconsultation' :key='index'>
+                            <div class="col-xs-12 col-sm-1 col-md-1 width1">
+                                <img src="../images/qiuzhucopy@2x.png" alt="">
+                            </div>
+                            <div class="col-xs-12 col-sm-11 col-md-11 padding2">
+                                {{item.name}}
+                            </div>
+                        </div>
+                        <div class="lasbtn">
+                            <el-button type="primary" style="background: #3E4E80;border:1px solid #3E4E80;">查看更多
+                            </el-button>
+                        </div>
+                    </div>
+                    <div class="titletop">
+                        <p class="titcolor">业务办理地址</p>
+                        <p class="eng">BUSINESS ADDRESS</p>
+                    </div>
+                    <div class="padcell">
+                        <p><span style="color: #425182">业务办理地址：</span> 深圳南山区沙河西路1809号深圳湾科技生态园一区2栋A座11楼</p>
+                    </div>
+                    <div class="lasbtn">
+                        <el-button type="primary" style="background: #3E4E80;border:1px solid #3E4E80;margin-top: 20px">
+                            查看地图
+                        </el-button>
+                    </div>
+                </div>
+                <!-- 不良资产 -->
+                <div class="lasconten" v-if='num === 4'>
+                    <div class="titletop">
+                        <p class="titcolor">不良资产项目意向征集公告</p>
+                        <p class="eng">（含抵债资产、司法拍卖资产、拟引进战略投资者）</p>
+                    </div>
+                    <div class="lastop">
+                        <p>
+                            受委托，我所拟对全国以下省市地区不良资产向广大投资者征集购买意向，请有意参与的意向方就项目相关详细信息及具 体安排与本所联系。
+                        </p>
+                    </div>
+                    <div class="lasbtn" style="margin-top: 30px">
+                        <el-button type="primary" style="background: #3E4E80;border:1px solid #3E4E80;">项目详情</el-button>
+                        <el-button type="primary" style="background: #3E4E80;border:1px solid #3E4E80;">广东天乙集团
+                        </el-button>
+                    </div>
+                    <div class="lastop">
+                        <div style="padding: 10px 0;color:#686868">声明：</div>
+                        <p style="line-height: 28px">
+                            本推介项目所披露的信息仅供参考，最终资产信息以意向受让方签订保密协议后，转让方提供的最终资料所记载的内容为准。相
+                            关标的物信息以实物现状为准，房产及土地实际状况以产权证件记载为准。资产的瑕疵情况，意向受让方应自行了解并作出判断。本意向征
+                            集公告不构成任何一项要约，转让方及本所不对其承担任何法律责任。
+                        </p>
+                    </div>
+                    <div class="lastop">
+                        <div style="padding: 30px 0;color:#686868">联系方式：</div>
+                        <el-form :label-position="labelPosition" label-width="120px" :model="formLabelAlign"
+                            style="margin-left:20px">
+                            <el-form-item label="业务咨询电话：">
+                                <div style="display: flex;flex-wrap: wrap">
+                                    <div v-for='(item,index) in formLabelAlign.arr' :key='index' style="width: 33%">
+                                        {{item.name}}
+                                    </div>
+                                </div>
+                            </el-form-item>
+                            <el-form-item label="业务投诉电话：">
+                                {{formLabelAlign.Telephone}}
+                            </el-form-item>
+                            <el-form-item label="传 真：">
+                                {{formLabelAlign.Faxs}}
+                            </el-form-item>
+                            <el-form-item label="联系地址：">
+                                {{formLabelAlign.address}}
+                            </el-form-item>
+                            <el-form-item label="网 址：">
+                                {{formLabelAlign.Websites}}
+                            </el-form-item>
+                        </el-form>
+                    </div>
+                </div>
+                <!-- 深柜市场 -->
+                <div class="lasconten" v-if='num === 5'>
+                    <div class="titletop">
+                        <p class="titcolor">不良资产项目意向征集公告</p>
+                        <p class="eng">（含抵债资产、司法拍卖资产、拟引进战略投资者）</p>
+                    </div>
+                    <div class="padcell">
+                        <P class="tabeltitle">一、拟引进战略投资者：</P>
+                        <div class="addressbox">
+                            <div v-for='(item,index) in Investment' :key='index' class="addresbtn" 
+                            :style="{background : Investmentnum === index ? '#3E4E80' : '',color : Investmentnum === index ? '#fff' : ''}"
+                                @click='Investmentclick(index)'
+                            >
+                                {{item.name}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="padcell">
+                        <P class="tabeltitle">二、司法拍卖资产：</P>
+                        <div class="addressbox">
+                            <div v-for='(item,index) in Investment1' :key='index' class="addresbtn"
+                            :style="{background : Investment1num === index ? '#3E4E80' : '',color : Investment1num === index ? '#fff' : ''}"
+                                @click='Investment1click(index)'>
+                                {{item.name}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="padcell">
+                        <P class="tabeltitle">二、司法拍卖资产：</P>
+                        <div class="addressbox">
+                            <div v-for='(item,index) in Investment2' :key='index' class="addresbtn"
+                            :style="{background : Investment2num === index ? '#3E4E80' : '',color : Investment2num === index ? '#fff' : ''}"
+                                @click='Investment2click(index)'>
+                                {{item.name}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+        <footer style="width: 100%;z-index: 10;margin-top: 100px">
+            <iframe src="./footer.html" style="width: 100%;height:200px;display: flex" frameborder="0"></iframe>
+        </footer>
+    </div>
+</body>
+</html>
+<script src="../js/LeasingTheme.js"></script>
