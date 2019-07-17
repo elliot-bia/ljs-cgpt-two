@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,47 +12,102 @@
     <link rel="stylesheet" href="../css/eleicon.css">
     <link rel="stylesheet" href="../css/purchase.css">
     <link rel="stylesheet" href="../sass/detail.min.css">
+    <link rel="stylesheet" href="../icon/iconfont.css">
     <script src="../js/vue.min.js"></script>
     <script src="../js/jquery.js"></script>
     <script src="../js/bootstrap.js"></script>
     <script src="../js/ele.js"></script>
     <script src="../js/headerpublic.js"></script>
+
 </head>
+
 <body>
     <div id="app" v-cloak>
         <headers></headers>
         <main>
-                <div class="main">
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-12 col-md-12">
-                            <p style="padding: 20px;background:#fff;border-bottom: 1px solid #ccc;">首页 > 公司动态 > 新闻详情</p>
-                        </div>
-                    </div>
-                </div>
-            </main>
-        <article>
             <div class="main">
                 <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <p style="padding: 20px;background:#fff;border-bottom: 1px solid #ccc;">首页 > 公司动态 > 新闻详情</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <article>
+            <div class="main">
+
+                <div class="row">
+                    <div class="posi">
+                        <script>
+                            window._bd_share_config = {
+                                "common": {
+                                    "bdSnsKey": {},
+                                    "bdText": "",
+                                    "bdMini": "2",
+                                    "bdMiniList": false,
+                                    "bdPic": "",
+                                    "bdStyle": "8",
+                                    "bdSize": "16"
+                                },
+                                "slide":
+                                {
+                                    "type": "slide",
+                                    "bdImg": "0",
+                                    "bdPos": "left",
+                                },
+                                "image": { "viewList": ["qzone", "tsina", "tqq", "renren", "weixin"], "viewText": "分享到：", "viewSize": "16" },
+                                "selectShare": { "bdContainerClass": null, "bdSelectMiniList": ["qzone", "tsina", "tqq", "renren", "weixin"] }
+                            };
+                            with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
+                        </script>
+                        <div>
+                            <ul class="icons">
+                                <li @click='dayin'>
+                                    <span class="icon iconfont">&#xe623;</span>
+                                    <div class="name">打印</div>
+                                </li>
+                                <li>
+                                    <span class="icon iconfont">&#xe640;</span>
+                                    <div class="name">收藏</div>
+                                </li>
+                                <li>
+                                    <span class="icon iconfont">&#xe706;</span>
+                                    <div class="name">咨询</div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                     <div class="col-xs-12 col-sm-9 col-md-9">
+
                         <div class="leftar">
+
                             <p class="title">{{titles}}</p>
                             <p class="times">
-                                <i>发布时间：</i> {{time}} &nbsp; <i>来源：</i>{{source}} &nbsp; <i>T：</i> <span @click='Small(1)'> 小 </span> <span  @click='Small(2)'> 中 </span> <span @click='Small(3)'> 大 </span>
+                                <i>发布时间：</i> {{time}} &nbsp; <i>来源：</i>{{source}} &nbsp; <i>T：</i> <span
+                                    @click='Small(1)'> 小 </span> <span @click='Small(2)'> 中 </span> <span
+                                    @click='Small(3)'> 大 </span>
                             </p>
                             <div class="content" :id="fontsizes">
-                                <p style="text-indent: 2rem">12月27日下午，联交所副总裁林卡带领公司党外知识分子、归国留学、部分非党员中层管理人员前往南山区党群服务中心参观学习。</p>
-                               <div style="text-align: center">
+                                <p style="text-indent: 2rem">
+                                    12月27日下午，联交所副总裁林卡带领公司党外知识分子、归国留学、部分非党员中层管理人员前往南山区党群服务中心参观学习。</p>
+                                <div style="text-align: center">
                                     <img src="../images/newimg1.png" alt="">
-                               </div>
-                               <p style="text-indent: 2rem">南山区党群服务中心围绕“引领、联动、服务、凝聚”的核心理念，集展示、办事、活动、服务功能于一体，发挥枢纽、平台、阵地和窗口的作用，成为联系服务党员、人才、群众、企业的枢纽，开展党群活动的平台，组织党性教育的阵地，展示南山形象的窗口。</p>
-                               <div style="text-align: center">
+                                </div>
+                                <p style="text-indent: 2rem">
+                                    南山区党群服务中心围绕“引领、联动、服务、凝聚”的核心理念，集展示、办事、活动、服务功能于一体，发挥枢纽、平台、阵地和窗口的作用，成为联系服务党员、人才、群众、企业的枢纽，开展党群活动的平台，组织党性教育的阵地，展示南山形象的窗口。
+                                </p>
+                                <div style="text-align: center">
                                     <img src="../images/newimg2.png" alt="">
-                               </div>
-                               <p style="text-indent: 2rem">企业、基层党组织可以预约免费使用中心场地，开展各类讲座、培训、路演活动，解决中小企业场地不足问题。与此同时，该中心定期开展“南山区企业家大讲堂”，邀请南山区知名企业家分享创业经验，开展服务企业各类活动，搭建企业和政府沟通服务平台。</p>
-                               <div style="text-align: center">
+                                </div>
+                                <p style="text-indent: 2rem">
+                                    企业、基层党组织可以预约免费使用中心场地，开展各类讲座、培训、路演活动，解决中小企业场地不足问题。与此同时，该中心定期开展“南山区企业家大讲堂”，邀请南山区知名企业家分享创业经验，开展服务企业各类活动，搭建企业和政府沟通服务平台。
+                                </p>
+                                <div style="text-align: center">
                                     <img src="../images/newimg3.png" alt="">
-                               </div>
-                               <p style="text-indent: 2rem">参观过程中，副总裁林卡表示今后公司要加强与南山区党群服务中心的联系合作，要求公司党支部、团总支、工会要充分利用身边这个设施完善的“红色引擎”创新党建活动形式，强化政治引领，增强党员领导干部凝聚力，让年轻人多了解党史，给公司职工提供丰富多元的文化活动。</p>
+                                </div>
+                                <p style="text-indent: 2rem">
+                                    参观过程中，副总裁林卡表示今后公司要加强与南山区党群服务中心的联系合作，要求公司党支部、团总支、工会要充分利用身边这个设施完善的“红色引擎”创新党建活动形式，强化政治引领，增强党员领导干部凝聚力，让年轻人多了解党史，给公司职工提供丰富多元的文化活动。
+                                </p>
                             </div>
                             <div class="content" style="border-top:1px solid #ccc">
                                 <p>
@@ -61,6 +117,7 @@
                                     下一篇：党建引领 助力脱贫攻坚
                                 </p>
                             </div>
+
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-3 col-md-3">
@@ -74,51 +131,56 @@
                 <img v-if='imgscrool' src="../images/anniu.jpg" alt="" class="posiimg" @click="gototop()">
             </div>
         </article>
-        <footer  style="width: 100%;z-index: 10">
+        <footer style="width: 100%;z-index: 10">
             <iframe src="./footer.html" style="width: 100%;height:200px;display: flex" frameborder="0"></iframe>
         </footer>
     </div>
 </body>
+
 </html>
 <script>
     var app = new Vue({
         el: '#app',
         data: {
-          titles: ' 党建引领，助力企业文化建设 ——联交所党外人士、知识分子和归国留学人员赴南山区党群服务中心参观学习',
-          time: '2019/10/11',
-          source: '本站',
-          fontsizes: 'fontsizes',
-          imgscrool: false
+            titles: ' 党建引领，助力企业文化建设 ——联交所党外人士、知识分子和归国留学人员赴南山区党群服务中心参观学习',
+            time: '2019/10/11',
+            source: '本站',
+            fontsizes: 'fontsizes',
+            imgscrool: false
         },
         methods: {
-            Small(val){
-                if(val === 1) {
+            Small(val) {
+                if (val === 1) {
                     this.fontsizes = 'fontsizes'
-                } else if(val === 2){
+                } else if (val === 2) {
                     this.fontsizes = 'fontsizes1'
-                } else if (val === 3){
+                } else if (val === 3) {
                     this.fontsizes = 'fontsizes2'
                 }
             },
-            gototop(){
-                var scrollToTop = window.setInterval(function() {
-                var pos = window.pageYOffset;
-                if ( pos > 0 ) {
-                    window.scrollTo( 0, pos - 20 );
-                } else {
-                    window.clearInterval( scrollToTop );
-                }
-            }, 16);
+            gototop() {
+                var scrollToTop = window.setInterval(function () {
+                    var pos = window.pageYOffset;
+                    if (pos > 0) {
+                        window.scrollTo(0, pos - 20);
+                    } else {
+                        window.clearInterval(scrollToTop);
+                    }
+                }, 16);
+            },
+            dayin() {
+                
+                window.print()
             }
         },
     })
-    window.onscroll= function(){
-        var t = document.documentElement.scrollTop||document.body.scrollTop;
-        if(t>100) {
+    window.onscroll = function () {
+        var t = document.documentElement.scrollTop || document.body.scrollTop;
+        if (t > 100) {
             app.imgscrool = true
         } else {
             app.imgscrool = false
         }
-        
+
     }
 </script>

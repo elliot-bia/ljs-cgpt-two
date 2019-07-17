@@ -24,7 +24,7 @@
             .inputs {
                 width: 70%;
                 margin: 0 auto;
-                padding-top: 20px
+                padding-top: 50px
             }
             .box {
                 display: flex;
@@ -269,7 +269,7 @@
         <div class="main">
             <div class="inputs">
                 <el-input placeholder="请输入关键字" v-model="input5" class="input-with-select">
-                    <el-button slot="append" icon="el-icon-search">搜索</el-button>
+                    <el-button slot="append" icon="el-icon-search" style="background: #3E4E80;color:#fff">搜索</el-button>
                 </el-input>
             </div>
         </div>
@@ -316,11 +316,11 @@
                         </div>
                         <div>
                             <el-table :data="tableData" style="width: 100%" :header-cell-style="{background:'#E7F3FD',color: '#35487F'}">
-                                <el-table-column prop="date" label="日期" width='100' header-align='center'> </el-table-column>
-                                <el-table-column prop="name" label="姓名" show-overflow-tooltip header-align='center'> </el-table-column>
-                                <el-table-column prop="address" label="地址" width='100' header-align='center'> </el-table-column>
-                                <el-table-column prop="zhuangtai" label="状态" width='100' header-align='center'> </el-table-column>
-                                <el-table-column prop="guanzhu" label="关注度" width='100' header-align='center'> </el-table-column>
+                                <el-table-column prop="date" label="日期" width='100' align='center'> </el-table-column>
+                                <el-table-column prop="name" label="姓名" show-overflow-tooltip align='center'> </el-table-column>
+                                <el-table-column prop="address" label="地址" width='100' align='center'> </el-table-column>
+                                <el-table-column prop="zhuangtai" label="状态" width='100' align='center'> </el-table-column>
+                                <el-table-column prop="guanzhu" label="关注度" width='100' align='center'> </el-table-column>
                             </el-table>
                             <div class="modal-footer" style="padding: 6px">
                                 <el-pagination background @current-change="change" layout="prev, pager, next" :page-size="pageSize" :total="total">

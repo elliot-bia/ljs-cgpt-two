@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>深圳联交所</title>
+    <link rel="icon" href="../images/logo.png">
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/ele.css">
+    <link rel="stylesheet" href="../css/eleicon.css">
+    <link rel="stylesheet" href="../css/purchase.css">
+    <script src="../js/vue.min.js"></script>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/bootstrap.js"></script>
+    <script src="../js/ele.js"></script>
+    <script src="../js/headerpublic.js"></script>
+    <script src="../js/gVerify.js"></script>
+</head>
+<style>
+ html,body,#app {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+   body{
+       background: url(../images/loginimg.png);
+       background-size: 100%;
+       
+   }
+   .logins{
+       width: 400px;
+       height: 450px;
+        background: #fff;
+        margin: 0 auto; /*水平居中*/
+        position: relative;
+        top: 40%; /*偏移*/
+        transform: translateY(-50%);
+   }
+   .headertop{
+       text-align: center;
+       padding: 30px;
+       border-bottom: 1px solid #ccc
+    }
+    .headertop> img{
+        height: 28px;
+    }
+    .loginbox{
+        padding: 20px
+    }
+    .inp{
+        border-bottom: 1px solid #ccc;
+        padding: 20px 100px 20px 10px
+    }
+    .names{
+        padding: 0 10px;
+        color: #7A7A7A
+    }
+    .Account{
+        height: 10px
+    }
+    .Account > p {
+        color: #9F9F9F;
+        padding: 0 20px;
+        cursor: pointer
+    }
+    .Account > .left{
+        float: left;
+    }
+    .Account > .right{
+        float: right;
+    }
+</style>
+<body>
+    <div id='app'>
+        <headers></headers>
+        <div class="logins">
+            <div class="headertop">
+                <img src="../images/logoing.png" alt="">
+            </div>
+            <div class="loginbox">
+                <div>
+                    <img src="../images/yonghu.png" alt="">
+                    <span class="names">用户名</span>
+                    <input type="text" placeholder='请输入您的账号' class="inp">
+                </div>
+                <div>
+                    <img src="../images/pas.png" alt="">
+                    <span class="names">密 &nbsp;&nbsp;码</span>
+                    <input type="password" placeholder='请输入您的密码' class="inp">
+                </div>
+                <div style="position: relative">
+                    <img src="../images/yanzcode.png" alt="">
+                    <span class="names">验证码</span>
+                    <input type="password" placeholder='请输入验证码' class="inp">
+                    <div class="yzm_img" id="yzm_img" style="position:absolute; right: 0;top:16px"> </div>
+                </div>
+            </div>
+            <div class="Account">
+                <p class="left">注册账号</p>
+                <p class="right">忘记密码</p>
+            </div>
+            <div class="loginbox">
+                    <el-button type="primary" style="width: 100%;background: #3E62A6">登  入</el-button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    var app = new Vue({
+        el: '#app'
+    })
+    var verifyCode = new GVerify("yzm_img");
+</script>

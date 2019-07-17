@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="../css/eleicon.css">
     <link rel="stylesheet" href="../css/purchase.css">
     <link rel="stylesheet" href="../sass/detail.min.css">
+    <link rel="stylesheet" href="../icon/iconfont.css">
     <script src="../js/vue.min.js"></script>
     <script src="../js/jquery.js"></script>
     <script src="../js/bootstrap.js"></script>
@@ -32,6 +33,46 @@
         <article>
             <div class="main">
                 <div class="row">
+                        <div class="posi">
+                                <script>
+                                    window._bd_share_config = {
+                                        "common": {
+                                            "bdSnsKey": {},
+                                            "bdText": "",
+                                            "bdMini": "2",
+                                            "bdMiniList": false,
+                                            "bdPic": "",
+                                            "bdStyle": "8",
+                                            "bdSize": "16"
+                                        },
+                                        "slide":
+                                        {
+                                            "type": "slide",
+                                            "bdImg": "0",
+                                            "bdPos": "left",
+                                        },
+                                        "image": { "viewList": ["qzone", "tsina", "tqq", "renren", "weixin"], "viewText": "分享到：", "viewSize": "16" },
+                                        "selectShare": { "bdContainerClass": null, "bdSelectMiniList": ["qzone", "tsina", "tqq", "renren", "weixin"] }
+                                    };
+                                    with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
+                                </script>
+                                <div>
+                                    <ul class="icons">
+                                        <li @click='dayin'>
+                                            <span class="icon iconfont">&#xe623;</span>
+                                            <div class="name">打印</div>
+                                        </li>
+                                        <li>
+                                            <span class="icon iconfont">&#xe640;</span>
+                                            <div class="name">收藏</div>
+                                        </li>
+                                        <li>
+                                            <span class="icon iconfont">&#xe706;</span>
+                                            <div class="name">咨询</div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
                     <div class="col-xs-12 col-sm-9 col-md-9">
                         <div class="leftar">
                             <p class="title">{{titles}}</p>
@@ -147,6 +188,10 @@
                     window.clearInterval( scrollToTop );
                 }
             }, 16);
+            },
+            dayin() {
+                console.log(1)
+                window.print()
             }
         },
     })

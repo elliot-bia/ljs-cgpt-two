@@ -86,3 +86,36 @@ article{
 #fontsizes2{
     font-size: 20px
 }
+.posi{
+    position: fixed;
+    top: 260px;
+    left: 0;
+}
+.icons > li{
+    cursor: pointer;
+    text-align: center;
+    background: #FAFAFA;
+    padding: 0 5px;
+    border-bottom: 1px solid #ccc;
+    span{
+        font-size: 18px;color: #999999;
+        
+    }
+    &:hover{
+       span{
+           color: #3E4E80
+       }
+       color: #3E4E80
+    }
+}
+@media print {
+    @page {
+        size: A4 portrait; // A4大小 纵向
+    }
+    .leftar{
+        display: block
+    }
+    main,footer,.rightar,.posi,.header{
+        display: none
+    }
+}

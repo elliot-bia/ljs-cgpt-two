@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>深圳联交所</title>
+    <link rel="icon" href="../images/logo.png">
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/ele.css">
+    <link rel="stylesheet" href="../css/eleicon.css">
+    <link rel="stylesheet" href="../css/purchase.css">
+    <script src="../js/vue.min.js"></script>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/bootstrap.js"></script>
+    <script src="../js/ele.js"></script>
+    <script src="../js/headerpublic.js"></script>
+    <script src="../js/gVerify.js"></script>
+</head>
+<style>
+    .regitop {
+        padding: 10px 20px;
+        border-bottom: 1px solid #ccc;
+        margin-top: 20px;
+    }
+
+    .regitop>p {
+        font-size: 16px;
+        color: #415182;
+        font-weight: 600
+    }
+
+    .regitop>p>span {
+        font-size: 12px;
+        color: #ACACAC;
+        font-weight: 500;
+        margin-left: 10px
+    }
+    .formpa{
+        padding-right: 30px;
+        padding-top: 30px
+    }
+    .el-form-item{
+    }
+</style>
+
+<body>
+    <div id="app">
+        <headers></headers>
+        <main>
+            <div class="main">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 contentlr">
+                        <p style="padding: 20px;background:#fff">首页 > 会员中心 > 注册</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <article>
+            <div class="main">
+                <div style="background: #fff">
+                    <div class="regitop">
+                        <p>注册账号 <span>REGISTER</span></p>
+                    </div>
+                    <div class='formpa'>
+                        <el-form :model="ruleForm2" inline-message status-icon :rules="rules2"  ref="ruleForm2" label-width="100px" class="demo-ruleForm">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <el-form-item label="注册类别" prop="radio">
+                                            <el-radio v-model="ruleForm2.radio" label="1">个人会员</el-radio>
+                                            <el-radio v-model="ruleForm2.radio" label="2">企业会员</el-radio>
+                                    </el-form-item>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <el-form-item label="会员名称" prop="zhuce">
+                                        <el-input  v-model="ruleForm2.zhuce" auto-complete="off" placeholder='企业会员填写公司名称，个人会员填写姓名'></el-input>
+                                    </el-form-item>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <el-form-item label="邮件地址" prop="mailbox">
+                                        <el-input  v-model="ruleForm2.mailbox" auto-complete="off" placeholder='请输入邮件地址'></el-input>
+                                    </el-form-item>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <el-form-item label="注册密码" prop="pass">
+                                        <el-input type="password" v-model="ruleForm2.pass" auto-complete="off" placeholder='请输入密码'></el-input>
+                                    </el-form-item>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <el-form-item label="确认密码" prop="checkPass">
+                                        <el-input type="password" v-model="ruleForm2.checkPass" auto-complete="off" placeholder='请再次输入密码'></el-input>
+                                    </el-form-item>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <el-form-item label="联系地址" >
+                                        <el-input  v-model="ruleForm2.address" auto-complete="off" placeholder='请输入联系地址'></el-input>
+                                    </el-form-item>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <el-form-item label="邮政编码" prop="checkPass">
+                                        <el-input v-model="ruleForm2.PostalCode" auto-complete="off" placeholder='请输入邮政编码'></el-input>
+                                    </el-form-item>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <el-form-item label="联系人" prop="Contacts">
+                                        <el-input  v-model="ruleForm2.Contacts" auto-complete="off" placeholder='请输入联系人'></el-input>
+                                    </el-form-item>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <el-form-item label="手机号" prop="phonenum">
+                                        <el-input  v-model="ruleForm2.phonenum" auto-complete="off" placeholder='用于使用预约、身份验证、密码找回等功能'></el-input>
+                                    </el-form-item>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <el-form-item label="传真" >
+                                        <el-input  v-model="ruleForm2.Faxs" auto-complete="off" placeholder='请输入联系地址'></el-input>
+                                    </el-form-item>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <el-form-item label="股东代码">
+                                        <el-input 
+                                        style="width: 60%"
+                                        v-model="ruleForm2.lderCode" auto-complete="off" placeholder='请输入邮政编码'></el-input>
+                                        <el-tooltip class="item" effect="light"  placement="bottom-end">
+                                        <div slot="content">股东代码是您企业在联交所托管后 <br/> ，分配给您的唯一账号。 <br/> 账号值请查看您的股东代码卡。 <br/> 样例:G20000001。 <br/> 企业股东能够查询到该企业更详细的信息"</div>
+                                        <span style="color: #4B6CAB;cursor:pointer">什么是股东代码？</span>
+                                         </el-tooltip>
+                                        
+                                    </el-form-item>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <el-form-item label="查询密码">
+                                        <el-input type="password" v-model="ruleForm2.passwords" auto-complete="off" placeholder='请输入邮政编码'></el-input>
+                                    </el-form-item>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <el-form-item label="验证码">
+                                        <el-input 
+                                        style="width: 60%"
+                                        v-model="ruleForm2.Verification" auto-complete="off" placeholder='请输入邮政编码'></el-input>
+                                        <div class="yzm_img" id="yzm_img" style="position:absolute; right: 15%;top:6px"></div>
+                                    </el-form-item>
+                                </div>
+                                <div class="text-center">
+                                        <el-button type="primary" style="background: #3E62A6;margin-bottom: 50px;padding: 10px 50px"  @click="submitForm('ruleForm2')">提交</el-button>
+                                </div>
+                            </div>
+                        </el-form>
+                    </div>
+                </div>
+            </div>
+        </article>
+        <footer style="width: 100%;z-index: 10;margin-top: 100px">
+                <iframe src="./footer.html" style="width: 100%;height:200px;display: flex" frameborder="0"></iframe>
+            </footer>
+    </div>
+    
+</body>
+
+</html>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            ruleForm2: {
+                radio: '',
+                zhuce: '',
+                mailbox: '',
+                pass: '',
+                checkPass: '',
+                address: '',
+                PostalCode: '',
+                Contacts: '',
+                phonenum: '',
+                Faxs: '',
+                lderCode: '',
+                passwords: '',
+                Verification: ''
+            },
+            rules2: {
+                radio: [{ required: true, message: '请选择注册类别', trigger: 'blur' },],
+                zhuce: [{ required: true, message: '请输入会员名称', trigger: 'blur' },],
+                mailbox: [{ required: true, message: '请输入邮件地址', trigger: 'blur' },],
+                pass: [{ required: true, message: '请输入注册密码', trigger: 'blur' },],
+                checkPass: [{ required: true, message: '请输入注册密码', trigger: 'blur' },],
+                Contacts: [{ required: true, message: '请输入联系人', trigger: 'blur' },],
+                phonenum: [{ required: true, message: '请输入手机号', trigger: 'blur' },],
+            }
+        },
+        methods: {
+            submitForm(formName) {
+                this.$refs[formName].validate((valid) => {
+                    if (valid) {
+                        alert('submit!');
+                    } else {
+                        console.log('error submit!!');
+                        return false;
+                    }
+                });
+            },
+        },
+    })
+    var verifyCode = new GVerify("yzm_img");
+</script>

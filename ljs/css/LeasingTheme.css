@@ -53,7 +53,9 @@
 .padcell {
     padding: 0 6%
 }
-
+.padcell > p{
+    padding-top: 20px
+}
 .lastop>p {
     text-indent: 2rem;
 
@@ -145,4 +147,66 @@
 }
 .addresbtn:hover{
     background: #ECF5FF;color: #409EFF
+}
+.textin{
+    text-indent: 2rem
+}
+.padcell > div > form > .row{
+    margin: 0
+}
+.topborder > div{
+    border: 1px solid #3E4E80;
+    padding: 20px;
+    position: relative;
+}
+.tileborder{
+    font-size: 20px;
+    color: #3E4E80;
+    padding: 20px;
+    border:1px solid #3E4E80;
+    border-bottom: none;
+    font-weight: 600
+}
+.topborder > div > img{
+    position: absolute;
+    top: 15px ;
+    right: 68px;
+}
+.topborder{
+    margin-bottom: 20px
+}
+.widthpel> .el-form-item__content{
+    width: 90%
+}
+.maodian{
+    position: fixed;
+    height: 300px;
+    width: 20px;
+    top: 50%;
+    right: 20px;
+    margin-top: -150px
+}
+.maodian > ul > a {
+    display: block;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    cursor: pointer;
+    margin: 10px 0
+}
+.maodian > ul > a > li {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #959595;
+    margin: 0 auto;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.maodian > ul > a:hover{
+    border: 1px solid #000000 !important
+}
+.maodian > ul > a:hover > li{
+    background: #000000 !important;
 }
