@@ -1,0 +1,23 @@
+{
+  "id": "1534169",
+  "name": "采购后台",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "4423959",
+      "name": "收藏",
+      "font_class": "shoucang",
+      "unicode": "e61d",
+      "unicode_decimal": 58909
+    },
+    {
+      "icon_id": "7587938",
+      "name": "打印",
+      "font_class": "dayin",
+      "unicode": "e60f",
+      "unicode_decimal": 58895
+    }
+  ]
+}

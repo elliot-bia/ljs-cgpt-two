@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>阳光采购平台</title>
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/ele.css">
+    <link rel="stylesheet" href="../css/eleicon.css">
+    <link rel="stylesheet" href="../css/cgpurchase.css">
+    <link rel="stylesheet" href="../scss/Specialcolumn.css">
+    <script src="../js/vue.min.js"></script>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/bootstrap.js"></script>
+    <script src="../js/ele.js"></script>
+    <script src="../js/headerpublic.js"></script>
+    <script src="../js/footers.js"></script>
+</head>
+
+<body>
+    <div id="app" v-cloak v-infinite-scroll="load" style="overflow:auto">
+        <headers></headers>
+        <div class="mains">
+            <div class="scrbtns">
+                <el-input prefix-icon='el-icon-search' placeholder="请输入企业/项目" v-model="contents" clearable>
+                </el-input>
+                <el-button class="lefts">搜 索</el-button>
+
+            </div>
+            <div class="tabox">
+                <div class="scllo">
+                    <ul class="uls">
+                        <li v-for="(item,index) in list" :key="index" @click='listclick(item,index)' :style="{
+                        color: listnum === index ? '#D96070' : '',
+                        fontWeight: listnum === index ? '600' : ''
+                    }">
+                            {{item.name}}
+                            <p v-if='listnum == index'></p>
+                        </li>
+                        <p class="jiahoa">
+                            <span></span>
+                            <i class="el-icon-plus"></i>
+                        </p>
+                    </ul>
+                </div>
+                <div v-if='iphones'>
+                    <el-table :data="tablearr.slice((currentPage1-1) * pagesize,currentPage1*pagesize)"
+                        style="width: 100%" :header-cell-style="{
+                    background:'#F8F8F8',color: '#2E3033',
+                    fontWeight:600,fontSize:'16px'
+                }" @row-click='rowclistcick'>
+                        <el-table-column show-overflow-tooltip prop="titles" label="标题">
+                        </el-table-column>
+                        <el-table-column prop="tiem" label="日期" width="100">
+                        </el-table-column>
+                    </el-table>
+                    <div style="text-align: center;padding: 20px 0;">
+                        <el-pagination background :page-size="pagesize" :current-page.sync="currentPage1"
+                            @current-change='changes' layout="prev, pager, next" :total="total">
+                        </el-pagination>
+                    </div>
+                </div>
+                <div v-if='!iphones'>
+                    <ul class="iplist">
+                        <li v-for="(item,index) in tablearr" :key="index">
+                            <p class="iptitle">{{item.titles}}</p>
+                            <p class="iptime">{{item.tiem}}</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <footer>
+            <p class='fotertop'>
+                版权所有：深圳联合产权交易所股份有限公司 &nbsp;&nbsp;&nbsp; 地址：深圳南山区沙河西路1809号深圳湾科技生态园一区2栋A座11楼
+            </p>
+            <p>
+                联系电话：0755-86358999 &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 粤ICP备11001582号-1
+                <script type="text/javascript">
+                    var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+                    document.write(unescape("%3Cspan id='cnzz_stat_icon_1275781810'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s23.cnzz.com/z_stat.php%3Fid%3D1275781810%26show%3Dpic2' type='text/javascript'%3E%3C/script%3E"));
+                </script>
+            </p>
+        </footer>
+    </div>
+</body>
+
+</html>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            contents: '',
+            list: [
+                { name: '资讯' }, { name: '防疫物资专栏' }, { name: '新闻到动态' }, { name: '法律法规' }, { name: '国资监管规定' },
+            ],
+            listnum: 0,
+            tablearr: [
+                {
+                    titles: '深圳机场物业公司领翔华府高压清洗机采购项目深圳机场物业公司领翔华府高压清洗机采购项目深圳机场物业公司领翔华府高压清洗机采购项目',
+                    tiem: '2019-07-30',
+                },
+                {
+                    titles: '深圳机场物业公司领翔华府高压清洗机采购项目',
+                    tiem: '2019-07-30',
+                }, {
+                    titles: '深圳机场物业公司领翔华府高压清洗机采购项目',
+                    tiem: '2019-07-30',
+                }, {
+                    titles: '深圳机场物业公司领翔华府高压清洗机采购项目',
+                    tiem: '2019-07-30',
+                }, {
+                    titles: '深圳机场物业公司领翔华府高压清洗机采购项目',
+                    tiem: '2019-07-30',
+                }, {
+                    titles: '深圳机场物业公司领翔华府高压清洗机采购项目',
+                    tiem: '2019-07-30',
+                }, {
+                    titles: '深圳机场物业公司领翔华府高压清洗机采购项目',
+                    tiem: '2019-07-30',
+                }, {
+                    titles: '深圳机场物业公司领翔华府高压清洗机采购项目',
+                    tiem: '2019-07-30',
+                }, {
+                    titles: '深圳机场物业公司领翔华府高压清洗机采购项目',
+                    tiem: '2019-07-30',
+                }, {
+                    titles: '深圳机场物业公司领翔华府高压清洗机采购项目',
+                    tiem: '2019-07-30',
+                }, {
+                    titles: '深圳机场物业公司领翔华府高压清洗机采购项目',
+                    tiem: '2019-07-30',
+                }, {
+                    titles: '深圳机场物业公司领翔华府高压清洗机采购项目',
+                    tiem: '2019-07-30',
+                }, {
+                    titles: '深圳机场物业公司领翔华府高压清洗机采购项目',
+                    tiem: '2019-07-30',
+                }, {
+                    titles: '深圳机场物业公司领翔华府高压清洗机采购项目',
+                    tiem: '2019-07-30',
+                },
+            ],
+            pagesize: 12,
+            currentPage1: 1,
+            total: 14,
+            iphones: null
+        },
+        mounted() {
+            if (navigator.userAgent.match(/(iPhone|iPod|Android|ios)/i)) {
+                //  移动端
+                console.log(1)
+                this.iphones = false
+            } else {
+
+                this.iphones = true
+                //  pc端
+            }
+        },
+        methods: {
+            listclick: function listclick(val, index) {
+                this.listnum = index
+            },
+            rowclistcick: function rowclistcick(row, index) {
+
+            },
+            changes: function changes(val) {
+                console.log(val)
+            },
+            load: function load() {
+                if (navigator.userAgent.match(/(iPhone|iPod|Android|ios)/i)) {
+                    //  移动端
+                    console.log(1)
+                    this.tablearr.push(...this.tablearr)
+                } else {
+                    //  pc端
+                }
+
+            }
+        },
+    })
+</script>

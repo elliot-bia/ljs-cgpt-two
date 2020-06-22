@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>深圳阳光采购平台</title>
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/ele.css">
+    <link rel="stylesheet" href="../css/eleicon.css">
+    <link rel="stylesheet" href="../css/purchase.css">
+    <link rel="stylesheet" href="../sass/search.css">
+    <link rel="stylesheet" href="../css/animate.css">
+    <script src="../js/vue.min.js"></script>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/bootstrap.js"></script>
+    <script src="../js/ele.js"></script>
+    <script src="../js/footers.js"></script>
+    <script src="../js/headers.js"></script>
+    <script src="../js/meuns.js"></script>
+</head>
+
+<body>
+    <div id="app" v-cloak>
+        <headers></headers>
+        <meuns></meuns>
+        <div class="row main inp">
+            <div class="box">
+                <div class="col-xs-7 col-sm-7 col-md-7">
+                    <el-input v-model="input" placeholder="请输入企业/项目"></el-input>
+                </div>
+                <div class="col-xs-5 col-sm-5 col-md-5">
+                    <button class="qiye">搜企业</button>
+                    <button class="xiangmu">搜项目</button>
+                    <el-input placeholder="请输入密码" v-model="input" show-password autocomplete="new-password"></el-input>
+                </div>
+            </div>
+        </div>
+        <div class="pcduan">
+            <div class="row main shuaixun topx">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <span>已选条件</span>
+                    <ul class="lists">
+                        <li v-if='ggname !== ""'>{{ggname}} <i class="el-icon-close" @click='removes(1)'></i></li>
+                        <li v-if='xmname !== ""'>{{xmname}} <i class="el-icon-close" @click='removes(2)'></i></li>
+                        <li v-if='ztname !== ""'>{{ztname}} <i class="el-icon-close" @click='removes(3)'></i></li>
+                        <li v-if='jename !== ""'>{{jename}} <i class="el-icon-close" @click='removes(4)'></i></li>
+                        <li v-if='jename !== "" || ztname !== "" || xmname !== "" || ggname !== ""' @click='qingkong()'>
+                            清空选项</li>
+                    </ul>
+                    </ul>
+                </div>
+            </div>
+            <div class="row main shuaixun">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <span>公告类型</span>
+                    <ul class="list">
+                        <li v-for="(item,index) in gonggaoarr" :key="index" @click='gonggaoclick(item,index)'
+                            :style='{background: index === gonggaonum? "#3CB0F9" : "",color: index === gonggaonum? "#fff" : ""}'>
+                            {{item.name}}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row main shuaixun">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <span>项目类型</span>
+                    <ul class="list">
+                        <li v-for="(item,index) in xiangmuarr" :key="index" @click='xiangmuarrclick(item,index)'
+                            :style='{background: index === xiangmuarrnum? "#3CB0F9" : "",color: index === xiangmuarrnum? "#fff" : ""}'>
+                            {{item.name}}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row main shuaixun">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <span>项目状态</span>
+                    <ul class="list">
+                        <li v-for="(item,index) in zhuangtaiarr" :key="index" @click='zhuangtainumclick(item,index)'
+                            :style='{background: index === zhuangtainum? "#3CB0F9" : "",color: index === zhuangtainum? "#fff" : ""}'>
+                            {{item.name}}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row main shuaixun">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <span>预算金额</span>
+                    <ul class="list">
+                        <li v-for="(item,index) in jinearr" :key="index" @click='jinearrclick(item,index)'
+                            :style='{background: index === jinearrnum? "#3CB0F9" : "",color: index === jinearrnum? "#fff" : ""}'>
+                            {{item.name}}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row main">
+                <div class="col-xs-12 col-sm-12 col-md-12" style="padding: 15px;margin-top: 20px;background: #fff;">
+                    <el-table :data="ableData" style="width: 100%" :header-cell-style='{background: "#F0F9FF"}'>
+                        <el-table-column prop="title" label="公告类型" width="100"> </el-table-column>
+                        <el-table-column prop="names" label="项目名称"> </el-table-column>
+                        <el-table-column prop="prices" label="预算金额" width="100"> </el-table-column>
+                        <el-table-column prop="address" label="项目状态" width="100"> </el-table-column>
+                        <el-table-column prop="date" label="公告日期" width="100"> </el-table-column>
+                    </el-table>
+                    <div class="text-right" style="padding-top:15px;">
+                        <el-pagination background layout="prev, pager, next" :current-page.sync="currentPage1"
+                            :total="1000">
+                        </el-pagination>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="shouji">
+            <div class="row">
+                <div class=""></div>
+            </div>
+        </div>
+        <div class="shouji">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <el-collapse v-model="activeNames" @change="handleChange" style="z-index: 20;">
+                        <el-collapse-item name="1">
+                            <template slot="title">
+                                <h4>项目公告</h4>
+                            </template>
+                            <div class="row" style="font-weight: 600;  margin-left: 6%;">
+                                公告类型
+                            </div>
+                            <div class="row row_s">
+                                <div class="col-sm-3" v-for='(item,index) in gonggaoarr' :key="index"
+                                    @click='iphones(item,index)'
+                                    :style="{background: index === num1 ? 'rgb(168, 168, 168)' : ''}">
+                                    {{item.name}}
+                                </div>
+                            </div>
+                            <div class="row" style="font-weight: 600;  margin-left: 6%;">
+                                项目类型
+                            </div>
+                            <div class="row row_s">
+                                <div class="col-sm-3" v-for='(item,index) in xiangmuarr' :key="index"
+                                    @click='iphones2(item,index)'
+                                    :style="{background: index === num2 ? 'rgb(168, 168, 168)' : ''}">
+                                    {{item.name}}
+                                </div>
+                            </div>
+                            <div class="row" style="font-weight: 600;  margin-left: 6%;">
+                                项目状态
+                            </div>
+                            <div class="row row_s">
+                                <div class="col-sm-3" v-for='(item,index) in zhuangtaiarr' :key="index"
+                                    @click='iphones3(item,index)'
+                                    :style="{background: index === num3 ? 'rgb(168, 168, 168)' : ''}">
+                                    {{item.name}}
+                                </div>
+                            </div>
+                            <div class="row" style="font-weight: 600;  margin-left: 6%;">
+                                预算金额
+                            </div>
+                            <div class="row row_s">
+                                <div class="col-sm-3" v-for='(item,index) in jinearr' :key="index"
+                                    @click='iphones4(item,index)'
+                                    :style="{background: index === num4 ? 'rgb(168, 168, 168)' : ''}">
+                                    {{item.name}}
+                                </div>
+                            </div>
+                            <div class="row row_s4">
+                                <div class="col-md-6 col-lg-6 col-xs-6 col-sm-6" style="background: #2d4a2117;"
+                                    @click='querys()'>
+                                    清空
+                                </div>
+                                <div class="col-md-6 col-lg-6 col-xs-6 col-sm-6"
+                                    style="background: rgb(59, 159, 241); color: rgb(255, 255, 255);"
+                                    @click='Determine'>
+                                    完成
+                                </div>
+                            </div>
+                        </el-collapse-item>
+                    </el-collapse>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 contens" v-for='(item,index) in iphonearr' :key="index">
+                    <p class="name">
+                        {{item.name}}
+                    </p>
+                    <p class="title">
+                        <span>
+                            {{item.title}}
+                        </span>
+                        <span>
+                            {{item.prices}}
+                        </span>
+                        <span>
+                            {{item.zhungtai}}
+                        </span>
+                    </p>
+                    <p class="times text-right">
+                        {{item.time}}
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="boxs" v-if='show'>
+
+        </div>
+        <div class="isshowtitle" v-if='show'>
+            <p> <i class="el-icon-loading"></i></p>
+            正在加载...
+        </div>
+        <footers></footers>
+
+    </div>
+
+</body>
+
+</html>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            input: '',
+            gonggaoarr: [
+                { name: '全部' }, { name: '采购公告' }, { name: '变更公告' }, { name: '废标公告' }, { name: '成交公告' },
+            ],
+            gonggaonum: 0,
+            xiangmuarr: [
+                { name: '全部' }, { name: '工程' }, { name: '货物' }, { name: '服务' },
+            ],
+            xiangmuarrnum: 0,
+            zhuangtaiarr: [
+                { name: '全部' }, { name: '进行中' }, { name: '已结束' },
+            ],
+            zhuangtainum: 0,
+            jinearr: [
+                { name: '全部' }, { name: '5万以内' }, { name: '5万-10万' }, { name: '10万-20万' }, { name: '20万-50万' }, { name: '50万-100万' },
+            ],
+            jinearrnum: 0,
+            ggname: '',
+            xmname: '',
+            ztname: '',
+            jename: '',
+            ableData: [
+                {
+                    title: '中心动态',
+                    names: '“雪马”吹响集结号 青山绿水等你来！',
+                    prices: '2000万',
+                    address: '正在报名  ',
+                    date: '2016-05-02',
+                },
+                {
+                    title: '中心动态',
+                    names: '“雪马”吹响集结号 青山绿水等你来！',
+                    prices: '2000万',
+                    address: '正在报名  ',
+                    date: '2016-05-02',
+                },
+                {
+                    title: '中心动态',
+                    names: '“雪马”吹响集结号 青山绿水等你来！',
+                    prices: '2000万',
+                    address: '正在报名  ',
+                    date: '2016-05-02',
+                },
+                {
+                    title: '中心动态',
+                    names: '“雪马”吹响集结号 青山绿水等你来！',
+                    prices: '2000万',
+                    address: '正在报名  ',
+                    date: '2016-05-02',
+                },
+                {
+                    title: '中心动态',
+                    names: '“雪马”吹响集结号 青山绿水等你来！',
+                    prices: '2000万',
+                    address: '正在报名  ',
+                    date: '2016-05-02',
+                },
+                {
+                    title: '中心动态',
+                    names: '“雪马”吹响集结号 青山绿水等你来！',
+                    prices: '2000万',
+                    address: '正在报名  ',
+                    date: '2016-05-02',
+                },
+            ],
+            currentPage1: 3,
+            activeNames: ['0'],
+            num1: null,
+            num2: null,
+            num3: null,
+            num4: null,
+            num1name: '',
+            num2name: '',
+            num3name: '',
+            num4name: '',
+            iphonearr: [
+                {
+                    name: '“雪马”吹响集结号 青山绿水等你来！“雪马”吹响集结号 青山绿水等你来！“雪马”吹响集结号 青山绿水等你来！',
+                    title: '什么公告',
+                    prices: '30.00',
+                    zhungtai: '进行中',
+                    time: '2018-9-9'
+
+                },
+                {
+                    name: '“雪马”吹响集结号 青山绿水等你来！“雪马”吹响集结号 青山绿水等你来！“雪马”吹响集结号 青山绿水等你来！',
+                    title: '什么公告',
+                    prices: '30.00',
+                    zhungtai: '进行中',
+                    time: '2018-9-9'
+
+                },
+                {
+                    name: '“雪马”吹响集结号 青山绿水等你来！“雪马”吹响集结号 青山绿水等你来！“雪马”吹响集结号 青山绿水等你来！',
+                    title: '什么公告',
+                    prices: '30.00',
+                    zhungtai: '进行中',
+                    time: '2018-9-9'
+
+                },
+            ],
+            ishow: true,
+            show: false
+
+        },
+        mounted() {
+            if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+                document.onscroll = function (e) {
+                    //  模拟上拉加载
+                    var h = document.body.clientHeight - document.documentElement.scrollTop - 300
+                    if (h < 500 && app.ishow) {
+                        app.ishow = false
+                        app.show = true
+                        $('html, body').addClass('lockbacks');
+                        setTimeout(() => {
+                            app.iphonearr = [...app.iphonearr, ...app.iphonearr]
+                            $('html, body').removeClass('lockbacks');
+                            app.ishow = true
+                            app.show = false
+                        }, 3000)
+                        return
+                    }
+                }
+                setTimeout(() => {
+                    document.documentElement.scrollTop = 0
+                }, 100)
+            } else {
+
+            }
+
+        },
+        methods: {
+            gonggaoclick(item, index) {
+                this.gonggaonum = index
+                this.ggname = item.name
+            },
+            xiangmuarrclick(item, index) {
+                this.xiangmuarrnum = index
+                this.xmname = item.name
+            },
+            zhuangtainumclick(item, index) {
+                this.zhuangtainum = index
+                this.ztname = item.name
+            },
+            jinearrclick(item, index) {
+                this.jinearrnum = index
+                this.jename = item.name
+            },
+            qingkong() {
+                this.ggname = ''
+                this.xmname = ''
+                this.ztname = ''
+                this.jename = ''
+                this.gonggaonum = 0
+                this.xiangmuarrnum = 0
+                this.zhuangtainum = 0
+                this.jinearrnum = 0
+            },
+            removes(index) {
+                if (index === 1) {
+                    this.ggname = ''
+                    this.gonggaonum = 0
+                } else if (index === 2) {
+                    this.xmname = ''
+                    this.xiangmuarrnum = 0
+                } else if (index === 3) {
+                    this.ztname = ''
+                    this.zhuangtainum = 0
+                } else if (index === 4) {
+                    this.jename = ''
+                    this.jinearrnum = 0
+                }
+            },
+            handleChange(val) {
+
+                console.log(val);
+            },
+            iphones(item, index) {
+                this.num1 = index;
+                this, num1name = item.name
+            },
+            iphones2(item, index) {
+                this.num2 = index
+                this, num2name = item.name
+            },
+            iphones3(item, index) {
+                this.num3 = index
+                this, num3name = item.name
+            },
+            iphones4(item, index) {
+                this.num4 = index
+                this, num4name = item.name
+            },
+            querys() {
+                this.num1 = null;
+                this, num1name = ''
+                this.num2 = null
+                this, num2name = ''
+                this.num3 = null
+                this, num3name = ''
+                this.num4 = null
+                this, num4name = ''
+                this.activeNames = ['0']
+            },
+            Determine() {
+                this.activeNames = ['0']
+            }
+        },
+    })
+    function bodyScroll(event) {
+        console.log(event)
+        event.preventDefault();
+
+    }
+    function htmlEscape(text) {
+        return text.replace(/[<>"&]/g, function (match, pos, originalText) {
+            switch (match) {
+                case "<": return "&lt;";
+                case ">": return "&gt;";
+                case "&": return "&amp;";
+                case "\"": return "&quot;";
+            }
+        });
+    }
+</script>

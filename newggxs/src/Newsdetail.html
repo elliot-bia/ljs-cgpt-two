@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>深圳阳光采购平台</title>
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/ele.css">
+    <link rel="stylesheet" href="../css/eleicon.css">
+    <link rel="stylesheet" href="../css/purchase.css">
+    <link rel="stylesheet" href="../icon/iconfont.css">
+    <script src="../js/vue.min.js"></script>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/bootstrap.js"></script>
+    <script src="../js/ele.js"></script>
+    <script src="../js/footers.js"></script>
+    <script src="../js/headers.js"></script>
+    <script src="../js/meuns.js"></script>
+
+    <style>
+        .newdet{
+            background: #ffffff;
+            padding: 30px;
+        }
+        .xwtitle{
+            text-align: center;
+            font-size: 24px;
+            font-weight: 600;
+        }
+        .xwtimes{
+            text-align: center;
+            color: #999999;
+            padding: 20px 0;
+        }
+        .fontSi{
+            display: flex;
+            justify-content: center;
+        }
+        .fontSi > span {
+            cursor: pointer;
+            padding: 0 10px;
+        }
+        .contents{
+            margin: 20px;
+        }
+        .zindex{
+            text-indent: 2rem;
+            line-height: 28px;
+        }
+        .imglist{
+            text-align: center;
+            margin: 30px 0;
+        }
+        .contitle{
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        @media screen and (max-width: 699px) {
+            .newdet{
+                padding: 0;
+            }
+            .pad{
+                padding: 0;
+            }
+            .imglist > img {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="app" v-cloak>
+        <headers></headers>
+        <meuns></meuns>
+        <div class="row main inp">
+            <div class="box">
+                <div class="col-xs-7 col-sm-7 col-md-7">
+                    <el-input v-model="input" placeholder="请输入企业/项目"></el-input>
+                </div>
+                <div class="col-xs-5 col-sm-5 col-md-5">
+                    <button class="qiye">搜企业</button>
+                    <button class="xiangmu">搜项目</button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 pad">
+                <div class="main newdet">
+                    <p class="xwtitle">
+                        深业集团主动“上平台”，联交所助力完成首单“阳光采购”
+                    </p>
+                    <p class="xwtimes">
+                        发布时间：2019/1/2 16:58:11
+                    </p>
+                    <div class="fontSi">
+                        T: <span v-for='(item,index) in Font' :key="index" @click='fontold(item.name)'> {{item.name}}  </span>
+                        <span class="pcduan ipad"><i class="iconfont icon-shoucang "></i>收藏</span> 
+                        <span class="pcduan ipad"><i class="iconfont icon-dayin"></i>打印</span>
+                        分享：<div class="bshare-custom">
+                                <div class="bsPromo bsPromo2"></div>
+                                <a title="分享到QQ空间" class="bshare-qzone"></a>
+                                <a title="分享到新浪微博" class="bshare-sinaminiblog"></a>
+                                <a title="分享到人人网" class="bshare-renren"></a>
+                                <a title="分享到腾讯微博" class="bshare-qqmb"></a>
+                                <a title="分享到网易微博" class="bshare-neteasemb"></a>
+                                <a title="分享到微信" class="bshare-weixin" href="javascript:void(0);"></a>
+                                <a title="更多平台" class="bshare-more bshare-more-icon more-style-addthis pcduan"></a>
+                            </div>
+                    <script type="text/javascript" charset="utf-8" src="../js/buttonLite.js"></script>
+                    <script type="text/javascript" charset="utf-8" src="../js/bshareC0.js"></script>
+                    <script type="text/javascript" charset="utf-8">
+                        bShare.addEntry({
+                            title: "深圳阳光采购平台 ",
+                            summary: "市属,国企,深圳,阳光,采购,服务,平台,采购平台,阳光平台",
+                        });
+                    </script>
+                    </div>
+                    <div class="contents" :style='{fontSize: fontSizes}'>
+                        <p class="zindex">
+                            2018年9月，市国资委出台《关于建立健全市属国企要素交易综合监管体系的指导意见》，推动市属国企要素交易通过交易平台公开进行，阳光操作。深业集团积极贯彻落实文件精神，主动要求“上平台”，将集团采购行为委托深圳联交所进行阳光招采。深圳联交所发挥专业机构优势，规范化操作，借力市属国企阳光采购服务平台影响力，顺利完成深业集团平台采购“第一单”！项目三个标的中标价格总体下降7.52%，其中单个标的最大降幅接近10%。
+                        </p>
+                        <p class="imglist">
+                            <img src="../images/banner1.jpg" alt="">
+                        </p>
+                        <p class="contitle">一、保质保量保进度，多沟通多确认多提醒，联交所积极作为提供高效优质专业服务</p>
+                        <p class="zindex">
+                            深业《内刊》作为宣传深业企业文化精神的重要载体，每个月发行一期共计5000余本，凭借其丰富内容与优良设计曾多次获得年度企事业优秀内刊。2018年底，深业启动《内刊》设计印刷服务采购项目，总预算为300多万元，分为平面杂志设计、电子杂志设计、杂志印刷三个标的。深业集团积极响应国资委号召积极上平台，一方面是想拓宽信息发布渠道，扩大项目影响力广泛征集供应商；另一方面是也想通过平台阳光采购，实现公平、公正、公开的同时，遴选优质设计商与印刷商提供2019-2020年的设计印刷服务。
+                        </p>
+                        <p style="margin: 30px 0 10px 0;">1.主动对接设计方案，加班加点制作相关文件材料。</p>
+                        <p class="zindex">
+                            自知悉项目、委托到项目评审完成结果公示只有不到一个月时间，如何在短时间内兼顾效率与公平公正、甄选最适合《深业》内刊风格品位的供应商，对于联交所与深业集团都是一项重要挑战。自接到委托任务，联交所采购服务中心特地召开会议、设计方案、倒排进度，于11月26日当晚加班加点拟定项目各项材料初稿，后期更是针对条件设置、评分标准等方面提出专业意见，并与深业进行反复沟通。在深业集团确定方案完成审批后立刻着手安排项目相关事宜，最终于11月30日正式发布公告，公开征集意向供应商。
+                        </p>
+                        <p class="imglist">
+                            <img src="../images/banner1.jpg" alt="">
+                        </p>
+                        <p class="contitle">一、保质保量保进度，多沟通多确认多提醒，联交所积极作为提供高效优质专业服务</p>
+                        <p class="zindex">深业集团贯彻落实深圳市国资委关于建立健全市属国企要素交易综合监管体系的指导意见，通过深圳联交所阳光采购平台完成首单采购，一方面通过平台规范运作，扩大项目影响力，有利于采购活动公平公正公开，降低企业采购廉洁风险；另一方面企业降低采购成本，最终总预算金额降低7.52%的同时，征集到优质供应商保证后续《内刊》设计印刷质量，优化企业采购体验，也为深圳国企公开采购提供良好示范。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footers></footers>
+    </div>
+</body>
+</html>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            input: '',
+            Font: [
+                {name: '小'},{name: '中'},{name: '大'},
+            ],
+            fontSizes: '16px'
+        },
+        methods: {
+            fontold(name){
+                if(name === '小'){
+                    this.fontSizes = '16px'
+                } else if (name === '中') {
+                    this.fontSizes = '21px'
+                } else if (name === '大') {
+                    this.fontSizes = '30px'
+                }
+            }
+        },
+    })
+</script>

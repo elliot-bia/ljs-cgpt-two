@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>阳光采购平台</title>
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/ele.css">
+    <link rel="stylesheet" href="../css/eleicon.css">
+    <link rel="stylesheet" href="../css/cgpurchase.css">
+    <link rel="stylesheet" href="../scss/index.css">
+    <script src="../js/vue.min.js"></script>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/bootstrap.js"></script>
+    <script src="../js/ele.js"></script>
+    <script src="../js/headerpublic.js"></script>
+    <script src="../js/footers.js"></script>
+    <!-- 数字滚动 -->
+    <script src="../js/jquery.countup.js"></script>
+    <script src="../js/jquery.waypoints.min.js"></script>
+    <!-- <script src="../js/gundong.js"></script>
+</head> -->
+
+<body>
+    <div id="app" v-cloak>
+        <headers></headers>
+        <div class="bannercontent">
+            <div class="ints">
+                <el-input prefix-icon='el-icon-search' placeholder="请输入企业/项目" v-model="contents" clearable>
+                </el-input>
+                <el-button>搜索</el-button>
+            </div>
+        </div>
+        <article class="mains" style="margin-top: 20px;padding-bottom: 130px;">
+            <div class="row ">
+                <div class="col-xs-12 col-sm-12 col-md-7 ">
+                    <div class="backgroundcolor">
+                        <div class="scllo">
+                            <ul class="cglist">
+                                <li v-for='(item,index) in cgarr' :key="index" @click='cgclick(item,index)' :style="{
+                                        color: cgnum === index ? '#D96070' : '',
+                                        fontWeight: cgnum === index ? '600' : ''
+                                    }">
+                                    {{item.name}}
+                                    <p v-if='cgnum === index'></p>
+                                </li>
+                                <li class="gengduo">
+                                    更多
+                                </li>
+                                <p class="jiahoa">
+                                    <span></span>
+                                    <i class="el-icon-plus"></i>
+                                </p>
+                            </ul>
+                           
+                        </div>
+                        
+                        <el-table 
+                        :data="cgdatas.slice(0,5)" style="width: 100%" 
+                        class="headerishow"
+                        @row-click='cgdataclick'
+                        >
+                            <el-table-column show-overflow-tooltip prop="titles" label="日期">
+                            </el-table-column>
+                            <el-table-column prop="tiem" label="姓名" width="100">
+                            </el-table-column>
+
+                        </el-table>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-5 ">
+                    <div class="">
+                        <div class="logins" @click='loginclick'>
+                            <img src="../images/login_icon.png" alt="">信息发布登录
+                        </div>
+                        <div class="caigoushuliang">
+                            <div v-for='(item,index) in numnamearr' class="banc" :key="index">
+                                <img :src="item.imgs" alt="">
+                                <div class="contens">
+                                    <p class="names">
+                                        {{item.name}}
+                                    </p>
+                                    <p>
+                                        <span class="snums" id="snums">
+                                            {{item.nums}}
+                                        </span>
+                                        <span>
+                                            {{item.prciname}}
+                                        </span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="margin-top: 20px;">
+                <div class="col-xs-12 col-sm-12 col-md-7 ">
+                    <div class="backgroundcolor">
+                        <div class="scllo">
+                            <ul class="cglist">
+                                <li v-for='(item,index) in dyarr' :key="index" @click='dyclick(item,index)' :style="{
+                                        color: dynum === index ? '#D96070' : '',
+                                        fontWeight: dynum === index ? '600' : ''
+                                    }">
+                                    {{item.name}}
+                                    <p v-if='dynum === index'></p>
+                                </li>
+                                <li class="gengduo" style="width: 10%;">
+                                    更多
+                                </li>
+                                <p class="jiahoa">
+                                    <span></span>
+                                    <i class="el-icon-plus"></i>
+                                </p>
+                            </ul>
+                        </div>
+                        <el-table 
+                        :data="dydatas.slice((1-1) * 5,1*5)" style="width: 100%" 
+                        @row-click='dydataclick'
+                        class="headerishow">
+                            <el-table-column show-overflow-tooltip prop="titles" label="日期">
+                            </el-table-column>
+                            <el-table-column prop="tiem" label="姓名" width="100">
+                            </el-table-column>
+
+                        </el-table>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-5">
+                    <div class="backgroundcolor">
+                        <div class="scllo">
+                            <ul class="cglist">
+                                <li v-for='(item,index) in fyarr' :key="index" @click='fyclick(item,index)' :style="{
+                                        color: fynum === index ? '#D96070' : '',
+                                        fontWeight: fynum === index ? '600' : ''
+                                    }">
+                                    {{item.name}}
+                                    <p v-if='fynum === index'></p>
+                                </li>
+                                <li class="gengduo" style="width: 10%;">
+                                    更多
+                                </li>
+                                <p class="jiahoa">
+                                    <span></span>
+                                    <i class="el-icon-plus"></i>
+                                </p>
+                            </ul>
+                        </div>
+                        <el-table 
+                        :data="dydatas.slice((1-1) * 5,1*5)" style="width: 100%" 
+                        @row-click='fydataclick'
+                        class="headerishow">
+                            <el-table-column show-overflow-tooltip prop="titles" label="日期">
+                            </el-table-column>
+                            <el-table-column prop="tiem" label="姓名" width="100">
+                            </el-table-column>
+
+                        </el-table>
+                    </div>
+                </div>
+            </div>
+        </article>
+        <footer>
+            <p class='fotertop'>
+                版权所有：深圳联合产权交易所股份有限公司 &nbsp;&nbsp;&nbsp; 地址：深圳南山区沙河西路1809号深圳湾科技生态园一区2栋A座11楼
+            </p>
+            <p>
+                联系电话：0755-86358999  &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 粤ICP备11001582号-1
+                <script type="text/javascript">
+                    var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+                    document.write(unescape("%3Cspan id='cnzz_stat_icon_1275781810'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s23.cnzz.com/z_stat.php%3Fid%3D1275781810%26show%3Dpic2' type='text/javascript'%3E%3C/script%3E"));
+                </script>
+            </p>
+        </footer>
+</body>
+</html>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            contents: '',
+            cgarr: [
+                { name: '采购公告' },
+                { name: '变更公告' },
+                { name: '结果公示' },
+                { name: '废标公告' },
+            ],
+            cgnum: 0,
+            cgdatas: [
+                {
+                    titles: '深圳机场物业公司领翔华府高压清洗机采购项目',
+                    tiem: '2019-07-30'
+                },
+                {
+                    titles: '深圳机场物业公司领翔华府高压清洗机采购项目',
+                    tiem: '2019-07-30'
+                },
+                {
+                    titles: '深圳机场物业公司领翔华府高压清洗机采购项目',
+                    tiem: '2019-07-30'
+                },
+                {
+                    titles: '深圳机场物业公司领翔华府高压清洗机采购项目',
+                    tiem: '2019-07-30'
+                },
+                {
+                    titles: '深圳机场物业公司领翔华府高压清洗机采购项目',
+                    tiem: '2019-07-30'
+                },
+                {
+                    titles: '深圳机场物业公司领翔华府高压清洗机采购项目',
+                    tiem: '2019-07-30'
+                },
+            ],
+            numnamearr: [
+                {
+                    imgs: '../images/cgxm_icon.png',
+                    name: '正在采购项目',
+                    nums: 2132,
+                    prciname: '个'
+                },
+                {
+                    imgs: '../images/cgys_icon.png',
+                    name: '采购预算金额',
+                    nums: 2132,
+                    prciname: '亿'
+                },
+                {
+                    imgs: '../images/ljxm_icon.png',
+                    name: '累计完成项目',
+                    nums: 2132,
+                    prciname: '个'
+                },
+                {
+                    imgs: '../images/ljje_icon.png',
+                    name: '累计完成金额',
+                    nums: 2132,
+                    prciname: '个'
+                },
+            ],
+            dyarr: [
+                {name: '单一/直接采购公告'},{name: '邀请招标结果公示'},{name: '中国招投标服务网公告'},
+            ],
+            dynum: 0,
+            dydatas:[
+                {
+                    titles: '化学水处理膜及EDI备件采购',
+                    tiem: '2019-07-30'
+                },{
+                    titles: '化学水处理膜及EDI备件采购',
+                    tiem: '2019-07-30'
+                },{
+                    titles: '化学水处理膜及EDI备件采购',
+                    tiem: '2019-07-30'
+                },{
+                    titles: '化学水处理膜及EDI备件采购',
+                    tiem: '2019-07-30'
+                },{
+                    titles: '化学水处理膜及EDI备件采购',
+                    tiem: '2019-07-30'
+                },{
+                    titles: '化学水处理膜及EDI备件采购',
+                    tiem: '2019-07-30'
+                },
+            ],
+            fyarr: [
+                {name:'防疫物资专栏'},{name:'新闻动态'},{name:'法律法规'},{name:'国资监管规定'},
+            ],
+            fynum: 0,
+            fydatas: [
+                {
+                    titles: '化学水处理膜及EDI备件采购',
+                    tiem: '2019-07-30'
+                },
+            ]
+        },
+        mounted() {
+        },
+        methods: {
+            cgclick: function cgclick(val, index) {
+                this.cgnum = index
+            },
+            loginclick:function loginclick(){
+                
+            },
+            dyclick: function dyclick(val,index){
+                this.dynum = index
+            },
+            fyclick: function fyclick(val,index) {
+                this.fynum = index
+            },
+            //  采购表格每行点击事件
+            cgdataclick:function cgdataclick(row, event) {
+                console.log(row, event)
+            },
+            //  单一表格每行点击事件
+            dydataclick: function dydataclick(row, event) {
+                console.log(row, event)
+            },
+            //  防疫表格每行点击事件
+            fydataclick: function fydataclick() {
+
+            },
+            
+        },
+    })
+    $('.snums').countUp({
+        time: 1000
+    });
+
+
+</script>

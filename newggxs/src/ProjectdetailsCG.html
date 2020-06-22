@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>深圳阳光采购平台</title>
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/ele.css">
+    <link rel="stylesheet" href="../css/eleicon.css">
+    <link rel="stylesheet" href="../css/purchase.css">
+    <link rel="stylesheet" href="../sass/ProjectdetailsCG.css">
+    <script src="../js/vue.min.js"></script>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/bootstrap.js"></script>
+    <script src="../js/ele.js"></script>
+    <script src="../js/footers.js"></script>
+    <script src="../js/headers.js"></script>
+    <script src="../js/meuns.js"></script>
+    
+</head>
+
+<body>
+    <div id="app" v-cloak>
+        <headers></headers>
+        <meuns></meuns>
+        <div class="main">
+            <div class="row marin">
+                <div class="col-xs-12 col-sm-12 col-md-8">
+                    <div class="row" style="background: #fff;border-bottom: 1px solid #ccc;">
+                        <div class="col-xs-12 col-sm-12 col-md-7 topleft">
+                            <span>
+                                深圳地铁2020年新员工送外军训项目
+                            </span>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-5 topleft">
+                            <div>
+                                分享:&nbsp;
+                                <div class="bshare-custom">
+                                    <div class="bsPromo bsPromo2"></div>
+                                    <a title="分享到QQ空间" class="bshare-qzone"></a>
+                                    <a title="分享到新浪微博" class="bshare-sinaminiblog"></a>
+                                    <a title="分享到人人网" class="bshare-renren"></a>
+                                    <a title="分享到腾讯微博" class="bshare-qqmb"></a>
+                                    <a title="分享到网易微博" class="bshare-neteasemb"></a>
+                                    <a title="分享到微信" class="bshare-weixin" href="javascript:void(0);"></a>
+                                    <a title="更多平台" class="bshare-more bshare-more-icon more-style-addthis pcduan"></a>
+                                </div>
+                            </div>
+                            <script type="text/javascript" charset="utf-8" src="../js/buttonLite.js"></script>
+                            <script type="text/javascript" charset="utf-8" src="../js/bshareC0.js"></script>
+                            <script type="text/javascript" charset="utf-8">
+                                bShare.addEntry({
+                                    title: "深圳阳光采购平台 ",
+                                    summary: "市属,国企,深圳,阳光,采购,服务,平台,采购平台,阳光平台",
+                                });
+                            </script>
+                        </div>
+                    </div>
+                    <div class="topxiangqing">
+                        <div v-for='(item,index) in xiangqingarr' :key="index">
+                            <span>{{item.name}}</span>
+                            <i v-if='item.name === "采购预算金额："'>
+                                ￥<i style="color: #FF7F41;font-size: 16px;font-weight: 600;">{{item.titles}}</i>万元
+                            </i>
+                            <i v-if='item.name !== "采购预算金额："'>{{item.titles}}</i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-4 right">
+                    <div class="xmtop">
+                        <p class="tuijian">项目推荐</p>
+                        <p class="gd">更多</p>
+                    </div>
+                    <div class="xmbottom">
+                        <ul>
+                            <li v-for='(item,index) in xmarr' :key="index">
+                                {{item.name}}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <ul class="cglist">
+                        <li v-for='(item,index) in listarr' :key="index" @click='listcilck(item,index)'
+                            :style='{color: index === listnum ? "#fff" : "",background: index === listnum ? "#45B4F9" : ""}'>
+                            {{item.name}}
+                        </li>
+                    </ul>
+                    <div class="gccenter">
+                        <p>
+                            采购内容
+                        </p>
+                        <div style="padding:0 10px;">
+                            <el-table :data="tableData" border style="width: 100%" class="topheight">
+                                <el-table-column prop="name" label="姓名" width="180" align='center'> </el-table-column>
+                                <el-table-column prop="conters" label="日期" > </el-table-column>
+                            </el-table>
+                        </div> 
+                    </div>
+                    <div class="gccenter">
+                        <p>
+                            供应商资格条件
+                        </p>
+                        <div style="padding:0 10px;">
+                            <el-table :data="tableData1" border style="width: 100%" class="topheight">
+                                <el-table-column prop="name" label="姓名" width="180" align='center'> </el-table-column>
+                                <el-table-column prop="conters" label="日期" > </el-table-column>
+                            </el-table>
+                        </div> 
+                    </div>
+                    <div class="gccenter">
+                        <p>
+                            联系方式
+                        </p>
+                        <div style="padding:0 10px;">
+                            <el-table :data="tableData2" border style="width: 100%" class="topheight">
+                                <el-table-column prop="name" label="姓名" width="180" align='center'> </el-table-column>
+                                <el-table-column prop="conters" label="日期" > </el-table-column>
+                            </el-table>
+                        </div> 
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="xmtop">
+                        <p class="tuijian">相关公告</p>
+                        <p class="gd">更多</p>
+                    </div>
+                    <div class="gccenter">
+                        <div style="padding:10px;">
+                            <el-table :data="xgarr"  style="width: 100%" :header-cell-style='{background: "#F0F9FF"}'>
+                                <el-table-column prop="name" label="项目名称" show-overflow-tooltip> </el-table-column>
+                                <el-table-column prop="prices" label="预算金额" width="180"> </el-table-column>
+                                <el-table-column prop="fangs" label="采购方式" width="180"> </el-table-column>
+                                <el-table-column prop="dates" label="有效日期" width="180"> </el-table-column>
+                            </el-table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <footers></footers>
+    </div>
+</body>
+
+</html>
+<script>
+    var app = new Vue({
+
+        el: '#app',
+        data: {
+            xiangqingarr: [
+                {
+                    name: '项目编号：',
+                    titles: 'SWZC18228H '
+                },
+                {
+                    name: '采购预算金额：',
+                    titles: '40'
+                },
+                {
+                    name: '公告时间：',
+                    titles: '2019-11-22 09:00:00 至 2019-11-26 17:00:00止 '
+                },
+                {
+                    name: '采购代理机构：',
+                    titles: '公诚管理咨询有限公司 '
+                },
+                {
+                    name: '采购方：',
+                    titles: '深圳市深水生态环境技术有限公司'
+                },
+                {
+                    name: '采购方式：',
+                    titles: '询比采购（询价）'
+                },
+
+            ],
+            xmarr: [
+                { name: '德州经济技术开发区城管局所属程力威摆臂式垃圾车德州经济技术开发区城管局所属驰乐洒水车' }, { name: '德州经济技术开发区城管局所属驰乐洒水车' },
+                { name: '德州经济技术开发区城管局所属大力牌洒水车' }, { name: '德州经济技术开发区城管局所属鲁N-A6675赛哥尔摆' }
+            ],
+            listarr: [
+                { name: '采购内容' }, { name: '供应商资格条件' }, { name: '联系方式' },
+            ],
+            listnum: 0,
+            tableData: [
+                {
+                    name: '采购内容',
+                    conters: `2.1项目概况及范围：九江深燃及其代管的柴桑深燃、庐山深燃、鄱湖深燃公司的市政燃气工程、庭院配套燃气工程、工业及商业配套燃气工程以及中低压燃气相关配套工程施工监理。
+                            2.2 项目规模：市政管网建设约17000米；庭院小区安装约18000户；工、商业用户安装约200户，年度投资金额约5000万，监理服务费约75万。
+                            2.3 工程建设地点：九江市、柴桑区、濂溪区、庐山风景区。
+                            2.4 监理周期：与实际施工工程同步至竣工验收。
+                            2.5监理服务期限：自合同签订生效之日起12个月。
+                            2.6质量要求：满足本项目技术规范要求并达到国家或行业质量检验评定的合格标准。
+                            2.7标段划分：本项目不划分标段。
+                            `
+                },
+                {
+                    name: '采购文件售卖时间',
+                    conters: '2019-11-21 08:30:00 - 2019-12-11 17:30:00止 '
+                },
+                {
+                    name: '采购文件获取',
+                    conters: 'https://www.chengezhao.com/ '
+                },
+                {
+                    name: '响应文件递交',
+                    conters: '递交截止时间:2019-12-12 09:30:00 递交地址:江西省九江市长虹大道信华商务中心21楼九江深燃天然气有限公司会'
+                },
+            ],
+            tableData1: [
+                {
+                    name: '供应商资格条件',
+                    conters: `2.1项目概况及范围：九江深燃及其代管的柴桑深燃、庐山深燃、鄱湖深燃公司的市政燃气工程、庭院配套燃气工程、工业及商业配套燃气工程以及中低压燃气相关配套工程施工监理。
+                            2.2 项目规模：市政管网建设约17000米；庭院小区安装约18000户；工、商业用户安装约200户，年度投资金额约5000万，监理服务费约75万。
+                            2.3 工程建设地点：九江市、柴桑区、濂溪区、庐山风景区。
+                            2.4 监理周期：与实际施工工程同步至竣工验收。
+                            2.5监理服务期限：自合同签订生效之日起12个月。
+                            2.6质量要求：满足本项目技术规范要求并达到国家或行业质量检验评定的合格标准。
+                            2.7标段划分：本项目不划分标段。
+                            `
+                },
+                {
+                    name: '采购文件售卖时间',
+                    conters: '2019-11-21 08:30:00 - 2019-12-11 17:30:00止'
+                },
+                {
+                    name: '采购文件获取',
+                    conters: 'https://www.chengezhao.com/'
+                },
+                {
+                    name: '响应文件递交',
+                    conters: '递交截止时间:2019-12-12 09:30:00 递交地址:江西省九江市长虹大道信华商务中心21楼九江深燃天然气有限公司会'
+                },
+                {
+                    name: '采购文件售价(元)',
+                    conters: '300.0 '
+                },
+            ],
+            tableData2: [
+                {
+                    name: '联系方式',
+                    conters: `1、联系人:庞燕
+                                2、联系电话:18689467169
+                                3、电子邮件:mindd@gcbidding.com
+                                4、联系地址:广州市天河北路423号远晖商厦8楼
+                                5、邮编:518000
+                            `
+                },
+            ],
+            xgarr: [
+                {
+                    name: '深圳巴士集团1262台纯电动出租车更新采购项目',
+                    prices: '2000 万',
+                    fangs: '竞争性磋商',
+                    dates: '2018-08-18'
+                }
+            ]
+        },
+        methods: {
+            listcilck(val, index) {
+                this.listnum = index
+            }
+        },
+    })
+</script>

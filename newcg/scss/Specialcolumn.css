@@ -1,0 +1,129 @@
+.scrbtns {
+  width: 70%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+      justify-content: center;
+  margin: 20px auto;
+}
+
+.scrbtns .el-input .el-input__inner {
+  border-radius: 20px;
+  padding-right: 50px;
+}
+
+.scrbtns .el-button {
+  background: #E76576;
+  border-color: #E76576;
+  color: #fff;
+  z-index: 99;
+  border-radius: 20px;
+  width: 200px;
+  margin-right: 20px;
+  padding: 1px 0;
+  margin-left: -40px;
+}
+
+.tabox {
+  background: #fff;
+}
+
+.tabox .uls {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  line-height: 40px;
+  margin-left: 50px;
+}
+
+.tabox .uls li {
+  padding: 0 20px;
+  cursor: pointer;
+}
+
+.tabox .uls li p {
+  width: 30px;
+  height: 1px;
+  background: #E76576;
+  margin: 0 auto;
+}
+
+.el-table th, .el-table tr {
+  cursor: pointer;
+}
+
+.el-table td, .el-table th.is-leaf {
+  border: none;
+}
+
+.tabox {
+  margin-bottom: 130px;
+}
+
+@media screen and (max-width: 699px) {
+  .scllo {
+    overflow-x: scroll;
+    border-bottom: 1px solid #ccc;
+  }
+  .scllo::-webkit-scrollbar {
+    display: none;
+  }
+  .tabox .uls {
+    width: 480px;
+    padding-right: 40px;
+    margin-left: 0;
+  }
+  .tabox .uls li {
+    padding: 0 10px;
+  }
+  .jiahoa {
+    position: absolute;
+    z-index: 99;
+    background: #fff;
+    right: 0;
+    font-size: 20px;
+    padding-right: 5px;
+  }
+  .jiahoa span {
+    display: inline-block;
+    height: 20px;
+    width: 1px;
+    background: #ccc;
+    margin-bottom: -3px;
+  }
+  .scrbtns {
+    width: 100%;
+  }
+  .scrbtns .el-button {
+    margin-right: 0;
+  }
+  .tabox {
+    margin-bottom: 0;
+    position: relative;
+  }
+  body {
+    position: fixed;
+    width: 100%;
+  }
+  #app {
+    height: 100%;
+  }
+  .iplist {
+    padding: 10px;
+    line-height: 35px;
+  }
+  .iplist li {
+    border-bottom: 1px solid #ccc;
+  }
+  .iptitle {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  .iptime {
+    text-align: right;
+  }
+}
+/*# sourceMappingURL=Specialcolumn.css.map */

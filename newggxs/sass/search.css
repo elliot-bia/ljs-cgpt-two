@@ -1,0 +1,170 @@
+.qiye {
+  background: #3CB0F9;
+  color: #fff;
+  height: 40px;
+  padding: 0 10%;
+}
+
+.xiangmu {
+  background: #526DFF;
+  color: #fff;
+  height: 40px;
+  padding: 0 10%;
+  margin-left: 5%;
+}
+
+.inp {
+  margin: 50px auto;
+}
+
+.box {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.topx {
+  border-bottom: 1px solid #ccc;
+}
+
+.lists {
+  display: flex;
+  width: 90%;
+}
+
+.lists li {
+  cursor: pointer;
+  padding: 5px 10px;
+  margin: 0 10px;
+  border: 1px solid #77C8FB;
+}
+
+.lists li i {
+  color: #77C8FB;
+}
+
+.shuaixun {
+  background: #fff;
+  padding: 10px 0;
+}
+
+.shuaixun div {
+  display: flex;
+  font-size: 16px;
+}
+
+.shuaixun div span {
+  width: 10%;
+  color: #868686;
+  line-height: 32px;
+}
+
+.list {
+  display: flex;
+  width: 90%;
+  border-bottom: 1px dashed #ccc;
+  padding-bottom: 10px;
+}
+
+.list li {
+  cursor: pointer;
+  padding: 5px 10px;
+  margin: 0 10px;
+}
+
+.el-pagination.is-background .el-pager li:not(.disabled).active {
+  background: #3CB0F9;
+}
+
+.el-pagination.is-background .btn-next, .el-pagination.is-background .btn-prev, .el-pagination.is-background .el-pager li {
+  background: #FFFFFF;
+  border: 1px solid #E1E1E1;
+}
+
+#app {
+  overflow: hidden;
+}
+
+@media screen and (max-width: 699px) {
+  .shouji {
+    background: #fff;
+  }
+  .inp {
+    margin: 20px 0;
+  }
+  .jiegou, .caigou {
+    margin: 0;
+  }
+  .box {
+    width: 100%;
+  }
+  .footers div {
+    font-size: 12px;
+  }
+  .qiye, .xiangmu {
+    padding: 0 5%;
+  }
+  .row_s {
+    margin: 0;
+    display: flex;
+    display: -webkit-flex;
+    flex-wrap: wrap;
+    margin-left: 25px;
+  }
+  .row_s div {
+    text-align: center;
+    padding: 0;
+    width: 20%;
+    margin: 4px 6px;
+    background: red;
+    background: #D9D9F3;
+    border-radius: 6px;
+  }
+  .row_s4 {
+    text-align: center;
+    margin-top: 20px;
+  }
+  .row_s4 div {
+    padding: 5px 0;
+  }
+  .contens {
+    padding: 20px 20px;
+    background: #fff;
+    border-bottom: 1px solid #ccc;
+    margin: 0 10px;
+    margin-top: 20px;
+  }
+  .contens .name {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+  }
+  .contens .title span {
+    display: inline-block;
+    border: 1px solid #2884CF;
+    padding: 5px;
+    margin: 10px 5px;
+  }
+  .lockbacks {
+    overflow: hidden;
+  }
+  .boxs {
+    width: 100%;
+    height: 100%;
+    background: #000;
+    opacity: 0.3;
+    position: fixed;
+    top: 0;
+    z-index: 99;
+  }
+  .isshowtitle {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 100;
+    color: #fff;
+    top: 20%;
+    text-align: center;
+    font-size: 18px;
+  }
+}

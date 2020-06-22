@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en" style="filter: progid:DXImageTransform.Microsoft.BasicImage(grayscale=1);
+-webkit-filter: grayscale(100%);">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>深圳阳光采购平台</title>
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/ele.css">
+    <link rel="stylesheet" href="../css/eleicon.css">
+    <link rel="stylesheet" href="../css/purchase.css">
+    <link rel="stylesheet" href="../sass/index.css">
+    <link rel="stylesheet" href="../css/swiper.min.css">
+    <link rel="stylesheet" href="../css/animate.css">
+    <script src="../js/vue.min.js"></script>
+    <script src="../js/jquery.js"></script>
+    <script type="text/javascript" src="../js/jquery.countup.js"></script>
+    <script type="text/javascript" src="../js/jquery.waypoints.min.js"></script>
+    <script src="../js/bootstrap.js"></script>
+    <script src="../js/ele.js"></script>
+    <script src="../js/swiper.min.js"></script>
+    <script src="../js/footers.js"></script>
+    <script src="../js/headers.js"></script>
+    <script src="../js/meuns.js"></script>
+    <style>
+       
+    </style>
+</head>
+
+<body>
+    <div id="app" v-cloak>
+        <headers></headers>
+        <meuns></meuns>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 banner">
+                <div class="bannerlist">
+                    <ul>
+                        <li v-for="(item,index) in bannerimg">
+                            <img :src="item.imgs" alt="">
+                            <p>{{item.name}}</p>
+                            <p>
+                                <span class="counter" style="font-size: 20px;color: #FFC02A;">{{item.prices}} </span>
+                                <span v-if='index %2 === 0'> 个 </span> <span v-if='index %2 !== 0'>亿</span>
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row main inp">
+            <div class="box">
+                <div class="col-xs-7 col-sm-7 col-md-7">
+                    <el-input v-model="input" placeholder="请输入企业/项目" ></el-input>
+                </div>
+                <div class="col-xs-5 col-sm-5 col-md-5">
+                    <button class="qiye"  >搜企业</button>
+                    <button class="xiangmu">搜项目</button>
+                </div>
+            </div>
+        </div>
+        <div class="row main">
+            <div class="scrolls">
+                <div class="col-xs-12 col-sm-12 col-md-12 caigou">
+                    <span>采购公告</span>
+                    <ul>
+                        <li v-for='(item,index) in caigou' :key="index" @click='clickcaigou(item,index)'
+                            :style='{color: index === num ? "#8A9AFD" : ""}'>
+                            {{item.name}}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <el-table :data="tableData" style="width: 100%" :header-cell-style='{background: "#F0F9FF"}' class="pcduan">
+                <el-table-column prop="title" label="项目名称"> </el-table-column>
+                <el-table-column prop="name" label="预算金额" width="100"> </el-table-column>
+                <el-table-column prop="address" label="采购方式" width="100"> </el-table-column>
+                <el-table-column prop="date" label="公告日期" width="100"> </el-table-column>
+            </el-table>
+            <el-table :data="tableData" style="width: 100%" :header-cell-style='{background: "#F0F9FF"}' class="shouji">
+                <el-table-column prop="title" label="项目名称" show-overflow-tooltip> </el-table-column>
+                <el-table-column prop="name" label="预算金额" width="100"> </el-table-column>
+            </el-table>
+        </div>
+        <div class="row main">
+            <div class="scrolls">
+                <div class="col-xs-12 col-sm-12 col-md-12 jiegou">
+                    <span>结果公告</span>
+                    <ul>
+                        <li v-for='(item,index) in jieguo' :key="index" @click='clickjieguo(item,index)'
+                            :style='{color: index === numjieguo ? "#8A9AFD" : ""}'>
+                            {{item.name}}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <el-table :data="jieguotableData" style="width: 100%" :header-cell-style='{background: "#F0F9FF"}'
+                class="pcduan">
+                <el-table-column prop="title" label="项目名称"> </el-table-column>
+                <el-table-column prop="name" label="预算金额" width="100"> </el-table-column>
+                <el-table-column prop="address" label="采购方式" width="100"> </el-table-column>
+                <el-table-column prop="date" label="公告日期" width="100"> </el-table-column>
+            </el-table>
+            <el-table :data="jieguotableData" style="width: 100%" :header-cell-style='{background: "#F0F9FF"}'
+                class="shouji">
+                <el-table-column prop="title" label="项目名称"> </el-table-column>
+                <el-table-column prop="name" label="预算金额" width="100"> </el-table-column>
+            </el-table>
+        </div>
+        <div class="row main">
+            <div class="scrolls">
+                <div class="col-xs-12 col-sm-12 col-md-12 jiegou">
+                    <span>新闻资讯</span>
+                    <ul>
+                        <li v-for='(item,index) in zixun' :key="index" @click='clickzixun(item,index)'
+                            :style='{color: index === numzixun ? "#8A9AFD" : ""}'>
+                            {{item.name}}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+
+        </div>
+        <div class="row main" style="background: #fff;">
+                <div class="col-xs-12 col-sm-12 col-md-5">
+                        <div class="swiper-container" >
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <img src="../images/banner1.jpg" alt="" style="width: 100%;">
+                                </div>
+                                <div class="swiper-slide">
+                                    <img src="../images/banner2.jpg" alt="" style="width: 100%;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-7" style="padding-right: 0;">
+                        <el-table :data="xinwentableData.slice(0,6)" style="width: 100%"
+                            :header-cell-style='{background: "#F0F9FF"}' id="headershow">
+                            <el-table-column prop="title" label="项目名称" show-overflow-tooltip> </el-table-column>
+                            <el-table-column prop="date" label="时间" width="100"> </el-table-column>
+                        </el-table>
+                    </div>
+        </div>
+        <footers></footers>
+    </div>
+</body>
+
+</html>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            navlist: [
+                { name: '首页' }, { name: '采购公告' }, { name: '结果公示' }, { name: '法律法规' }, { name: '国资监管规定' }, { name: '新闻动态' }, { name: '业务指南' },
+            ],
+            bannerimg: [
+                {
+                    imgs: '../images/nowcaigouje.png',
+                    name: '正在采购项目',
+                    prices: '224'
+                },
+                {
+                    imgs: '../images/caigouje.png',
+                    name: '采购预算金额',
+                    prices: '224'
+                },
+                {
+                    imgs: '../images/xiangmu.png',
+                    name: '累计完成项目',
+                    prices: '224'
+                },
+                {
+                    imgs: '../images/jine.png',
+                    name: '累计完成金额',
+                    prices: '224'
+                },
+            ],
+            input: '',
+            caigou: [
+                { name: '工程类' }, { name: '货物类' }, { name: '服务类' }, { name: '招投标服务网公告' }, { name: '单一来源采购公告' }, { name: '更多' },
+            ],
+            tableData: [
+                {
+                    title: '深圳机场物业公司领翔华府高压清洗机采购项目',
+                    date: '2016-05-02',
+                    name: '2.4800万',
+                    address: '询比采购（询价）'
+                },
+                {
+                    title: '深圳机场物业公司领翔华府高压清洗机采购项目',
+                    date: '2016-05-02',
+                    name: '2.4800万',
+                    address: '询比采购（询价）'
+                },
+                {
+                    title: '深圳机场物业公司领翔华府高压清洗机采购项目',
+                    date: '2016-05-02',
+                    name: '2.4800万',
+                    address: '询比采购（询价）'
+                },
+            ],
+            num: 0,
+            jieguo: [
+                { name: '结果公示' }, { name: '废品公告' }, { name: '变更公告' }, { name: '更多' },
+            ],
+            numjieguo: 0,
+            jieguotableData: [
+                {
+                    title: '深圳机场物业公司领翔华府高压清洗机采购项目',
+                    date: '2016-05-02',
+                    name: '2.4800万',
+                    address: '询比采购（询价）'
+                },
+                {
+                    title: '深圳机场物业公司领翔华府高压清洗机采购项目',
+                    date: '2016-05-02',
+                    name: '2.4800万',
+                    address: '询比采购（询价）'
+                },
+                {
+                    title: '深圳机场物业公司领翔华府高压清洗机采购项目',
+                    date: '2016-05-02',
+                    name: '2.4800万',
+                    address: '询比采购（询价）'
+                },
+            ],
+            numzixun: 0,
+            zixun: [
+                { name: '新闻动态' }, { name: '法律法规' }, { name: '国资监管规定' }, { name: '更多' },
+            ],
+            xinwentableData: [
+                {
+                    title: '对签订与招投标文件不一致的合同效力问题的分析',
+                    date: '2019-07-30'
+                },
+                {
+                    title: '对签订与招投标文件不一致的合同效力问题的分析',
+                    date: '2019-07-30'
+                }, {
+                    title: '对签订与招投标文件不一致的合同效力问题的分析',
+                    date: '2019-07-30'
+                },
+                {
+                    title: '对签订与招投标文件不一致的合同效力问题的分析',
+                    date: '2019-07-30'
+                },
+                {
+                    title: '对签订与招投标文件不一致的合同效力问题的分析',
+                    date: '2019-07-30'
+                },
+                {
+                    title: '对签订与招投标文件不一致的合同效力问题的分析',
+                    date: '2019-07-30'
+                },
+            ],
+            topishow: false
+        },
+        methods: {
+            clickcaigou(item, index) {
+                this.num = index
+            },
+            clickjieguo(item, index) {
+                this.numjieguo = index
+            },
+            clickzixun(item, index) {
+                this.numzixun = index
+            },
+           
+            
+           
+        },
+    })
+    var mySwiper = new Swiper('.swiper-container', {
+        loop: true, // 循环模式选项
+        // 如果需要分页器
+        pagination: {
+            el: '.swiper-pagination',
+        },
+        // 如果需要前进后退按钮
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+        // 如果需要滚动条
+        scrollbar: {
+            el: '.swiper-scrollbar',
+        },
+    })
+    $('.counter').countUp({
+        time: 1000
+    });
+</script>

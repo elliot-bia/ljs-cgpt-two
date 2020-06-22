@@ -1,0 +1,163 @@
+.marin {
+  margin: 20px 0;
+}
+
+.topleft {
+  background: #fff;
+  padding: 20px 0;
+  padding-left: 20px;
+}
+
+.topleft span {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.topleft div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  line-height: 23px;
+  margin-top: 4px;
+  margin-right: 20px;
+  -webkit-box-pack: end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+}
+
+.topxiangqing {
+  background: #fff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  padding: 20px 0;
+  font-size: 13px;
+  line-height: 24px;
+}
+
+.topxiangqing div {
+  width: 50%;
+  line-height: 24px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.topxiangqing div span {
+  display: block;
+  color: #999999;
+  width: 25%;
+  text-align: right;
+  margin-right: 10px;
+}
+
+i {
+  font-style: normal;
+}
+
+.right .xmtop {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  padding: 20px 0 10px 0;
+}
+
+.right .xmtop .tuijian {
+  font-size: 18px;
+  color: #526DFF;
+  font-weight: 600;
+}
+
+.right .xmtop .gd {
+  color: #999999;
+  cursor: pointer;
+}
+
+.xmbottom {
+  background: #fff;
+}
+
+.xmbottom ul li {
+  padding: 6px 20px;
+  font-family: MicrosoftYaHei;
+  color: #303131;
+  cursor: pointer;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.cglist {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background: #fff;
+  border-bottom: 2px solid #45B4F9;
+}
+
+.cglist li {
+  padding: 15px;
+  font-size: 16px;
+  color: #999999;
+  cursor: pointer;
+}
+
+.gccenter {
+  background: #fff;
+}
+
+.gccenter p {
+  font-size: 20px;
+  font-weight: 600;
+  padding: 10px 30px;
+}
+
+.el-table .cell {
+  white-space: pre-line;
+}
+
+.topheight .el-table__header-wrapper {
+  display: none;
+}
+
+.el-table td.is-center, .el-table th.is-center {
+  background: #F0F9FF !important;
+}
+
+.xmtop {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  padding: 20px 10px;
+}
+
+.xmtop .tuijian {
+  font-size: 18px;
+  color: #526DFF;
+  font-weight: 600;
+}
+
+.xmtop .gd {
+  color: #999999;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 699px) {
+  body {
+    background: #fff;
+  }
+  .topleft {
+    padding: 10px 0;
+  }
+  .topxiangqing div {
+    width: 100%;
+  }
+}

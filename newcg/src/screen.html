@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>阳光采购平台</title>
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/ele.css">
+    <link rel="stylesheet" href="../css/eleicon.css">
+    <link rel="stylesheet" href="../css/cgpurchase.css">
+    <link rel="stylesheet" href="../scss/screen.css">
+    <script src="../js/vue.min.js"></script>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/bootstrap.js"></script>
+    <script src="../js/ele.js"></script>
+    <script src="../js/headerpublic.js"></script>
+    <script src="../js/footers.js"></script>
+</head>
+
+<body>
+    <div id="app" v-cloak v-infinite-scroll="load" style="overflow:auto">
+        <headers :ztnums='1'></headers>
+        <article class="mains articles ">
+            <div class="scrbtns">
+                <el-input prefix-icon='el-icon-search' placeholder="请输入企业/项目" v-model="contents" clearable>
+                </el-input>
+                <el-button class="lefts">搜 索</el-button>
+                <el-button style="background: #F0A539;borderColor:#F0A539">搜 企 业</el-button>
+            </div>
+            <div class="scrbox">
+                <ul>
+                    <li class="leititle">公告类型</li>
+                    <li v-for='(item,index) in gonggaolist' :key="index" class="lis" @click='ggclick(item,index)'
+                        :style="{
+                        color: ggnum === index? '#fff' : '',
+                        background: ggnum === index? '#E76778': ''
+                    }">
+                        {{item.name}}
+                    </li>
+                </ul>
+
+                <ul>
+                    <li class="leititle">项目类型</li>
+                    <li v-for='(item,index) in xiangmulist' :key="index" class="lis" @click='xmclick(item,index)'
+                        :style="{
+                            color: xmnum === index? '#fff' : '',
+                            background: xmnum === index? '#E76778': ''
+                        }">
+                        {{item.name}}
+                    </li>
+                </ul>
+                <ul>
+                    <li class="leititle">项目状态</li>
+                    <li v-for='(item,index) in zhuagtailist' :key="index" class="lis" @click='ztclick(item,index)'
+                        :style="{
+                            color: ztnum === index? '#fff' : '',
+                            background: ztnum === index? '#E76778': ''
+                        }">
+                        {{item.name}}
+                    </li>
+                </ul>
+                <ul>
+                    <li class="leititle">预算金额</li>
+                    <li v-for='(item,index) in jinelist' :key="index" class="lis" @click='jeclick(item,index)' :style="{
+                            color: jenum === index? '#fff' : '',
+                            background: jenum === index? '#E76778': ''
+                        }">
+                        {{item.name}}
+                    </li>
+                </ul>
+            </div>
+            <div class="tabels">
+                <el-table :data="tableData.slice((currentPage1-1) * pagesize,currentPage1*pagesize)" style="width: 100%"
+                    :header-cell-style="{
+                    background:'#F8F8F8',color: '#2E3033',
+                    fontWeight:600,fontSize:'16px'
+                }">
+                    <el-table-column prop="date" label="公告类型" width="140">
+                    </el-table-column>
+                    <el-table-column label="项目名称" show-overflow-tooltip>
+                        <template slot-scope="scope">
+                            <span v-if='scope.row.id === 0' class="jinx">进行中</span>
+                            <span v-if='scope.row.id === 1' class="jies">已结束</span>
+                            {{scope.row.name}}
+                        </template>
+                    </el-table-column>
+                    <el-table-column prop="nums" label="预算金额(万元)" width="140">
+                    </el-table-column>
+                    <el-table-column prop="times" label="公告日期" width="100">
+                    </el-table-column>
+                </el-table>
+                <div style="text-align: center;padding: 20px 0;">
+                    <el-pagination background :page-size="pagesize" :current-page.sync="currentPage1"
+                    @current-change='changes'
+                        layout="prev, pager, next" :total="total">
+                    </el-pagination>
+                </div>
+            </div>
+            <div class="iponelist">
+                <ul>
+                    <li v-for="(item,index) in iponearr" :key="index" @click='ipclick(item,index)'
+                        :style="{color:ipnum===index? '#E76576' : ''}">
+                        {{item.name}}
+                        <i :class="{
+                            'el-icon-arrow-down': ipnum === index,
+                            'el-icon-arrow-up': ipnum !== index
+                            }">
+                        </i>
+                    </li>
+                </ul>
+                <div class="zeyin" v-if='ipboxishow' @click='zyguanbi' @touchmove.prevent></div>
+                <div class="ipboxlist" v-if='ipboxishow'>
+                    <ul>
+                        <li v-for="(item,index) in gonggaolist" :key="index" v-if='ipnum === 0'
+                            @click='ggclick(item,index)' :style="{
+                            color: ggnum === index? '#fff' : '',
+                            background: ggnum === index? '#E76778': ''
+                        }">
+                            {{item.name}}
+                        </li>
+                        <li v-for='(item,index) in xiangmulist' :key="index" @click='xmclick(item,index)'
+                            v-if='ipnum === 1' :style="{
+                                color: xmnum === index? '#fff' : '',
+                                background: xmnum === index? '#E76778': ''
+                            }">
+                            {{item.name}}
+                        </li>
+
+                        <li v-for='(item,index) in zhuagtailist' :key="index" @click='ztclick(item,index)'
+                            v-if='ipnum === 2' :style="{
+                            color: ztnum === index? '#fff' : '',
+                            background: ztnum === index? '#E76778': ''
+                        }">
+                            {{item.name}}
+                        </li>
+
+                        <li v-for='(item,index) in jinelist' :key="index" @click='jeclick(item,index)'
+                            v-if='ipnum === 3' :style="{
+                        color: jenum === index? '#fff' : '',
+                        background: jenum === index? '#E76778': ''
+                    }">
+                            {{item.name}}
+                        </li>
+                    </ul>
+                </div>
+                <div class="ipcontent " v-for="(item,index) in tableData" :key="index">
+                    <p class="title">
+                        {{item.name}}
+                    </p>
+                    <p>
+                        <span class="biaoti">
+                            {{item.date}}
+                        </span>
+                        <span v-if='item.id === 0'>
+                            进行中
+                        </span>
+                        <span v-if='item.id === 1'>
+                            已结束
+                        </span>
+                        <span>
+                            {{item.nums}}
+                        </span>
+                    </p>
+                    <p class="times">
+                        {{item.times}}
+                    </p>
+                </div>
+            </div>
+        </article>
+        <footer>
+            <p class='fotertop'>
+                版权所有：深圳联合产权交易所股份有限公司 &nbsp;&nbsp;&nbsp; 地址：深圳南山区沙河西路1809号深圳湾科技生态园一区2栋A座11楼
+            </p>
+            <p>
+                联系电话：0755-86358999 &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 粤ICP备11001582号-1
+                <script type="text/javascript">
+                    var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+                    document.write(unescape("%3Cspan id='cnzz_stat_icon_1275781810'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s23.cnzz.com/z_stat.php%3Fid%3D1275781810%26show%3Dpic2' type='text/javascript'%3E%3C/script%3E"));
+                </script>
+            </p>
+        </footer>
+    </div>
+</body>
+
+</html>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            contents: '',
+            gonggaolist: [
+                { name: '全部' }, { name: '采购公告' }, { name: '变更公告' },
+                { name: '废标公告' }, { name: '结果公告' },
+                { name: '单一来源采购公告' }, { name: '招投标服务网公告' }
+            ],
+            xiangmulist: [
+                { name: '全部' }, { name: '工程' }, { name: '货物' }, { name: '服务' },
+            ],
+            zhuagtailist: [
+                { name: '全部' }, { name: '进行中' }, { name: '已结束' },
+            ],
+            jinelist: [
+                { name: '不限' }, { name: '5万以内' }, { name: '5-10万' }, { name: '10-20万' },
+                { name: '20-50万' }, { name: '50-100万' }, { name: '100万以上' },
+            ],
+            ggnum: 0,
+            xmnum: 0,
+            ztnum: 0,
+            jenum: 0,
+            tableData: [
+                {
+                    date: '单一来源采购公告',
+                    name: '“雪马”吹响集结号 青山绿水等你来！',
+                    nums: '99.20',
+                    times: '2020-02-22',
+                    id: 0
+                },
+                {
+                    date: '变更公告',
+                    name: '“雪马”吹响集结号 青山绿水等你来！',
+                    nums: '99.20',
+                    times: '2020-02-22',
+                    id: 1
+                }, {
+                    date: '单一来源采购公告',
+                    name: '“雪马”吹响集结号 青山绿水等你来！',
+                    nums: '99.20',
+                    times: '2020-02-22',
+                    id: 0
+                },
+                {
+                    date: '变更公告',
+                    name: '“雪马”吹响集结号 青山绿水等你来！',
+                    nums: '99.20',
+                    times: '2020-02-22',
+                    id: 1
+                }, {
+                    date: '单一来源采购公告',
+                    name: '“雪马”吹响集结号 青山绿水等你来！',
+                    nums: '99.20',
+                    times: '2020-02-22',
+                    id: 0
+                },
+                {
+                    date: '变更公告',
+                    name: '“雪马”吹响集结号 青山绿水等你来！',
+                    nums: '99.20',
+                    times: '2020-02-22',
+                    id: 1
+                }, {
+                    date: '单一来源采购公告',
+                    name: '“雪马”吹响集结号 青山绿水等你来！',
+                    nums: '99.20',
+                    times: '2020-02-22',
+                    id: 0
+                },
+                {
+                    date: '变更公告',
+                    name: '“雪马”吹响集结号 青山绿水等你来！',
+                    nums: '99.20',
+                    times: '2020-02-22',
+                    id: 1
+                }, {
+                    date: '单一来源采购公告',
+                    name: '“雪马”吹响集结号 青山绿水等你来！',
+                    nums: '99.20',
+                    times: '2020-02-22',
+                    id: 0
+                },
+                {
+                    date: '变更公告',
+                    name: '“雪马”吹响集结号 青山绿水等你来！',
+                    nums: '99.20',
+                    times: '2020-02-22',
+                    id: 1
+                }, {
+                    date: '单一来源采购公告',
+                    name: '“雪马”吹响集结号 青山绿水等你来！',
+                    nums: '99.20',
+                    times: '2020-02-22',
+                    id: 0
+                },
+                {
+                    date: '变更公告',
+                    name: '“雪马”吹响集结号 青山绿水等你来！',
+                    nums: '99.20',
+                    times: '2020-02-22',
+                    id: 1
+                }, {
+                    date: '单一来源采购公告',
+                    name: '“雪马”吹响集结号 青山绿水等你来！',
+                    nums: '99.20',
+                    times: '2020-02-22',
+                    id: 0
+                },
+                {
+                    date: '变更公告',
+                    name: '“雪马”吹响集结号 青山绿水等你来！',
+                    nums: '99.20',
+                    times: '2020-02-22',
+                    id: 1
+                },
+            ],
+            pagesize: 12,
+            currentPage1: 1,
+            total: 14,
+            iponearr: [
+                { name: '公告类型' }, { name: '项目类型' },
+                { name: '项目状态' }, { name: '预算金额' },
+            ],
+            ipnum: null,
+            elicon: 'el-icon-arrow-down',
+            elicons: 'el-icon-arrow-up',
+            ipboxishow: false,
+            
+        },
+       
+        mounted() {
+
+        },
+        methods: {
+            ggclick: function ggclick(val, index) {
+                this.ggnum = index
+                this.ipclick('', 0)
+            },
+            xmclick: function xmclick(val, index) {
+                this.xmnum = index
+                this.ipclick('', 1)
+            },
+            ztclick: function ztclick(val, index) {
+                this.ztnum = index
+                this.ipclick('', 2)
+            },
+            jeclick: function jeclick(val, index) {
+                this.jenum = index
+                this.ipclick('', 3)
+            },
+            ipclick: function ipclick(val, index) {
+                if (this.ipnum === index) {
+                    this.ipnum = null
+                    this.ipboxishow = false
+                } else {
+                    this.ipboxishow = true
+                    this.ipnum = index
+                }
+            },
+            changes:function changes(val){
+                console.log(val)
+            },
+            zyguanbi: function zyguanbi() {
+                this.ipnum = null
+                this.ipboxishow = false
+            },
+            load: function load() {
+                if (navigator.userAgent.match(/(iPhone|iPod|Android|ios)/i)) {
+                    //  移动端
+                    console.log(1)
+                } else {
+                    //  pc端
+                }
+                
+            }
+        },
+    })
+
+</script>

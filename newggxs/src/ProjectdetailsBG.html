@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>深圳阳光采购平台</title>
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/ele.css">
+    <link rel="stylesheet" href="../css/eleicon.css">
+    <link rel="stylesheet" href="../css/purchase.css">
+    <link rel="stylesheet" href="../sass/ProjectdetailsCG.css">
+    <script src="../js/vue.min.js"></script>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/bootstrap.js"></script>
+    <script src="../js/ele.js"></script>
+    <script src="../js/footers.js"></script>
+    <script src="../js/headers.js"></script>
+    <script src="../js/meuns.js"></script>
+    <style>
+        .topxiangqings{
+            background: #fff;
+            padding: 20px;
+            display: block;
+            line-height: 24px;
+        }
+        .topxiangqings >ul {
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app" v-cloak>
+        <headers></headers>
+        <meuns></meuns>
+        <div class="main">
+            <div class="row marin">
+                <div class="col-xs-12 col-sm-12 col-md-8">
+                    <div class="row" style="background: #fff;border-bottom: 1px solid #ccc;">
+                        <div class="col-xs-12 col-sm-12 col-md-7 topleft">
+                            <span>
+                                油漆采购补充
+                            </span>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-5 topleft">
+                            <div>
+                                分享:&nbsp;
+                                <div class="bshare-custom">
+                                    <div class="bsPromo bsPromo2"></div>
+                                    <a title="分享到QQ空间" class="bshare-qzone"></a>
+                                    <a title="分享到新浪微博" class="bshare-sinaminiblog"></a>
+                                    <a title="分享到人人网" class="bshare-renren"></a>
+                                    <a title="分享到腾讯微博" class="bshare-qqmb"></a>
+                                    <a title="分享到网易微博" class="bshare-neteasemb"></a>
+                                    <a title="分享到微信" class="bshare-weixin" href="javascript:void(0);"></a>
+                                    <a title="更多平台" class="bshare-more bshare-more-icon more-style-addthis pcduan"></a>
+                                </div>
+                            </div>
+                            <script type="text/javascript" charset="utf-8" src="../js/buttonLite.js"></script>
+                            <script type="text/javascript" charset="utf-8" src="../js/bshareC0.js"></script>
+                            <script type="text/javascript" charset="utf-8">
+                                bShare.addEntry({
+                                    title: "深圳阳光采购平台 ",
+                                    summary: "市属,国企,深圳,阳光,采购,服务,平台,采购平台,阳光平台",
+                                });
+                            </script>
+                        </div>
+                    </div>
+                    <div class="topxiangqings">
+                        <p>增加采购以下油漆数</p>
+                        <ul>
+                            <li v-for='(item,index) in conarr' :key="index">
+                             {{index + 1}}、   {{item.name}}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-4 right">
+                    <div class="xmtop">
+                        <p class="tuijian">项目推荐</p>
+                        <p class="gd">更多</p>
+                    </div>
+                    <div class="xmbottom">
+                        <ul>
+                            <li v-for='(item,index) in xmarr' :key="index">
+                              {{item.name}}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <div class="xmtop">
+                            <p class="tuijian">相关公告</p>
+                            <p class="gd">更多</p>
+                        </div>
+                        <div class="gccenter">
+                            <div style="padding:10px;">
+                                <el-table :data="xgarr"  style="width: 100%" :header-cell-style='{background: "#F0F9FF"}'>
+                                    <el-table-column prop="name" label="项目名称" show-overflow-tooltip> </el-table-column>
+                                    <el-table-column prop="prices" label="预算金额" width="180"> </el-table-column>
+                                    <el-table-column prop="fangs" label="采购方式" width="180"> </el-table-column>
+                                    <el-table-column prop="dates" label="有效日期" width="180"> </el-table-column>
+                                </el-table>
+                            </div>
+                        </div>
+    
+                    </div>
+                </div>
+        </div>
+        <footers></footers>
+    </div>
+</body>
+
+
+                            
+</html>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            xmarr: [
+                { name: '德州经济技术开发区城管局所属程力威摆臂式垃圾车德州经济技术开发区城管局所属驰乐洒水车' }, { name: '德州经济技术开发区城管局所属驰乐洒水车' },
+                { name: '德州经济技术开发区城管局所属大力牌洒水车' }, { name: '德州经济技术开发区城管局所属鲁N-A6675赛哥尔摆' }
+            ],
+            conarr: [
+                {name: '聚氨酯蓝色面漆/RAL5015/5KG/桶/ 24桶'},
+                {name: '聚氨脂面漆/5kg/套/黄色/RAL1007   24桶'},
+                {name: '聚氨脂面漆/24kg/套/黑色/A199        2套'},
+                {name: '环氧重防腐漆/环氧富锌底漆/33708  420公斤'},
+            ],
+            xgarr: [
+                {
+                    name: '深圳巴士集团1262台纯电动出租车更新采购项目',
+                    prices: '2000 万',
+                    fangs: '竞争性磋商',
+                    dates: '2018-08-18'
+                },
+                {
+                    name: '深圳巴士集团1262台纯电动出租车更新采购项目',
+                    prices: '2000 万',
+                    fangs: '竞争性磋商',
+                    dates: '2018-08-18'
+                },
+                {
+                    name: '深圳巴士集团1262台纯电动出租车更新采购项目',
+                    prices: '2000 万',
+                    fangs: '竞争性磋商',
+                    dates: '2018-08-18'
+                },
+                {
+                    name: '深圳巴士集团1262台纯电动出租车更新采购项目',
+                    prices: '2000 万',
+                    fangs: '竞争性磋商',
+                    dates: '2018-08-18'
+                },
+                {
+                    name: '深圳巴士集团1262台纯电动出租车更新采购项目',
+                    prices: '2000 万',
+                    fangs: '竞争性磋商',
+                    dates: '2018-08-18'
+                },
+                {
+                    name: '深圳巴士集团1262台纯电动出租车更新采购项目',
+                    prices: '2000 万',
+                    fangs: '竞争性磋商',
+                    dates: '2018-08-18'
+                },
+            ]
+        }
+    })
+</script>

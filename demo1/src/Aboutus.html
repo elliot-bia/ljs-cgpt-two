@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>交易集团</title>
+    <link rel="stylesheet" href="../css/purchase.css">
+    <link rel="stylesheet" href="../css/swiper.min.css">
+    <script src="../js/swiper.min.js"></script>
+    <script src="../js/vue.min.js"></script>
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            background: url(../images/beijing.png) no-repeat 50% -152px;
+        }
+        header {
+            background: #fff;
+        }
+        .box {
+            width: 50%;
+            margin: 0 auto;
+            display: flex;
+        }
+
+        .box>p {
+            line-height: 56px;
+            margin: 0 50px;
+        }
+
+        .box>p>span {
+            margin: 0 10px;
+            cursor: pointer;
+        }
+        .footers{
+            height: 100px;
+            width: 100%;
+            background: #000;
+            opacity: 0.3;
+            position: fixed;
+            bottom: 0;
+        }
+        footer{
+            width: 100%;
+            position: fixed;
+            bottom: 15px;color: #fff;
+            margin: 0 auto;
+        }
+        .con{
+            width: 500px;
+            margin:  0 auto;
+        }
+        .con > p{
+            padding: 5px 0;
+        }
+        .banlist{
+            width: 80%;
+            margin: 0 auto;
+        }
+        .banlist > ul {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 10%;
+        }
+        .banlist > ul > li > img{
+            width: 84px;
+            height: 84px;
+        }
+        .banlist > ul > li > p{
+            text-align: center;
+            color: #fff;
+            padding-bottom: 10px;
+        }
+        .jianjie{
+            position: absolute;
+            width: 100%;
+            height: 400px;
+            background: #fff;
+            margin: 0 auto;
+            opacity: 0.5;
+        }
+        .maxbox{
+            width: 85%;
+            height: 400px;
+            position: fixed;
+            left: 50%;
+            transform:translateX(-50%);
+            margin-top: 5%;
+        }
+        .neirong{
+            position: absolute;
+            z-index: 22;
+            width: 100%;
+        }
+        .neirong > p {
+            text-align: center;
+            margin: 10px 0;
+        }
+        .neirong > p  > span {
+            font-size: 18px;
+            margin: 0 20px;
+            font-weight: 600;
+        }
+        .titles{
+            margin: 20px;
+            text-indent: 2rem;
+            line-height: 32px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <header>
+            <div class="box">
+                <img src="../images/topimg.jpg" alt="">
+                <p>
+                    <span @click='gohemo'>首页</span>
+                    <span>关于我们</span>
+                </p>
+            </div>
+        </header>
+        <div class="banlist">
+            <ul>
+                <li v-for='(item,index) in ban' :key="index">
+                    <img :src="item.imgs" alt="">
+                    <p>{{item.name}}</p>
+                </li>
+            </ul>
+        </div>
+        <div class="maxbox">
+            <div class="jianjie">
+
+            </div>
+           <div class="neirong">
+                <p>
+                    <img src="../images/jianjie.png" alt="">
+                    <span>公司简介</span>
+                    <img src="../images/jianjie.png" alt="">
+                </p>
+                <div class="titles">
+                    深圳市交易集团有限公司始建于2017年11月28日，是专注于专业服务(咨询/财会/法律/翻译等)行业的国有企业公司，公司坐落于深圳市前海深港合作区前湾一路1号A栋201室，主要经营经深圳市人民政府授权,组建各类交易机构和交易服务机构,运营和管理要素交易平台、公共资源交易平台、商品类交易平台、区域性股权交易平台以及提供金融、信息、拍卖、招标等交易配套服务,其他市政府和国资委批准的其他业务。深圳市交易集团有限公司以始终坚持“诚信为本、客户至上、互惠互利，开拓创新”的企业宗旨，本着“本质为本、专业执着、精益求精”的经营销售理念，力求给客户提供全方位优质服务，我们相信诚实正直、开拓进取地为公司发展做正确的事情，将为公司和个人带来共同的利益和进步。经过几年的发展，已成为专业服务(咨询/财会/法律/翻译等)行业知名企业。 
+                </div>
+           </div>
+        </div>
+        <!--  -->
+
+        <div class="footers"></div>
+        <footer>
+            <div class="con">
+                <p>地址：深圳市前海深港合作区前湾一路1号A栋201室   </p>
+                <p>电话：0755-86358999 &nbsp; 传真:0755-26577562 &nbsp;  邮编：518057</p>
+            </div>
+        </footer>
+    </div>
+</body>
+
+</html>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            ban:[
+                {
+                    imgs: '../images/jianzhu.png',
+                    name: '建筑工程'
+                }, {
+                    imgs: '../images/tudi.png',
+                    name: '土地矿业'
+                }, {
+                    imgs: '../images/guoyou.png',
+                    name: '国有产权'
+                }, {
+                    imgs: '../images/zhengfu.png',
+                    name: '政府采购'
+                },{
+                    imgs: '../images/zhengfu.png',
+                    name: '国有产权'
+                },{
+                    imgs: '../images/zfcaigou.png',
+                    name: '政府采购'
+                },
+            ]
+        },
+        methods: {
+            gohemo(){
+                window.location.href = './index.html'
+            }
+        },
+    })
+    
+</script>

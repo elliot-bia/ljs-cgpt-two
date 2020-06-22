@@ -1,0 +1,211 @@
+.el-table td, .el-table th.is-leaf{
+    border: none;
+}
+.banner{
+    height: 435px;
+    background: url(../images/banner.png)  no-repeat center;
+    position: relative;
+    .bannerlist{
+        width: 60%;
+        height: 150px;
+        background: #fff;
+        position: absolute;
+        left: 50%;
+        bottom: -75px;
+        -webkit-transform: translateX(-50%);
+                transform: translateX(-50%);
+        ul {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-pack: distribute;
+                justify-content: space-around;
+            margin-top: 2%;
+            li{
+                p{
+                    font-family:Microsoft YaHei;
+                    font-weight:400;
+                    color:rgba(55,97,148,1);
+                    padding-top: 8px;
+                }
+                img{
+                    height: 40px;
+                }
+            }
+        }
+    }
+}
+.inp{
+    margin-top: 100px;
+}
+.box{
+    width: 80%;
+    margin: 0 auto;
+}
+.qiye{
+    background: #3CB0F9;
+    color: #fff;
+    height: 40px;
+    padding: 0 10%;
+    text-align: center;
+}
+.xiangmu{
+    background: #526DFF;
+    color: #fff;
+    height: 40px;
+    padding: 0 10%;
+    margin-left: 5%;
+}
+
+
+
+.caigou{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    margin: 20px;
+    span{
+       width: 30%;
+        font-family:Microsoft YaHei;
+        font-weight:600;
+        color:rgba(84,111,255,1);
+        font-size: 20px;
+    }
+    ul{
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        width: 69%;
+        -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+                justify-content: space-between;
+        line-height: 28px;
+        li{
+            cursor: pointer;
+            color: #999999;
+            &:hover{
+                color: #8A9AFD;
+            }
+        }
+        
+    }
+}
+.jiegou{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    margin: 20px;
+    span{
+        width: 50%;
+         font-family:Microsoft YaHei;
+         font-weight:600;
+         color:rgba(84,111,255,1);
+         font-size: 20px;
+     }
+     ul{
+         display: -webkit-box;
+         display: -ms-flexbox;
+         display: flex;
+         width: 49%;
+         -webkit-box-pack: justify;
+             -ms-flex-pack: justify;
+                 justify-content: space-between;
+         line-height: 28px;
+         li{
+             cursor: pointer;
+             &:hover{
+                 color: #8A9AFD;
+             }
+         }
+         
+     }
+}
+
+#headershow{
+    .el-table__footer-wrapper, .el-table__header-wrapper{
+        display: none;
+    }
+}
+@media screen and (min-width:1024px){
+    .banner{
+        .bannerlist{
+            width: 60%;
+        }
+    }
+    .swiper-container{
+        width: 70%;
+        text-align: center;
+    }
+}   
+@media screen and (min-width:700px) and (max-width:1023px){
+    .banner{
+        background: url(../images/ipadbanner.png) no-repeat;
+        height: 233px;
+        .bannerlist{
+            width: 90%;
+        }
+    }
+    .inp{
+        margin-top: 100px;
+    }
+}
+@media screen and (max-width:699px){
+    
+    #app{
+        overflow: hidden;
+    }
+    .banner{
+        height: 333px;
+        background: url(../images/iphonebanner.png) no-repeat 37% 7%;
+        .bannerlist{
+            width: 100%;
+            height: auto;
+            bottom: 0;
+            ul{
+                -ms-flex-wrap: wrap;
+                    flex-wrap: wrap;
+                li{
+                    width: 50%;
+                    text-align: center;
+                    img{
+                        float: left;
+                        margin: 6% 0 0 6%;
+                    }
+                }
+            }
+        }
+    }
+    .inp{
+        margin-top: 20px;
+    }
+    .jiegou,.caigou{
+        margin: 0;
+    }
+    .box{
+        width: 100%;
+    }
+    .scrolls{
+        overflow: hidden;
+        overflow-x: scroll;
+        height: 40px;
+        line-height: 40px;
+        margin: 10px 0;
+        div{
+            width: 700px;
+            ul {
+                line-height: 40px;
+            }
+        }
+        div::-webkit-scrollbar {display:none}
+    }
+    .scrolls::-webkit-scrollbar {display:none}
+    .jiegou span,.caigou span{
+        width: 20%;
+    }
+    .qiye,.xiangmu{
+        padding: 0 5%;
+    }
+}
+.el-table th, .el-table tr{
+    cursor: pointer;
+}

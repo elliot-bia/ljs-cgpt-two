@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>阳光采购平台</title>
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/ele.css">
+    <link rel="stylesheet" href="../css/eleicon.css">
+    <link rel="stylesheet" href="../css/cgpurchase.css">
+    <link rel="stylesheet" href="../scss/cgdetails.css">
+    <script src="../js/vue.min.js"></script>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/bootstrap.js"></script>
+    <script src="../js/ele.js"></script>
+    <script src="../js/headerpublic.js"></script>
+    <script src="../js/footers.js"></script>
+</head>
+
+<body>
+    <div id="app">
+       <p v-html='obj'></p>
+        <script>
+            window._bd_share_config = {
+                "common": {
+                    "bdSnsKey": {},
+                    "bdText": "",
+                    "bdMini": "2",
+                    "bdMiniList": false,
+                    "bdPic": "",
+                    "bdStyle": "8",
+                    "bdSize": "16"
+                },
+                "slide":
+                {
+                    "type": "slide",
+                    "bdImg": "0",
+                    "bdPos": "left",
+                },
+                "image": { "viewList": ["qzone", "tsina", "tqq", "renren", "weixin"], "viewText": "分享到：", "viewSize": "16" },
+                "selectShare": { "bdContainerClass": null, "bdSelectMiniList": ["qzone", "tsina", "tqq", "renren", "weixin"] }
+            };
+            with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
+        </script>
+        <headers></headers>
+        <div class="mains">
+            <div class="details">
+                <p class="titles">
+                    龙岩新东阳环保净化有限公司公司DCS系统改造项目
+                </p>
+                <p class="twos">
+                    <span>
+                        公告类型：单一来源采购公告
+                    </span>
+                    <span>
+                        发布日期：2020-04-03
+                    </span>
+                </p>
+                <div class="box"></div>
+            </div>
+            <div class="xiangguang">
+                <p class="gonggao">
+                    相关公告
+
+                </p>
+                <span>
+
+                </span>
+                <el-table :data="tablearr" style="width: 100%" :header-cell-style="{
+            background:'#F8F8F8',color: '#2E3033',
+            fontWeight:600,fontSize:'16px'
+        }">
+                    <el-table-column prop="titles" label="公告类型" width="150">
+                    </el-table-column>
+                    <el-table-column prop="name" label="项目名称" show-overflow-tooltip>
+                    </el-table-column>
+                    <el-table-column prop="jine" label="预算金额(万元)" width="180">
+                    </el-table-column>
+                    <el-table-column prop="tiem" label="公告日期" width="100">
+                    </el-table-column>
+
+                </el-table>
+            </div>
+
+        </div>
+        <footers>
+            <!-- <p class='fotertop'>
+                版权所有：深圳联合产权交易所股份有限公司 &nbsp;&nbsp;&nbsp; 地址：深圳南山区沙河西路1809号深圳湾科技生态园一区2栋A座11楼
+            </p>
+            <p>
+                联系电话：0755-86358999 &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 粤ICP备11001582号-1
+                <script type="text/javascript">
+                    var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+                    document.write(unescape("%3Cspan id='cnzz_stat_icon_1275781810'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s23.cnzz.com/z_stat.php%3Fid%3D1275781810%26show%3Dpic2' type='text/javascript'%3E%3C/script%3E"));
+                </script>
+            </p> -->
+        </footers>
+    </div>
+</body>
+
+</html>
+<script>
+    
+    var app = new Vue({
+        el: '#app',
+        data: {
+            tablearr: [
+                {
+                    titles: '单一来源采购公告',
+                    name: '深圳机场物业公司领翔华府高压清洗机采购项目',
+                    jine: '33.33',
+                    tiem: '2019-07-30',
+                }, {
+                    titles: '单一来源采购公告',
+                    name: '深圳机场物业公司领翔华府高压清洗机采购项目',
+                    jine: '33.33',
+                    tiem: '2019-07-30',
+                }, {
+                    titles: '单一来源采购公告',
+                    name: '深圳机场物业公司领翔华府高压清洗机采购项目',
+                    jine: '33.33',
+                    tiem: '2019-07-30',
+                }, {
+                    titles: '单一来源采购公告',
+                    name: '深圳机场物业公司领翔华府高压清洗机采购项目',
+                    jine: '33.33',
+                    tiem: '2019-07-30',
+                }, {
+                    titles: '单一来源采购公告',
+                    name: '深圳机场物业公司领翔华府高压清洗机采购项目',
+                    jine: '33.33',
+                    tiem: '2019-07-30',
+                },
+            ],
+            obj: null
+        },
+        mounted() {
+            var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+   
+   this.obj = document.write(unescape("%3Cspan id='cnzz_stat_icon_1275781810'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s23.cnzz.com/z_stat.php%3Fid%3D1275781810%26show%3Dpic2' type='text/javascript'%3E%3C/script%3E"));
+        },
+        methods: {
+
+        },
+    })
+  
+</script>
